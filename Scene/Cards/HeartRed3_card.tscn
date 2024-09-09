@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://k6pacuw2ejfd"]
+
+[ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_8tcdh"]
+[ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="2_ghaym"]
+
+[node name="Node" type="Node2D"]
+
+[node name="Card" type="Sprite2D" parent="."]
+position = Vector2(3.33786e-06, 8.34465e-07)
+scale = Vector2(0.512, 0.539474)
+texture = ExtResource("1_8tcdh")
+region_enabled = true
+region_rect = Rect2(187, 150, 125, 152)
+
+[node name="Num" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-41.0156, -53.7561)
+texture = ExtResource("2_ghaym")
+region_enabled = true
+region_rect = Rect2(138, 321, 21, 24)
+
+[node name="Num2" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(37.1089, 48.1942)
+rotation = 3.13725
+texture = ExtResource("2_ghaym")
+region_enabled = true
+region_rect = Rect2(138, 321, 21, 24)
+
+[node name="Sprite2D" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-17.5781, -31.5122)
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_ghaym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(15.625, -31.5122)
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_ghaym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-17.5777, 33.3658)
+rotation = -3.13782
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_ghaym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(15.6221, 33.3662)
+rotation = -3.13782
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_ghaym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)

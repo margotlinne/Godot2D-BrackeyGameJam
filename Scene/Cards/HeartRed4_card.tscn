@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://xmpmqra1etcb"]
+
+[ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_jclbb"]
+[ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="2_73lym"]
+
+[node name="Node" type="Node2D"]
+
+[node name="Card" type="Sprite2D" parent="."]
+position = Vector2(3.33786e-06, 8.34465e-07)
+scale = Vector2(0.512, 0.539474)
+texture = ExtResource("1_jclbb")
+region_enabled = true
+region_rect = Rect2(187, 150, 125, 152)
+
+[node name="Num" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-41.0156, -53.7561)
+texture = ExtResource("2_73lym")
+region_enabled = true
+region_rect = Rect2(105, 322, 16, 23)
+
+[node name="Num2" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(37.1089, 48.1942)
+rotation = 3.13725
+texture = ExtResource("2_73lym")
+region_enabled = true
+region_rect = Rect2(105, 322, 16, 23)
+
+[node name="Sprite2D" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0.244129, -30.8171)
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_73lym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-6.55651e-06, 0)
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_73lym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Card"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-0.0136773, 29.6586)
+rotation = -3.13782
+scale = Vector2(0.533703, 0.595818)
+texture = ExtResource("2_73lym")
+region_enabled = true
+region_rect = Rect2(361, 158, 43, 35)

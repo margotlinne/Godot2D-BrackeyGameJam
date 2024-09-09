@@ -1,0 +1,527 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8nxnplhuqq2n"]
+
+[ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
+[ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_ccbnx"]
+[ext_resource type="Texture2D" uid="uid://bj661wo3u7rxu" path="res://Image/bg_smaller.png" id="3_ejebc"]
+[ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="3_gp7yj"]
+[ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="4_bl5mv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p64p"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vde7u"]
+bg_color = Color(0.384314, 0.478431, 0.415686, 1)
+
+[node name="Computer" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.705882, 0.427451, 1)
+
+[node name="Application Group" type="Control" parent="Control"]
+layout_mode = 1
+anchor_left = 0.023
+anchor_top = 0.039
+anchor_right = 0.977
+anchor_bottom = 0.965
+offset_left = -0.496002
+offset_top = -0.272001
+offset_right = 0.495972
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TaskBar" type="Sprite2D" parent="Control/Application Group"]
+position = Vector2(551.5, 569.25)
+scale = Vector2(1.15313, 1.7973)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(0, 503, 960, 37)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Application Group/TaskBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -12.0
+offset_right = -480.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BinApp" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/BinApp"]
+position = Vector2(26.3225, 11.4644)
+scale = Vector2(0.43887, 0.269102)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(443, 45, 70, 74)
+
+[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/BinApp"]
+visible = false
+custom_minimum_size = Vector2(50, 3)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="InternetApp" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/InternetApp"]
+position = Vector2(23.212, 11.6388)
+scale = Vector2(0.358789, 0.22767)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(546, 40, 121, 89)
+
+[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/InternetApp"]
+visible = false
+custom_minimum_size = Vector2(50, 3)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="EmailApp" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/EmailApp"]
+position = Vector2(25.2012, 11.9534)
+scale = Vector2(0.412792, 0.255702)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(710, 49, 86, 73)
+
+[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/EmailApp"]
+visible = false
+custom_minimum_size = Vector2(50, 3)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="CardGame" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/CardGame"]
+position = Vector2(23.6396, 12.9136)
+scale = Vector2(0.374477, 0.207167)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(831, 31, 88, 94)
+
+[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/CardGame"]
+visible = false
+custom_minimum_size = Vector2(50, 3)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="Folders" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/Folders"]
+position = Vector2(24.2737, 13.4699)
+scale = Vector2(0.439386, 0.286889)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(240, 48, 75, 64)
+
+[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/Folders"]
+visible = false
+custom_minimum_size = Vector2(50, 3)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="BinApp" type="Sprite2D" parent="Control/Application Group"]
+position = Vector2(325.069, 269.255)
+scale = Vector2(0.981, 0.937)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(429.38, 30.84, 98.01, 96.8)
+
+[node name="Label" type="Label" parent="Control/Application Group/BinApp"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -69.3874
+offset_top = -52.2433
+offset_right = -29.3874
+offset_bottom = -29.2433
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Bin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShoppingWeb" type="Sprite2D" parent="Control/Application Group"]
+position = Vector2(430.069, 274.255)
+scale = Vector2(0.805885, 0.813955)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(541.71, 33.445, 130.68, 110.11)
+
+[node name="Label" type="Label" parent="Control/Application Group/ShoppingWeb"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.007
+anchor_right = 0.5
+anchor_bottom = 1.007
+offset_left = -127.964
+offset_top = -62.5414
+offset_right = -0.963501
+offset_bottom = -39.5414
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "BestShoping.com"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmailApp" type="Sprite2D" parent="Control/Application Group"]
+position = Vector2(547.069, 276.255)
+scale = Vector2(0.981, 0.937)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(703.791, 40.902, 98.494, 87.846)
+
+[node name="Label" type="Label" parent="Control/Application Group/EmailApp"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.007
+anchor_right = 0.5
+anchor_bottom = 1.007
+offset_left = -78.5616
+offset_top = -47.054
+offset_right = -17.5616
+offset_bottom = -26.054
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "E-Mail"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardGame" type="Sprite2D" parent="Control/Application Group"]
+position = Vector2(657.069, 271.255)
+scale = Vector2(0.981, 0.937)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(819.405, 25.762, 109.142, 103.818)
+
+[node name="Label" type="Label" parent="Control/Application Group/CardGame"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.007
+anchor_right = 0.5
+anchor_bottom = 1.007
+offset_left = -94.2553
+offset_top = -58.8971
+offset_right = -6.25531
+offset_bottom = -35.8971
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "GoGoCard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Folder" type="Sprite2D" parent="Control/Application Group"]
+position = Vector2(761.069, 277.255)
+scale = Vector2(0.966691, 1.00183)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(223.117, 33.748, 105.149, 90.508)
+
+[node name="Label" type="Label" parent="Control/Application Group/Folder"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.007
+anchor_right = 0.5
+anchor_bottom = 1.007
+offset_left = -80.4304
+offset_top = -54.6959
+offset_right = -21.4304
+offset_bottom = -31.6959
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Work"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameWindow" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="Control/GameWindow"]
+modulate = Color(0.254902, 0.254902, 0.254902, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ejebc")
+stretch_mode = 1
+
+[node name="Bar" type="Panel" parent="Control/GameWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.052
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 4.8
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
+
+[node name="CloseBtn" type="Sprite2D" parent="Control/GameWindow/Bar"]
+position = Vector2(1061.75, 22)
+scale = Vector2(1.08824, 1.15789)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(868, 176, 17, 19)
+
+[node name="QuitBtn" type="Sprite2D" parent="Control/GameWindow/Bar"]
+position = Vector2(1086, 22)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(891, 175, 19, 22)
+
+[node name="EMailWindow" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Control/EMailWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.933333, 0.988235, 1)
+
+[node name="Bar" type="Panel" parent="Control/EMailWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.052
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 4.8
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
+
+[node name="CloseBtn" type="Sprite2D" parent="Control/EMailWindow/Bar"]
+position = Vector2(1061.75, 22)
+scale = Vector2(1.08824, 1.15789)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(868, 176, 17, 19)
+
+[node name="QuitBtn" type="Sprite2D" parent="Control/EMailWindow/Bar"]
+position = Vector2(1086, 22)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(891, 175, 19, 22)
+
+[node name="ShoppingWebWindow" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Control/ShoppingWebWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.933333, 0.988235, 1)
+
+[node name="Bar" type="Panel" parent="Control/ShoppingWebWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.052
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 4.8
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
+
+[node name="CloseBtn" type="Sprite2D" parent="Control/ShoppingWebWindow/Bar"]
+position = Vector2(1061.75, 22)
+scale = Vector2(1.08824, 1.15789)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(868, 176, 17, 19)
+
+[node name="QuitBtn" type="Sprite2D" parent="Control/ShoppingWebWindow/Bar"]
+position = Vector2(1086, 22)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(891, 175, 19, 22)
+
+[node name="BinWindow" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Window" type="Sprite2D" parent="Control/BinWindow"]
+position = Vector2(549, 276)
+scale = Vector2(1.85097, 1.78235)
+texture = ExtResource("4_bl5mv")
+region_enabled = true
+region_rect = Rect2(484, 164, 359, 255)
+
+[node name="CloseBtn" type="Sprite2D" parent="Control/BinWindow/Window"]
+position = Vector2(151.272, -111.65)
+scale = Vector2(0.587925, 0.649644)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(868, 176, 17, 19)
+
+[node name="QuitBtn" type="Sprite2D" parent="Control/BinWindow/Window"]
+position = Vector2(164.778, -110.528)
+scale = Vector2(0.540256, 0.561056)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(891, 175, 19, 22)
+
+[node name="FolderWindow" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Window" type="Sprite2D" parent="Control/FolderWindow"]
+position = Vector2(549, 276)
+scale = Vector2(1.85097, 1.78235)
+texture = ExtResource("4_bl5mv")
+region_enabled = true
+region_rect = Rect2(484, 164, 359, 255)
+
+[node name="CloseBtn" type="Sprite2D" parent="Control/FolderWindow/Window"]
+position = Vector2(151.272, -111.65)
+scale = Vector2(0.587925, 0.649644)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(868, 176, 17, 19)
+
+[node name="QuitBtn" type="Sprite2D" parent="Control/FolderWindow/Window"]
+position = Vector2(164.778, -110.528)
+scale = Vector2(0.540256, 0.561056)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(891, 175, 19, 22)
+
+[node name="Monitor" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_22wky")
