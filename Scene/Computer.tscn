@@ -1,10 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=14 format=3 uid="uid://b8nxnplhuqq2n"]
 
+[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_20jjj"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
 [ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_ccbnx"]
 [ext_resource type="Texture2D" uid="uid://bj661wo3u7rxu" path="res://Image/bg_smaller.png" id="3_ejebc"]
 [ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="3_gp7yj"]
+[ext_resource type="Texture2D" uid="uid://nief0h4h530h" path="res://Image/sketch1725954017941.png" id="3_i0g51"]
 [ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="4_bl5mv"]
+[ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_l4qcx"]
+[ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgukq"]
+bg_color = Color(0, 0, 0, 0.52549)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oyicx"]
+shader = ExtResource("8_o2k67")
+shader_parameter/outline_width = 4.0
+shader_parameter/progress = 1.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p64p"]
 bg_color = Color(1, 1, 0, 1)
@@ -12,15 +29,175 @@ bg_color = Color(1, 1, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vde7u"]
 bg_color = Color(0.384314, 0.478431, 0.415686, 1)
 
-[node name="Computer" type="Node2D"]
+[node name="Computer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = 1.0
+offset_right = -6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeBar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -103.0
+offset_right = 8.0
+offset_bottom = -103.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="UI/TimeBar"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 22.0
+offset_right = 297.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mgukq")
+
+[node name="Image" type="Sprite2D" parent="UI/TimeBar/Panel"]
+position = Vector2(128, 27)
+scale = Vector2(0.314917, 0.298246)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(55, 865, 905, 285)
+
+[node name="TimeMan" type="Sprite2D" parent="UI/TimeBar/Panel/Image"]
+material = SubResource("ShaderMaterial_oyicx")
+position = Vector2(-368.351, 20.1177)
+scale = Vector2(0.472387, 0.563866)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(8.60007, 1164.8, 286, 280.5)
+
+[node name="start" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(-374.702, 6.70587)
+
+[node name="end" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(368.351, 16.7647)
+
+[node name="Hearts" type="HBoxContainer" parent="UI"]
+visible = false
+layout_mode = 1
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 425.0
+offset_bottom = 76.0
+alignment = 2
+
+[node name="heart" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart2" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart2/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart3" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart3/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart4" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart4"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart4/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart5" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart5"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart5/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="Manager" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+script = ExtResource("1_20jjj")
 
-[node name="BG" type="ColorRect" parent="Control"]
+[node name="BG" type="ColorRect" parent="Manager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +206,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.501961, 0.705882, 0.427451, 1)
 
-[node name="Application Group" type="Control" parent="Control"]
+[node name="Monitor" type="TextureRect" parent="Manager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_22wky")
+
+[node name="Application Group" type="Control" parent="Manager"]
 layout_mode = 1
 anchor_left = 0.023
 anchor_top = 0.039
@@ -42,14 +228,14 @@ offset_bottom = -0.320007
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TaskBar" type="Sprite2D" parent="Control/Application Group"]
+[node name="TaskBar" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(551.5, 569.25)
 scale = Vector2(1.15313, 1.7973)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(0, 503, 960, 37)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Application Group/TaskBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/Application Group/TaskBar"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,18 +247,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BinApp" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+[node name="BinApp" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/BinApp"]
+[node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/BinApp"]
 position = Vector2(26.3225, 11.4644)
 scale = Vector2(0.43887, 0.269102)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(443, 45, 70, 74)
 
-[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/BinApp"]
+[node name="Panel" type="Panel" parent="Manager/Application Group/TaskBar/HBoxContainer/BinApp"]
 visible = false
 custom_minimum_size = Vector2(50, 3)
 layout_mode = 1
@@ -85,18 +271,18 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="InternetApp" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+[node name="InternetApp" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/InternetApp"]
+[node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/InternetApp"]
 position = Vector2(23.212, 11.6388)
 scale = Vector2(0.358789, 0.22767)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(546, 40, 121, 89)
 
-[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/InternetApp"]
+[node name="Panel" type="Panel" parent="Manager/Application Group/TaskBar/HBoxContainer/InternetApp"]
 visible = false
 custom_minimum_size = Vector2(50, 3)
 layout_mode = 1
@@ -109,18 +295,18 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="EmailApp" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+[node name="EmailApp" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/EmailApp"]
+[node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/EmailApp"]
 position = Vector2(25.2012, 11.9534)
 scale = Vector2(0.412792, 0.255702)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(710, 49, 86, 73)
 
-[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/EmailApp"]
+[node name="Panel" type="Panel" parent="Manager/Application Group/TaskBar/HBoxContainer/EmailApp"]
 visible = false
 custom_minimum_size = Vector2(50, 3)
 layout_mode = 1
@@ -133,18 +319,18 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="CardGame" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+[node name="CardGame" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/CardGame"]
+[node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/CardGame"]
 position = Vector2(23.6396, 12.9136)
 scale = Vector2(0.374477, 0.207167)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(831, 31, 88, 94)
 
-[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/CardGame"]
+[node name="Panel" type="Panel" parent="Manager/Application Group/TaskBar/HBoxContainer/CardGame"]
 visible = false
 custom_minimum_size = Vector2(50, 3)
 layout_mode = 1
@@ -157,18 +343,18 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="Folders" type="Control" parent="Control/Application Group/TaskBar/HBoxContainer"]
+[node name="Folders" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Icon" type="Sprite2D" parent="Control/Application Group/TaskBar/HBoxContainer/Folders"]
+[node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/Folders"]
 position = Vector2(24.2737, 13.4699)
 scale = Vector2(0.439386, 0.286889)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(240, 48, 75, 64)
 
-[node name="Panel" type="Panel" parent="Control/Application Group/TaskBar/HBoxContainer/Folders"]
+[node name="Panel" type="Panel" parent="Manager/Application Group/TaskBar/HBoxContainer/Folders"]
 visible = false
 custom_minimum_size = Vector2(50, 3)
 layout_mode = 1
@@ -181,14 +367,38 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="BinApp" type="Sprite2D" parent="Control/Application Group"]
-position = Vector2(325.069, 269.255)
+[node name="Note" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/Note"]
+position = Vector2(24.8504, 12.4173)
+scale = Vector2(0.380723, 0.207882)
+texture = ExtResource("3_i0g51")
+region_enabled = true
+region_rect = Rect2(40, 398, 82, 91)
+
+[node name="Panel" type="Panel" parent="Manager/Application Group/TaskBar/HBoxContainer/Note"]
+visible = false
+custom_minimum_size = Vector2(50, 3)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="BinApp" type="Sprite2D" parent="Manager/Application Group"]
+position = Vector2(269.069, 258.255)
 scale = Vector2(0.981, 0.937)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(429.38, 30.84, 98.01, 96.8)
 
-[node name="Label" type="Label" parent="Control/Application Group/BinApp"]
+[node name="Label" type="Label" parent="Manager/Application Group/BinApp"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -205,14 +415,14 @@ text = "Bin"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShoppingWeb" type="Sprite2D" parent="Control/Application Group"]
-position = Vector2(430.069, 274.255)
+[node name="ShoppingWeb" type="Sprite2D" parent="Manager/Application Group"]
+position = Vector2(374.069, 263.255)
 scale = Vector2(0.805885, 0.813955)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(541.71, 33.445, 130.68, 110.11)
 
-[node name="Label" type="Label" parent="Control/Application Group/ShoppingWeb"]
+[node name="Label" type="Label" parent="Manager/Application Group/ShoppingWeb"]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.007
@@ -229,14 +439,14 @@ text = "BestShoping.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailApp" type="Sprite2D" parent="Control/Application Group"]
-position = Vector2(547.069, 276.255)
+[node name="EmailApp" type="Sprite2D" parent="Manager/Application Group"]
+position = Vector2(491.069, 265.255)
 scale = Vector2(0.981, 0.937)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(703.791, 40.902, 98.494, 87.846)
 
-[node name="Label" type="Label" parent="Control/Application Group/EmailApp"]
+[node name="Label" type="Label" parent="Manager/Application Group/EmailApp"]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.007
@@ -253,14 +463,14 @@ text = "E-Mail"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardGame" type="Sprite2D" parent="Control/Application Group"]
-position = Vector2(657.069, 271.255)
+[node name="CardGame" type="Sprite2D" parent="Manager/Application Group"]
+position = Vector2(601.069, 260.255)
 scale = Vector2(0.981, 0.937)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(819.405, 25.762, 109.142, 103.818)
 
-[node name="Label" type="Label" parent="Control/Application Group/CardGame"]
+[node name="Label" type="Label" parent="Manager/Application Group/CardGame"]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.007
@@ -277,14 +487,14 @@ text = "GoGoCard"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Folder" type="Sprite2D" parent="Control/Application Group"]
-position = Vector2(761.069, 277.255)
+[node name="Folder" type="Sprite2D" parent="Manager/Application Group"]
+position = Vector2(705.069, 266.255)
 scale = Vector2(0.966691, 1.00183)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(223.117, 33.748, 105.149, 90.508)
 
-[node name="Label" type="Label" parent="Control/Application Group/Folder"]
+[node name="Label" type="Label" parent="Manager/Application Group/Folder"]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.007
@@ -301,7 +511,32 @@ text = "Work"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameWindow" type="Control" parent="Control"]
+[node name="Note" type="Sprite2D" parent="Manager/Application Group"]
+position = Vector2(809, 259.25)
+scale = Vector2(0.951219, 0.884615)
+texture = ExtResource("3_i0g51")
+region_enabled = true
+region_rect = Rect2(40, 398, 82, 91)
+
+[node name="Label" type="Label" parent="Manager/Application Group/Note"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.007
+anchor_right = 0.5
+anchor_bottom = 1.007
+offset_left = -74.6411
+offset_top = -55.7457
+offset_right = -2.64105
+offset_bottom = -7.7457
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.957938, 1.04522)
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Guideline"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameWindow" type="Control" parent="Manager"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -315,7 +550,7 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="TextureRect" parent="Control/GameWindow"]
+[node name="BG" type="TextureRect" parent="Manager/GameWindow"]
 modulate = Color(0.254902, 0.254902, 0.254902, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -326,7 +561,7 @@ grow_vertical = 2
 texture = ExtResource("3_ejebc")
 stretch_mode = 1
 
-[node name="Bar" type="Panel" parent="Control/GameWindow"]
+[node name="Bar" type="Panel" parent="Manager/GameWindow"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -338,20 +573,20 @@ offset_bottom = 4.8
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
 
-[node name="CloseBtn" type="Sprite2D" parent="Control/GameWindow/Bar"]
+[node name="CloseBtn" type="Sprite2D" parent="Manager/GameWindow/Bar"]
 position = Vector2(1061.75, 22)
 scale = Vector2(1.08824, 1.15789)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(868, 176, 17, 19)
 
-[node name="QuitBtn" type="Sprite2D" parent="Control/GameWindow/Bar"]
+[node name="QuitBtn" type="Sprite2D" parent="Manager/GameWindow/Bar"]
 position = Vector2(1086, 22)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(891, 175, 19, 22)
 
-[node name="EMailWindow" type="Control" parent="Control"]
+[node name="EMailWindow" type="Control" parent="Manager"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -365,7 +600,7 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="ColorRect" parent="Control/EMailWindow"]
+[node name="BG" type="ColorRect" parent="Manager/EMailWindow"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -374,7 +609,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.933333, 0.988235, 1)
 
-[node name="Bar" type="Panel" parent="Control/EMailWindow"]
+[node name="Bar" type="Panel" parent="Manager/EMailWindow"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -386,20 +621,20 @@ offset_bottom = 4.8
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
 
-[node name="CloseBtn" type="Sprite2D" parent="Control/EMailWindow/Bar"]
+[node name="CloseBtn" type="Sprite2D" parent="Manager/EMailWindow/Bar"]
 position = Vector2(1061.75, 22)
 scale = Vector2(1.08824, 1.15789)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(868, 176, 17, 19)
 
-[node name="QuitBtn" type="Sprite2D" parent="Control/EMailWindow/Bar"]
+[node name="QuitBtn" type="Sprite2D" parent="Manager/EMailWindow/Bar"]
 position = Vector2(1086, 22)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(891, 175, 19, 22)
 
-[node name="ShoppingWebWindow" type="Control" parent="Control"]
+[node name="ShoppingWebWindow" type="Control" parent="Manager"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -413,7 +648,7 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="ColorRect" parent="Control/ShoppingWebWindow"]
+[node name="BG" type="ColorRect" parent="Manager/ShoppingWebWindow"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -422,7 +657,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.933333, 0.988235, 1)
 
-[node name="Bar" type="Panel" parent="Control/ShoppingWebWindow"]
+[node name="Bar" type="Panel" parent="Manager/ShoppingWebWindow"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -434,20 +669,20 @@ offset_bottom = 4.8
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
 
-[node name="CloseBtn" type="Sprite2D" parent="Control/ShoppingWebWindow/Bar"]
+[node name="CloseBtn" type="Sprite2D" parent="Manager/ShoppingWebWindow/Bar"]
 position = Vector2(1061.75, 22)
 scale = Vector2(1.08824, 1.15789)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(868, 176, 17, 19)
 
-[node name="QuitBtn" type="Sprite2D" parent="Control/ShoppingWebWindow/Bar"]
+[node name="QuitBtn" type="Sprite2D" parent="Manager/ShoppingWebWindow/Bar"]
 position = Vector2(1086, 22)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(891, 175, 19, 22)
 
-[node name="BinWindow" type="Control" parent="Control"]
+[node name="BinWindow" type="Control" parent="Manager"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -461,28 +696,28 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Window" type="Sprite2D" parent="Control/BinWindow"]
+[node name="Window" type="Sprite2D" parent="Manager/BinWindow"]
 position = Vector2(549, 276)
 scale = Vector2(1.85097, 1.78235)
 texture = ExtResource("4_bl5mv")
 region_enabled = true
 region_rect = Rect2(484, 164, 359, 255)
 
-[node name="CloseBtn" type="Sprite2D" parent="Control/BinWindow/Window"]
+[node name="CloseBtn" type="Sprite2D" parent="Manager/BinWindow/Window"]
 position = Vector2(151.272, -111.65)
 scale = Vector2(0.587925, 0.649644)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(868, 176, 17, 19)
 
-[node name="QuitBtn" type="Sprite2D" parent="Control/BinWindow/Window"]
+[node name="QuitBtn" type="Sprite2D" parent="Manager/BinWindow/Window"]
 position = Vector2(164.778, -110.528)
 scale = Vector2(0.540256, 0.561056)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(891, 175, 19, 22)
 
-[node name="FolderWindow" type="Control" parent="Control"]
+[node name="FolderWindow" type="Control" parent="Manager"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -496,32 +731,87 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Window" type="Sprite2D" parent="Control/FolderWindow"]
+[node name="Window" type="Sprite2D" parent="Manager/FolderWindow"]
 position = Vector2(549, 276)
 scale = Vector2(1.85097, 1.78235)
 texture = ExtResource("4_bl5mv")
 region_enabled = true
 region_rect = Rect2(484, 164, 359, 255)
 
-[node name="CloseBtn" type="Sprite2D" parent="Control/FolderWindow/Window"]
+[node name="CloseBtn" type="Sprite2D" parent="Manager/FolderWindow/Window"]
 position = Vector2(151.272, -111.65)
 scale = Vector2(0.587925, 0.649644)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(868, 176, 17, 19)
 
-[node name="QuitBtn" type="Sprite2D" parent="Control/FolderWindow/Window"]
+[node name="QuitBtn" type="Sprite2D" parent="Manager/FolderWindow/Window"]
 position = Vector2(164.778, -110.528)
 scale = Vector2(0.540256, 0.561056)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(891, 175, 19, 22)
 
-[node name="Monitor" type="TextureRect" parent="Control"]
+[node name="NoteWindow" type="Control" parent="Manager"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_22wky")
+
+[node name="Window" type="Sprite2D" parent="Manager/NoteWindow"]
+position = Vector2(578.5, 276)
+scale = Vector2(1.75766, 1.78235)
+texture = ExtResource("4_bl5mv")
+region_enabled = true
+region_rect = Rect2(484, 164, 359, 255)
+
+[node name="CloseBtn" type="Sprite2D" parent="Manager/NoteWindow/Window"]
+position = Vector2(146.216, -112.211)
+scale = Vector2(0.738217, 0.649644)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(868, 176, 17, 19)
+
+[node name="QuitBtn" type="Sprite2D" parent="Manager/NoteWindow/Window"]
+position = Vector2(163.676, -111.089)
+scale = Vector2(0.624621, 0.561056)
+texture = ExtResource("1_ccbnx")
+region_enabled = true
+region_rect = Rect2(891, 175, 19, 22)
+
+[node name="Label" type="RichTextLabel" parent="Manager/NoteWindow/Window"]
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.12
+anchor_right = 0.982
+anchor_bottom = 0.943
+offset_left = -179.411
+offset_top = -127.6
+offset_right = -179.538
+offset_bottom = -132.465
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gp7yj")
+theme_override_fonts/bold_font = ExtResource("3_gp7yj")
+theme_override_fonts/italics_font = ExtResource("3_gp7yj")
+theme_override_fonts/bold_italics_font = ExtResource("3_gp7yj")
+theme_override_fonts/mono_font = ExtResource("3_gp7yj")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "No one really works here... I should leave guidline.
+
+- paper works
+: stamp each paper properly, sometimes some are printed wrong, be careful not to stamp them.. (unless you want to be scolded)
+[color=red]Ms. Carter[/color] always uses pink paper, [color=brown]Mr. Smith[/color]: Brown,  [color=green]Mr.Hall[/color]: green, [color=gray]Mr. Harris[/color]: gray, [color=orange]Ms.Lee[/color]: orange, [color=blue]Ms.Parker[/color]: blue
+
+- sending files
+: lazy people always ask me to send them some folders including files, why can't they find themselves? Somtimes they ask what's removed before, so need to look into the bin too."
+context_menu_enabled = true

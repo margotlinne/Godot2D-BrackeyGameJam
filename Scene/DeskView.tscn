@@ -1,12 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxtld8ksr1bln"]
+[gd_scene load_steps=17 format=3 uid="uid://bxtld8ksr1bln"]
 
 [ext_resource type="Texture2D" uid="uid://h1meqjy0iy4j" path="res://Image/sketch1725855466754.png" id="1_2vyni"]
+[ext_resource type="Texture2D" uid="uid://wlsa8fl12ld7" path="res://Image/sketch1725885979836.png" id="1_6ti66"]
 [ext_resource type="Texture2D" uid="uid://rrs0gxaecek1" path="res://Image/ComputerImg.PNG" id="2_uox7l"]
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_np8o7"]
+[ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_15mjp"]
+[ext_resource type="Script" path="res://Scripts/ClickObj.gd" id="5_yk0lw"]
+[ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_soop3"]
+[ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="7_t6gh1"]
 
-[node name="DeskView" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yth4q"]
+shader = ExtResource("4_15mjp")
+shader_parameter/outline_width = 3.0
+shader_parameter/progress = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_084bh"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luw15"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1as16"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luiwx"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp4g3"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ww4l5"]
+bg_color = Color(0, 0, 0, 0.52549)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrr2g"]
+shader = ExtResource("4_15mjp")
+shader_parameter/outline_width = 4.0
+shader_parameter/progress = 1.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+
+[node name="DeskView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6ti66")
 
 [node name="Desk" type="Sprite2D" parent="."]
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
 position = Vector2(585, 529)
 scale = Vector2(2.3066, 1.52727)
 texture = ExtResource("1_2vyni")
@@ -14,26 +69,41 @@ region_enabled = true
 region_rect = Rect2(21, 62, 561, 220)
 
 [node name="MonitorScreen" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.041
-anchor_top = 0.088
-anchor_right = 0.971
-anchor_bottom = 0.795
-offset_left = 305.0
-offset_top = 46.0
-offset_right = 875.0
-offset_bottom = 306.0
+anchor_left = 0.306
+anchor_top = 0.154
+anchor_right = 0.742
+anchor_bottom = 0.577
+offset_left = -0.512024
+offset_top = 5.20799
+offset_right = -1.78406
+offset_bottom = -39.896
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_uox7l")
 expand_mode = 1
 
 [node name="Monitor" type="Sprite2D" parent="MonitorScreen"]
-position = Vector2(287.999, 159.485)
-scale = Vector2(1.27433, 1.06159)
+material = SubResource("ShaderMaterial_yth4q")
+position = Vector2(256.5, 137)
+scale = Vector2(1.11844, 0.893827)
 texture = ExtResource("1_2vyni")
 region_enabled = true
-region_rect = Rect2(61, 332, 481, 356)
+region_rect = Rect2(11.2123, 298.841, 591.496, 405.556)
+
+[node name="ComputerSceneBtn" type="Button" parent="MonitorScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_084bh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_luw15")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1as16")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_luiwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wp4g3")
 
 [node name="Plant" type="Sprite2D" parent="."]
 position = Vector2(306, 348)
@@ -82,3 +152,174 @@ scale = Vector2(0.889362, 0.826682)
 texture = ExtResource("1_2vyni")
 region_enabled = true
 region_rect = Rect2(802, 564, 162, 435)
+
+[node name="ClickObj" type="Node2D" parent="."]
+script = ExtResource("5_yk0lw")
+
+[node name="Papers" type="Node2D" parent="."]
+position = Vector2(166, 501)
+
+[node name="PaperWorkSceneBtn" type="Button" parent="Papers"]
+offset_left = -38.0
+offset_top = -79.0
+offset_right = 107.0
+offset_bottom = 90.0
+rotation = 0.338828
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_t6gh1")
+
+[node name="TimeBar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 315.0
+offset_bottom = 95.0
+
+[node name="Panel" type="Panel" parent="UI/TimeBar"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 22.0
+offset_right = 297.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ww4l5")
+
+[node name="Image" type="Sprite2D" parent="UI/TimeBar/Panel"]
+position = Vector2(128, 27)
+scale = Vector2(0.314917, 0.298246)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(55, 865, 905, 285)
+
+[node name="TimeMan" type="Sprite2D" parent="UI/TimeBar/Panel/Image"]
+material = SubResource("ShaderMaterial_jrr2g")
+position = Vector2(-368.351, 20.1177)
+scale = Vector2(0.472387, 0.563866)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(8.60007, 1164.8, 286, 280.5)
+
+[node name="start" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(-374.702, 6.70587)
+
+[node name="end" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(368.351, 16.7647)
+
+[node name="Hearts" type="HBoxContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -426.0
+offset_top = 7.0
+offset_right = -10.0
+offset_bottom = 78.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="heart" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart2" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart2/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart3" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart3/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart4" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart4"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart4/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart5" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart5"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart5/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_soop3")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[connection signal="mouse_entered" from="MonitorScreen/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_entered"]
+[connection signal="mouse_exited" from="MonitorScreen/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_exited"]
+[connection signal="pressed" from="MonitorScreen/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_pressed"]
+[connection signal="pressed" from="Papers/PaperWorkSceneBtn" to="ClickObj" method="_on_paper_work_scene_btn_pressed"]

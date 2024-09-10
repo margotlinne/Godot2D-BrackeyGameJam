@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq8akfoviai87"]
+[gd_scene load_steps=7 format=3 uid="uid://cq8akfoviai87"]
 
+[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_6tt2c"]
+[ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="3_fc2jt"]
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_nhvna"]
+[ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_748g0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ieymq"]
+bg_color = Color(0, 0, 0, 0.52549)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kotac"]
+shader = ExtResource("4_748g0")
+shader_parameter/outline_width = 4.0
+shader_parameter/progress = 1.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
 
 [node name="DeskView" type="Control"]
 layout_mode = 3
@@ -9,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6tt2c")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -17,19 +34,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.694118, 0.521569, 0.282353, 1)
+color = Color(0.286275, 0.215686, 0.117647, 1)
 
 [node name="PaperGroup" type="Node2D" parent="ColorRect"]
 
 [node name="Paper" type="Sprite2D" parent="ColorRect/PaperGroup"]
-position = Vector2(235, 289)
+position = Vector2(275, 353)
 scale = Vector2(0.925239, 0.961257)
 texture = ExtResource("3_nhvna")
 region_enabled = true
 region_rect = Rect2(52, 79, 418, 513)
 
 [node name="Ink" type="Sprite2D" parent="ColorRect"]
-position = Vector2(1061, 139)
+position = Vector2(1053, 155)
 scale = Vector2(0.958784, 1.06322)
 texture = ExtResource("3_nhvna")
 region_enabled = true
@@ -43,8 +60,160 @@ region_enabled = true
 region_rect = Rect2(497, 568, 213, 431)
 
 [node name="RightHand" type="Sprite2D" parent="ColorRect"]
-position = Vector2(1160, 381)
+position = Vector2(1143, 514)
 scale = Vector2(1.07333, 1.28593)
 texture = ExtResource("3_nhvna")
 region_enabled = true
 region_rect = Rect2(662, 36, 330, 521)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TimeBar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 315.0
+offset_bottom = 95.0
+
+[node name="Panel" type="Panel" parent="UI/TimeBar"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 300.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ieymq")
+
+[node name="Image" type="Sprite2D" parent="UI/TimeBar/Panel"]
+position = Vector2(128, 27)
+scale = Vector2(0.314917, 0.298246)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(55, 865, 905, 285)
+
+[node name="TimeMan" type="Sprite2D" parent="UI/TimeBar/Panel/Image"]
+material = SubResource("ShaderMaterial_kotac")
+position = Vector2(-368.351, 20.1177)
+scale = Vector2(0.472387, 0.563866)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(8.60007, 1164.8, 286, 280.5)
+
+[node name="start" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(-374.702, 6.70587)
+
+[node name="end" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(368.351, 16.7647)
+
+[node name="Hearts" type="HBoxContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -426.0
+offset_top = 7.0
+offset_right = -10.0
+offset_bottom = 78.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="heart" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart2" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart2/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart3" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart3/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart4" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart4"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart4/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart5" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart5"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart5/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("3_fc2jt")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)

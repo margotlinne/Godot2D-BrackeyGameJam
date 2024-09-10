@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="BrackeyJam"
+run/main_scene="res://Scene/DeskView.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/GameManager.gd"
+
+[display]
+
+window/size/resizable=false
 
 [rendering]
 
