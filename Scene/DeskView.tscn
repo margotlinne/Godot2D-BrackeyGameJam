@@ -1,19 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxtld8ksr1bln"]
+[gd_scene load_steps=18 format=3 uid="uid://bxtld8ksr1bln"]
 
 [ext_resource type="Texture2D" uid="uid://h1meqjy0iy4j" path="res://Image/sketch1725855466754.png" id="1_2vyni"]
 [ext_resource type="Texture2D" uid="uid://wlsa8fl12ld7" path="res://Image/sketch1725885979836.png" id="1_6ti66"]
 [ext_resource type="Texture2D" uid="uid://rrs0gxaecek1" path="res://Image/ComputerImg.PNG" id="2_uox7l"]
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_np8o7"]
+[ext_resource type="Script" path="res://Scripts/MonitorView.gd" id="3_sprbh"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_15mjp"]
 [ext_resource type="Script" path="res://Scripts/ClickObj.gd" id="5_yk0lw"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_soop3"]
 [ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="7_t6gh1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yth4q"]
-shader = ExtResource("4_15mjp")
-shader_parameter/outline_width = 3.0
-shader_parameter/progress = 0.0
-shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_084bh"]
 bg_color = Color(0.733333, 0.733333, 0.733333, 0)
@@ -29,6 +24,12 @@ bg_color = Color(0.733333, 0.733333, 0.733333, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp4g3"]
 bg_color = Color(0.733333, 0.733333, 0.733333, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yth4q"]
+shader = ExtResource("4_15mjp")
+shader_parameter/outline_width = 3.0
+shader_parameter/progress = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ww4l5"]
 bg_color = Color(0, 0, 0, 0.52549)
@@ -68,7 +69,72 @@ texture = ExtResource("1_2vyni")
 region_enabled = true
 region_rect = Rect2(21, 62, 561, 220)
 
+[node name="MonitorUI" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MonitorUI"]
+clip_contents = true
+offset_left = 381.0
+offset_top = 114.0
+offset_right = 809.0
+offset_bottom = 348.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MonitorUI/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(428, 234)
+render_target_update_mode = 4
+script = ExtResource("3_sprbh")
+
+[node name="Camera2D" type="Camera2D" parent="MonitorUI/SubViewportContainer/SubViewport"]
+offset = Vector2(576, 350)
+zoom = Vector2(0.39, 0.39)
+
+[node name="ComputerSceneBtn" type="Button" parent="MonitorUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+offset_top = 105.0
+offset_right = -302.0
+offset_bottom = -309.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_084bh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_luw15")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1as16")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_luiwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wp4g3")
+
+[node name="Monitor" type="Sprite2D" parent="MonitorUI"]
+material = SubResource("ShaderMaterial_yth4q")
+position = Vector2(600.5, 249)
+scale = Vector2(0.962775, 0.893827)
+texture = ExtResource("1_2vyni")
+region_enabled = true
+region_rect = Rect2(11.2123, 298.841, 591.496, 405.556)
+
+[node name="Plant" type="Sprite2D" parent="MonitorUI"]
+position = Vector2(333, 347)
+scale = Vector2(1.4, 1.30674)
+texture = ExtResource("1_2vyni")
+region_enabled = true
+region_rect = Rect2(156, 870, 120, 116)
+
+[node name="StamInk" type="Sprite2D" parent="MonitorUI"]
+position = Vector2(897, 364)
+scale = Vector2(0.934782, 0.784212)
+texture = ExtResource("3_np8o7")
+region_enabled = true
+region_rect = Rect2(257, 862, 137, 77)
+
+[node name="Stamp" type="Sprite2D" parent="MonitorUI/StamInk"]
+position = Vector2(-78.093, -5.10065)
+texture = ExtResource("1_2vyni")
+region_enabled = true
+region_rect = Rect2(295, 878, 115, 107)
+
 [node name="MonitorScreen" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.306
@@ -84,34 +150,6 @@ grow_vertical = 2
 texture = ExtResource("2_uox7l")
 expand_mode = 1
 
-[node name="Monitor" type="Sprite2D" parent="MonitorScreen"]
-material = SubResource("ShaderMaterial_yth4q")
-position = Vector2(256.5, 137)
-scale = Vector2(1.11844, 0.893827)
-texture = ExtResource("1_2vyni")
-region_enabled = true
-region_rect = Rect2(11.2123, 298.841, 591.496, 405.556)
-
-[node name="ComputerSceneBtn" type="Button" parent="MonitorScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_084bh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_luw15")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1as16")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_luiwx")
-theme_override_styles/focus = SubResource("StyleBoxFlat_wp4g3")
-
-[node name="Plant" type="Sprite2D" parent="."]
-position = Vector2(306, 348)
-scale = Vector2(1.4, 1.30674)
-texture = ExtResource("1_2vyni")
-region_enabled = true
-region_rect = Rect2(156, 870, 120, 116)
-
 [node name="Keyboard" type="Sprite2D" parent="."]
 position = Vector2(584, 482.164)
 scale = Vector2(1.4, 0.908562)
@@ -125,19 +163,6 @@ scale = Vector2(0.657228, 0.595561)
 texture = ExtResource("1_2vyni")
 region_enabled = true
 region_rect = Rect2(35, 745, 83, 114)
-
-[node name="StamInk" type="Sprite2D" parent="."]
-position = Vector2(863, 372)
-scale = Vector2(0.934782, 0.784212)
-texture = ExtResource("3_np8o7")
-region_enabled = true
-region_rect = Rect2(257, 862, 137, 77)
-
-[node name="Stamp" type="Sprite2D" parent="StamInk"]
-position = Vector2(-78.093, -5.10065)
-texture = ExtResource("1_2vyni")
-region_enabled = true
-region_rect = Rect2(295, 878, 115, 107)
 
 [node name="LeftHand" type="Sprite2D" parent="."]
 position = Vector2(415, 581)
@@ -319,7 +344,7 @@ texture = ExtResource("7_soop3")
 region_enabled = true
 region_rect = Rect2(237, 387, 73, 62)
 
-[connection signal="mouse_entered" from="MonitorScreen/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_entered"]
-[connection signal="mouse_exited" from="MonitorScreen/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_exited"]
-[connection signal="pressed" from="MonitorScreen/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_pressed"]
+[connection signal="mouse_entered" from="MonitorUI/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_entered"]
+[connection signal="mouse_exited" from="MonitorUI/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_exited"]
+[connection signal="pressed" from="MonitorUI/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_pressed"]
 [connection signal="pressed" from="Papers/PaperWorkSceneBtn" to="ClickObj" method="_on_paper_work_scene_btn_pressed"]

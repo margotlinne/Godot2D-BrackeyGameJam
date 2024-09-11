@@ -1,8 +1,8 @@
 extends Node2D
 
 
-@onready var computer_btn = $"../MonitorScreen/ComputerSceneBtn"
-@onready var monitor_sprite = $"../MonitorScreen/Monitor"
+@onready var computer_btn = $"../MonitorUI/ComputerSceneBtn"
+@onready var monitor_sprite = $"../MonitorUI/Monitor"
 
 
 func _process(delta):

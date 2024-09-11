@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_l4qcx"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p64p"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vde7u"]
+bg_color = Color(0.384314, 0.478431, 0.415686, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgukq"]
 bg_color = Color(0, 0, 0, 0.52549)
 corner_radius_top_left = 10
@@ -23,172 +29,9 @@ shader_parameter/outline_width = 4.0
 shader_parameter/progress = 1.0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p64p"]
-bg_color = Color(1, 1, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vde7u"]
-bg_color = Color(0.384314, 0.478431, 0.415686, 1)
-
 [node name="Computer" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-
-[node name="UI" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -6.0
-offset_top = 1.0
-offset_right = -6.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TimeBar" type="Control" parent="UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -103.0
-offset_right = 8.0
-offset_bottom = -103.0
-grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="UI/TimeBar"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 22.0
-offset_right = 297.0
-offset_bottom = 97.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mgukq")
-
-[node name="Image" type="Sprite2D" parent="UI/TimeBar/Panel"]
-position = Vector2(128, 27)
-scale = Vector2(0.314917, 0.298246)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(55, 865, 905, 285)
-
-[node name="TimeMan" type="Sprite2D" parent="UI/TimeBar/Panel/Image"]
-material = SubResource("ShaderMaterial_oyicx")
-position = Vector2(-368.351, 20.1177)
-scale = Vector2(0.472387, 0.563866)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(8.60007, 1164.8, 286, 280.5)
-
-[node name="start" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
-position = Vector2(-374.702, 6.70587)
-
-[node name="end" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
-position = Vector2(368.351, 16.7647)
-
-[node name="Hearts" type="HBoxContainer" parent="UI"]
-visible = false
-layout_mode = 1
-offset_left = 9.0
-offset_top = 5.0
-offset_right = 425.0
-offset_bottom = 76.0
-alignment = 2
-
-[node name="heart" type="Control" parent="UI/Hearts"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Hearts/heart"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart/Panel"]
-position = Vector2(40.5, 37)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(237, 387, 73, 62)
-
-[node name="heart2" type="Control" parent="UI/Hearts"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Hearts/heart2"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart2/Panel"]
-position = Vector2(40.5, 37)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(237, 387, 73, 62)
-
-[node name="heart3" type="Control" parent="UI/Hearts"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Hearts/heart3"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart3/Panel"]
-position = Vector2(40.5, 37)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(237, 387, 73, 62)
-
-[node name="heart4" type="Control" parent="UI/Hearts"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Hearts/heart4"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart4/Panel"]
-position = Vector2(40.5, 37)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(237, 387, 73, 62)
-
-[node name="heart5" type="Control" parent="UI/Hearts"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Hearts/heart5"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart5/Panel"]
-position = Vector2(40.5, 37)
-texture = ExtResource("7_l4qcx")
-region_enabled = true
-region_rect = Rect2(237, 387, 73, 62)
 
 [node name="Manager" type="Control" parent="."]
 layout_mode = 3
@@ -753,6 +596,7 @@ region_enabled = true
 region_rect = Rect2(891, 175, 19, 22)
 
 [node name="NoteWindow" type="Control" parent="Manager"]
+visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039
@@ -815,3 +659,165 @@ text = "No one really works here... I should leave guidline.
 - sending files
 : lazy people always ask me to send them some folders including files, why can't they find themselves? Somtimes they ask what's removed before, so need to look into the bin too."
 context_menu_enabled = true
+
+[node name="Button" type="Button" parent="Manager"]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 162.0
+offset_right = 619.0
+offset_bottom = 233.0
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeBar" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 540.0
+offset_right = 9.0
+offset_bottom = 540.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="UI/TimeBar"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 22.0
+offset_right = 297.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mgukq")
+
+[node name="Image" type="Sprite2D" parent="UI/TimeBar/Panel"]
+position = Vector2(128, 27)
+scale = Vector2(0.314917, 0.298246)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(55, 865, 905, 285)
+
+[node name="TimeMan" type="Sprite2D" parent="UI/TimeBar/Panel/Image"]
+material = SubResource("ShaderMaterial_oyicx")
+position = Vector2(-368.351, 20.1177)
+scale = Vector2(0.472387, 0.563866)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(8.60007, 1164.8, 286, 280.5)
+
+[node name="start" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(-374.702, 6.70587)
+
+[node name="end" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+position = Vector2(368.351, 16.7647)
+
+[node name="Hearts" type="HBoxContainer" parent="UI"]
+visible = false
+layout_mode = 1
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 425.0
+offset_bottom = 76.0
+alignment = 2
+
+[node name="heart" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart2" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart2/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart3" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart3/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart4" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart4"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart4/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[node name="heart5" type="Control" parent="UI/Hearts"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Hearts/heart5"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="Sprite2D" parent="UI/Hearts/heart5/Panel"]
+position = Vector2(40.5, 37)
+texture = ExtResource("7_l4qcx")
+region_enabled = true
+region_rect = Rect2(237, 387, 73, 62)
+
+[connection signal="pressed" from="Manager/Button" to="Manager" method="_on_button_pressed"]

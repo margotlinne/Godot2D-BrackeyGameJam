@@ -4,12 +4,22 @@ var current_scene
 var current_time_pos
 var current_passed_time
 
+var show_ui = false
+
+var com_scene_instance: Node = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_time_pos = Vector2(0,0)
 	current_passed_time = 0
 	
 	current_scene = get_tree().get_current_scene().get_name()
+	
+func _get_com_scene():
+	if not com_scene_instance:
+		var com_scene = preload("res://Scene/Computer.tscn")
+		com_scene_instance = com_scene.instantiate()
+	return com_scene_instance
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
