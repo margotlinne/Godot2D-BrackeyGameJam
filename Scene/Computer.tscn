@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=40 format=3 uid="uid://b8nxnplhuqq2n"]
 
 [ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_20jjj"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
@@ -6,12 +6,124 @@
 [ext_resource type="Texture2D" uid="uid://bj661wo3u7rxu" path="res://Image/bg_smaller.png" id="3_ejebc"]
 [ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="3_gp7yj"]
 [ext_resource type="Texture2D" uid="uid://nief0h4h530h" path="res://Image/sketch1725954017941.png" id="3_i0g51"]
+[ext_resource type="Script" path="res://Scripts/TaskBar.gd" id="3_y13qb"]
 [ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="4_bl5mv"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_l4qcx"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
+[ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="8_ox8dm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x4c3"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aefke"]
+bg_color = Color(0.6, 0.6, 0.6, 0.603922)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6f0j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxq4q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sl5l5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p64p"]
 bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_woo8w"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73vk2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ets5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqjy3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kre62"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjpwr"]
+bg_color = Color(0.8, 0, 0.596078, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaug8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dxw3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh1yl"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghnoy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya5x7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kpyx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhjx1"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plvhb"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h8t7t"]
+texture = ExtResource("1_ccbnx")
+region_rect = Rect2(868, 176, 17, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ds66"]
+texture = ExtResource("1_ccbnx")
+region_rect = Rect2(868, 176, 17, 19)
+modulate_color = Color(0.729412, 0.729412, 0.729412, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_isvnh"]
+load_path = "res://.godot/imported/sketch1725878178535.png-ec4e90f535f0a3be645e5d358c2c9d16.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ehf1i"]
+texture = SubResource("CompressedTexture2D_isvnh")
+region_rect = Rect2(891, 175, 19, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kp76g"]
+texture = SubResource("CompressedTexture2D_isvnh")
+region_rect = Rect2(891, 175, 19, 22)
+modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vde7u"]
 bg_color = Color(0.384314, 0.478431, 0.415686, 1)
@@ -49,15 +161,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.501961, 0.705882, 0.427451, 1)
 
-[node name="Monitor" type="TextureRect" parent="Manager"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_22wky")
-
 [node name="Application Group" type="Control" parent="Manager"]
 layout_mode = 1
 anchor_left = 0.023
@@ -70,6 +173,7 @@ offset_right = 0.495972
 offset_bottom = -0.320007
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_y13qb")
 
 [node name="TaskBar" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(551.5, 569.25)
@@ -90,12 +194,17 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BinApp" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+[node name="BinApp" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_1x4c3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aefke")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n6f0j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uxq4q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sl5l5")
 
 [node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/BinApp"]
-position = Vector2(26.3225, 11.4644)
+position = Vector2(24.2824, 11.3045)
 scale = Vector2(0.43887, 0.269102)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
@@ -114,12 +223,17 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="InternetApp" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+[node name="InternetApp" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_woo8w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aefke")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_73vk2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_2ets5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_aqjy3")
 
 [node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/InternetApp"]
-position = Vector2(23.212, 11.6388)
+position = Vector2(24.9164, 10.748)
 scale = Vector2(0.358789, 0.22767)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
@@ -138,9 +252,14 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="EmailApp" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+[node name="EmailApp" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kre62")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aefke")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rjpwr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gaug8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7dxw3")
 
 [node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/EmailApp"]
 position = Vector2(25.2012, 11.9534)
@@ -162,9 +281,14 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="CardGame" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+[node name="CardGame" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh1yl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aefke")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ghnoy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ya5x7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2kpyx")
 
 [node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/CardGame"]
 position = Vector2(23.6396, 12.9136)
@@ -186,13 +310,18 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="Folders" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+[node name="Folders" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhjx1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aefke")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ghnoy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ya5x7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2kpyx")
 
 [node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/Folders"]
-position = Vector2(24.2737, 13.4699)
-scale = Vector2(0.439386, 0.286889)
+position = Vector2(24.2165, 12.4173)
+scale = Vector2(0.439384, 0.243421)
 texture = ExtResource("1_ccbnx")
 region_enabled = true
 region_rect = Rect2(240, 48, 75, 64)
@@ -210,13 +339,18 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
 
-[node name="Note" type="Control" parent="Manager/Application Group/TaskBar/HBoxContainer"]
+[node name="Note" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_plvhb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aefke")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ghnoy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ya5x7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2kpyx")
 
 [node name="Icon" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/Note"]
-position = Vector2(24.8504, 12.4173)
-scale = Vector2(0.380723, 0.207882)
+position = Vector2(24.5068, 12.9136)
+scale = Vector2(0.374477, 0.207167)
 texture = ExtResource("3_i0g51")
 region_enabled = true
 region_rect = Rect2(40, 398, 82, 91)
@@ -258,6 +392,14 @@ text = "Bin"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BinApp" type="Button" parent="Manager/Application Group/BinApp"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 41.0
+offset_bottom = 43.0
+mouse_default_cursor_shape = 2
+
 [node name="ShoppingWeb" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(374.069, 263.255)
 scale = Vector2(0.805885, 0.813955)
@@ -281,6 +423,14 @@ theme_override_fonts/font = ExtResource("3_gp7yj")
 text = "BestShoping.com"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InternetApp" type="Button" parent="Manager/Application Group/ShoppingWeb"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -51.0
+offset_top = -49.0
+offset_right = 57.0
+offset_bottom = 49.0
+mouse_default_cursor_shape = 2
 
 [node name="EmailApp" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(491.069, 265.255)
@@ -306,6 +456,14 @@ text = "E-Mail"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EmailApp" type="Button" parent="Manager/Application Group/EmailApp"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -43.0
+offset_top = -39.0
+offset_right = 43.0
+offset_bottom = 36.0
+mouse_default_cursor_shape = 2
+
 [node name="CardGame" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(601.069, 260.255)
 scale = Vector2(0.981, 0.937)
@@ -330,6 +488,14 @@ text = "GoGoCard"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CardGame" type="Button" parent="Manager/Application Group/CardGame"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -36.0
+offset_top = -41.0
+offset_right = 38.0
+offset_bottom = 45.0
+mouse_default_cursor_shape = 2
+
 [node name="Folder" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(705.069, 266.255)
 scale = Vector2(0.966691, 1.00183)
@@ -353,6 +519,14 @@ theme_override_fonts/font = ExtResource("3_gp7yj")
 text = "Work"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Folders" type="Button" parent="Manager/Application Group/Folder"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -34.0
+offset_top = -23.0
+offset_right = 37.0
+offset_bottom = 32.0
+mouse_default_cursor_shape = 2
 
 [node name="Note" type="Sprite2D" parent="Manager/Application Group"]
 position = Vector2(809, 259.25)
@@ -379,7 +553,79 @@ text = "Guideline"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameWindow" type="Control" parent="Manager"]
+[node name="Note" type="Button" parent="Manager/Application Group/Note"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -39.0
+offset_top = -36.0
+offset_right = 37.0
+offset_bottom = 44.0
+mouse_default_cursor_shape = 2
+
+[node name="WindowGroup" type="Control" parent="Manager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BinWindow" type="Control" parent="Manager/WindowGroup"]
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Window" type="Sprite2D" parent="Manager/WindowGroup/BinWindow"]
+position = Vector2(549, 276)
+scale = Vector2(1.85097, 1.78235)
+texture = ExtResource("4_bl5mv")
+region_enabled = true
+region_rect = Rect2(484, 164, 359, 255)
+
+[node name="Label" type="Label" parent="Manager/WindowGroup/BinWindow/Window"]
+offset_left = -170.0
+offset_top = -118.0
+offset_right = -119.0
+offset_bottom = -95.0
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Bin"
+
+[node name="CloseBtn_bin" type="Button" parent="Manager/WindowGroup/BinWindow/Window"]
+offset_left = 139.0
+offset_top = -118.0
+offset_right = 157.0
+offset_bottom = -100.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ds66")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
+
+[node name="ExitBtn_bin" type="Button" parent="Manager/WindowGroup/BinWindow/Window"]
+offset_left = 154.751
+offset_top = -117.822
+offset_right = 172.751
+offset_bottom = -99.822
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp76g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ehf1i")
+
+[node name="ShoppingWebWindow" type="Control" parent="Manager/WindowGroup"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -392,19 +638,180 @@ offset_right = 1.12793
 offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="BG" type="TextureRect" parent="Manager/GameWindow"]
+[node name="BG" type="ColorRect" parent="Manager/WindowGroup/ShoppingWebWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.896
+offset_right = 1.00012
+offset_bottom = -0.18396
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.933333, 0.988235, 1)
+
+[node name="Bar" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.052
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 4.8
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
+
+[node name="Label" type="Label" parent="Manager/WindowGroup/ShoppingWebWindow/Bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 13.0
+offset_right = 70.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Best Shopping"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseBtn_shopping" type="Button" parent="Manager/WindowGroup/ShoppingWebWindow/Bar"]
+offset_left = 1026.0
+offset_top = 7.0
+offset_right = 1071.0
+offset_bottom = 53.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ds66")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
+
+[node name="ExitBtn_shopping" type="Button" parent="Manager/WindowGroup/ShoppingWebWindow/Bar"]
+offset_left = 1068.0
+offset_top = 8.0
+offset_right = 1110.0
+offset_bottom = 54.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp76g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ehf1i")
+
+[node name="EMailWindow" type="Control" parent="Manager/WindowGroup"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="Manager/WindowGroup/EMailWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.896
+offset_right = 1.00012
+offset_bottom = -0.18396
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.933333, 0.988235, 1)
+
+[node name="Bar" type="Panel" parent="Manager/WindowGroup/EMailWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.052
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 4.8
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
+
+[node name="Label" type="Label" parent="Manager/WindowGroup/EMailWindow/Bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 13.0
+offset_right = 70.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "E-mail"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseBtn_email" type="Button" parent="Manager/WindowGroup/EMailWindow/Bar"]
+offset_left = 1026.0
+offset_top = 7.0
+offset_right = 1071.0
+offset_bottom = 53.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ds66")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
+
+[node name="ExitBtn_email" type="Button" parent="Manager/WindowGroup/EMailWindow/Bar"]
+offset_left = 1068.0
+offset_top = 7.0
+offset_right = 1110.0
+offset_bottom = 53.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp76g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ehf1i")
+
+[node name="GameWindow" type="Control" parent="Manager/WindowGroup"]
+visible = false
+layout_mode = 1
+anchor_left = 0.019
+anchor_top = 0.039
+anchor_right = 0.986
+anchor_bottom = 0.971
+offset_left = -0.888
+offset_top = -0.272001
+offset_right = 1.12793
+offset_bottom = -0.208069
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BG" type="TextureRect" parent="Manager/WindowGroup/GameWindow"]
 modulate = Color(0.254902, 0.254902, 0.254902, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.00012207
+offset_bottom = -62.9999
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ejebc")
 stretch_mode = 1
 
-[node name="Bar" type="Panel" parent="Manager/GameWindow"]
+[node name="Bar" type="Panel" parent="Manager/WindowGroup/GameWindow"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -416,20 +823,33 @@ offset_bottom = 4.8
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
 
-[node name="CloseBtn" type="Sprite2D" parent="Manager/GameWindow/Bar"]
-position = Vector2(1061.75, 22)
-scale = Vector2(1.08824, 1.15789)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(868, 176, 17, 19)
+[node name="CloseBtn_game" type="Button" parent="Manager/WindowGroup/GameWindow/Bar"]
+offset_left = 1026.0
+offset_top = 7.0
+offset_right = 1071.0
+offset_bottom = 53.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ds66")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
 
-[node name="QuitBtn" type="Sprite2D" parent="Manager/GameWindow/Bar"]
-position = Vector2(1086, 22)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(891, 175, 19, 22)
+[node name="ExitBtn_game" type="Button" parent="Manager/WindowGroup/GameWindow/Bar"]
+offset_left = 1068.0
+offset_top = 8.0
+offset_right = 1110.0
+offset_bottom = 53.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp76g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ehf1i")
 
-[node name="EMailWindow" type="Control" parent="Manager"]
+[node name="FolderWindow" type="Control" parent="Manager/WindowGroup"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -442,125 +862,50 @@ offset_right = 1.12793
 offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="Manager/EMailWindow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.933333, 0.988235, 1)
-
-[node name="Bar" type="Panel" parent="Manager/EMailWindow"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.052
-offset_left = -5.0
-offset_top = -4.0
-offset_right = 12.0
-offset_bottom = 4.8
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
-
-[node name="CloseBtn" type="Sprite2D" parent="Manager/EMailWindow/Bar"]
-position = Vector2(1061.75, 22)
-scale = Vector2(1.08824, 1.15789)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(868, 176, 17, 19)
-
-[node name="QuitBtn" type="Sprite2D" parent="Manager/EMailWindow/Bar"]
-position = Vector2(1086, 22)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(891, 175, 19, 22)
-
-[node name="ShoppingWebWindow" type="Control" parent="Manager"]
-visible = false
-layout_mode = 1
-anchor_left = 0.019
-anchor_top = 0.039
-anchor_right = 0.986
-anchor_bottom = 0.971
-offset_left = -0.888
-offset_top = -0.272001
-offset_right = 1.12793
-offset_bottom = -0.208069
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BG" type="ColorRect" parent="Manager/ShoppingWebWindow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.933333, 0.988235, 1)
-
-[node name="Bar" type="Panel" parent="Manager/ShoppingWebWindow"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.052
-offset_left = -5.0
-offset_top = -4.0
-offset_right = 12.0
-offset_bottom = 4.8
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
-
-[node name="CloseBtn" type="Sprite2D" parent="Manager/ShoppingWebWindow/Bar"]
-position = Vector2(1061.75, 22)
-scale = Vector2(1.08824, 1.15789)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(868, 176, 17, 19)
-
-[node name="QuitBtn" type="Sprite2D" parent="Manager/ShoppingWebWindow/Bar"]
-position = Vector2(1086, 22)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(891, 175, 19, 22)
-
-[node name="BinWindow" type="Control" parent="Manager"]
-visible = false
-layout_mode = 1
-anchor_left = 0.019
-anchor_top = 0.039
-anchor_right = 0.986
-anchor_bottom = 0.971
-offset_left = -0.888
-offset_top = -0.272001
-offset_right = 1.12793
-offset_bottom = -0.208069
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Window" type="Sprite2D" parent="Manager/BinWindow"]
+[node name="Window" type="Sprite2D" parent="Manager/WindowGroup/FolderWindow"]
 position = Vector2(549, 276)
 scale = Vector2(1.85097, 1.78235)
 texture = ExtResource("4_bl5mv")
 region_enabled = true
 region_rect = Rect2(484, 164, 359, 255)
 
-[node name="CloseBtn" type="Sprite2D" parent="Manager/BinWindow/Window"]
-position = Vector2(151.272, -111.65)
-scale = Vector2(0.587925, 0.649644)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(868, 176, 17, 19)
+[node name="CloseBtn_folder" type="Button" parent="Manager/WindowGroup/FolderWindow/Window"]
+offset_left = 139.0
+offset_top = -118.0
+offset_right = 157.0
+offset_bottom = -100.0
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ds66")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
 
-[node name="QuitBtn" type="Sprite2D" parent="Manager/BinWindow/Window"]
-position = Vector2(164.778, -110.528)
-scale = Vector2(0.540256, 0.561056)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(891, 175, 19, 22)
+[node name="ExitBtn_folder" type="Button" parent="Manager/WindowGroup/FolderWindow/Window"]
+offset_left = 154.751
+offset_top = -117.822
+offset_right = 172.751
+offset_bottom = -99.822
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp76g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ehf1i")
 
-[node name="FolderWindow" type="Control" parent="Manager"]
+[node name="Label" type="Label" parent="Manager/WindowGroup/FolderWindow/Window"]
+offset_left = -170.721
+offset_top = -119.505
+offset_right = -119.721
+offset_bottom = -96.5052
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Folder"
+
+[node name="NoteWindow" type="Control" parent="Manager/WindowGroup"]
 visible = false
 layout_mode = 1
 anchor_left = 0.019
@@ -573,64 +918,42 @@ offset_right = 1.12793
 offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Window" type="Sprite2D" parent="Manager/FolderWindow"]
-position = Vector2(549, 276)
-scale = Vector2(1.85097, 1.78235)
-texture = ExtResource("4_bl5mv")
-region_enabled = true
-region_rect = Rect2(484, 164, 359, 255)
-
-[node name="CloseBtn" type="Sprite2D" parent="Manager/FolderWindow/Window"]
-position = Vector2(151.272, -111.65)
-scale = Vector2(0.587925, 0.649644)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(868, 176, 17, 19)
-
-[node name="QuitBtn" type="Sprite2D" parent="Manager/FolderWindow/Window"]
-position = Vector2(164.778, -110.528)
-scale = Vector2(0.540256, 0.561056)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(891, 175, 19, 22)
-
-[node name="NoteWindow" type="Control" parent="Manager"]
-visible = false
-layout_mode = 1
-anchor_left = 0.019
-anchor_top = 0.039
-anchor_right = 0.986
-anchor_bottom = 0.971
-offset_left = -0.888
-offset_top = -0.272001
-offset_right = 1.12793
-offset_bottom = -0.208069
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Window" type="Sprite2D" parent="Manager/NoteWindow"]
-position = Vector2(578.5, 276)
+[node name="Window" type="Sprite2D" parent="Manager/WindowGroup/NoteWindow"]
+position = Vector2(550, 279)
 scale = Vector2(1.75766, 1.78235)
 texture = ExtResource("4_bl5mv")
 region_enabled = true
 region_rect = Rect2(484, 164, 359, 255)
 
-[node name="CloseBtn" type="Sprite2D" parent="Manager/NoteWindow/Window"]
-position = Vector2(146.216, -112.211)
+[node name="CloseBtn_note" type="Button" parent="Manager/WindowGroup/NoteWindow/Window"]
+offset_left = 139.0
+offset_top = -118.0
+offset_right = 157.0
+offset_bottom = -100.0
 scale = Vector2(0.738217, 0.649644)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(868, 176, 17, 19)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ds66")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
 
-[node name="QuitBtn" type="Sprite2D" parent="Manager/NoteWindow/Window"]
-position = Vector2(163.676, -111.089)
-scale = Vector2(0.624621, 0.561056)
-texture = ExtResource("1_ccbnx")
-region_enabled = true
-region_rect = Rect2(891, 175, 19, 22)
+[node name="ExitBtn_note" type="Button" parent="Manager/WindowGroup/NoteWindow/Window"]
+offset_left = 154.751
+offset_top = -117.822
+offset_right = 172.751
+offset_bottom = -99.822
+scale = Vector2(0.738217, 0.649644)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kp76g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ehf1i")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ehf1i")
 
-[node name="Label" type="RichTextLabel" parent="Manager/NoteWindow/Window"]
+[node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/NoteWindow/Window"]
 anchors_preset = -1
 anchor_left = 0.029
 anchor_top = 0.12
@@ -660,21 +983,32 @@ text = "No one really works here... I should leave guidline.
 : lazy people always ask me to send them some folders including files, why can't they find themselves? Somtimes they ask what's removed before, so need to look into the bin too."
 context_menu_enabled = true
 
-[node name="Button" type="Button" parent="Manager"]
-layout_mode = 0
-offset_left = 467.0
-offset_top = 162.0
-offset_right = 619.0
-offset_bottom = 233.0
+[node name="Label2" type="Label" parent="Manager/WindowGroup/NoteWindow/Window"]
+offset_left = -172.104
+offset_top = -119.505
+offset_right = -81.1038
+offset_bottom = -96.5052
+theme_override_fonts/font = ExtResource("3_gp7yj")
+text = "Guideline.txt"
 
-[node name="UI" type="Control" parent="."]
-visible = false
+[node name="Monitor" type="TextureRect" parent="Manager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_22wky")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_ox8dm")
 
 [node name="TimeBar" type="Control" parent="UI"]
 layout_mode = 1
@@ -820,4 +1154,27 @@ texture = ExtResource("7_l4qcx")
 region_enabled = true
 region_rect = Rect2(237, 387, 73, 62)
 
-[connection signal="pressed" from="Manager/Button" to="Manager" method="_on_button_pressed"]
+[connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/BinApp" to="Manager/Application Group" method="_on_bin_app_pressed"]
+[connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/InternetApp" to="Manager/Application Group" method="_on_internet_app_pressed"]
+[connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/EmailApp" to="Manager/Application Group" method="_on_email_app_pressed"]
+[connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/CardGame" to="Manager/Application Group" method="_on_card_game_pressed"]
+[connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/Folders" to="Manager/Application Group" method="_on_folders_pressed"]
+[connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/Note" to="Manager/Application Group" method="_on_note_pressed"]
+[connection signal="pressed" from="Manager/Application Group/BinApp/BinApp" to="Manager/Application Group" method="_on_bin_app_pressed"]
+[connection signal="pressed" from="Manager/Application Group/ShoppingWeb/InternetApp" to="Manager/Application Group" method="_on_internet_app_pressed"]
+[connection signal="pressed" from="Manager/Application Group/EmailApp/EmailApp" to="Manager/Application Group" method="_on_email_app_pressed"]
+[connection signal="pressed" from="Manager/Application Group/CardGame/CardGame" to="Manager/Application Group" method="_on_card_game_pressed"]
+[connection signal="pressed" from="Manager/Application Group/Folder/Folders" to="Manager/Application Group" method="_on_folders_pressed"]
+[connection signal="pressed" from="Manager/Application Group/Note/Note" to="Manager/Application Group" method="_on_note_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/BinWindow/Window/CloseBtn_bin" to="Manager/Application Group" method="_on_close_btn_bin_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/BinWindow/Window/ExitBtn_bin" to="Manager/Application Group" method="_on_exit_btn_bin_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/ShoppingWebWindow/Bar/CloseBtn_shopping" to="Manager/Application Group" method="_on_close_btn_shopping_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/ShoppingWebWindow/Bar/ExitBtn_shopping" to="Manager/Application Group" method="_on_exit_btn_shopping_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/EMailWindow/Bar/CloseBtn_email" to="Manager/Application Group" method="_on_close_btn_email_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/EMailWindow/Bar/ExitBtn_email" to="Manager/Application Group" method="_on_exit_btn_email_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/GameWindow/Bar/CloseBtn_game" to="Manager/Application Group" method="_on_close_btn_game_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/GameWindow/Bar/ExitBtn_game" to="Manager/Application Group" method="_on_exit_btn_game_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/FolderWindow/Window/CloseBtn_folder" to="Manager/Application Group" method="_on_close_btn_folder_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/FolderWindow/Window/ExitBtn_folder" to="Manager/Application Group" method="_on_exit_btn_folder_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/NoteWindow/Window/CloseBtn_note" to="Manager/Application Group" method="_on_close_btn_note_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/NoteWindow/Window/ExitBtn_note" to="Manager/Application Group" method="_on_exit_btn_note_pressed"]

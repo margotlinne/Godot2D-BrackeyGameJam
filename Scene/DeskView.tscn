@@ -74,14 +74,14 @@ region_rect = Rect2(21, 62, 561, 220)
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MonitorUI"]
 clip_contents = true
 offset_left = 381.0
-offset_top = 114.0
+offset_top = 92.0
 offset_right = 809.0
 offset_bottom = 348.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="MonitorUI/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(428, 234)
+size = Vector2i(428, 256)
 render_target_update_mode = 4
 script = ExtResource("3_sprbh")
 
@@ -107,8 +107,8 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_wp4g3")
 
 [node name="Monitor" type="Sprite2D" parent="MonitorUI"]
 material = SubResource("ShaderMaterial_yth4q")
-position = Vector2(600.5, 249)
-scale = Vector2(0.962775, 0.893827)
+position = Vector2(600.5, 232.5)
+scale = Vector2(0.962775, 0.965432)
 texture = ExtResource("1_2vyni")
 region_enabled = true
 region_rect = Rect2(11.2123, 298.841, 591.496, 405.556)
@@ -224,7 +224,7 @@ region_rect = Rect2(55, 865, 905, 285)
 
 [node name="TimeMan" type="Sprite2D" parent="UI/TimeBar/Panel/Image"]
 material = SubResource("ShaderMaterial_jrr2g")
-position = Vector2(-368.351, 20.1177)
+position = Vector2(-370, 20)
 scale = Vector2(0.472387, 0.563866)
 texture = ExtResource("7_soop3")
 region_enabled = true

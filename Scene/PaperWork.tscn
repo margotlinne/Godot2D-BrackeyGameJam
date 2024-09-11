@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cq8akfoviai87"]
 
-[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_6tt2c"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="3_fc2jt"]
+[ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="3_kj7wf"]
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_nhvna"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_748g0"]
 
@@ -18,14 +18,13 @@ shader_parameter/outline_width = 4.0
 shader_parameter/progress = 1.0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 
-[node name="DeskView" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6tt2c")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -74,6 +73,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("3_kj7wf")
 
 [node name="TimeBar" type="Control" parent="UI"]
 layout_mode = 1

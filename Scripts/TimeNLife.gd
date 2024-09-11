@@ -9,7 +9,7 @@ extends Control
 var DURATION = 600.0  # 10분을 초 단위로 변환 (600초)
 
 func _ready():
-	time_mark.position = start_marker.position
+	time_mark.position = GameManager.time_man_pos
 	DURATION -= GameManager.current_passed_time 
 	
 	var tween = create_tween()
@@ -22,3 +22,6 @@ func _ready():
 		end_marker.position,       # 끝값
 		DURATION                # 애니메이션 시간 (초 단위)
 	)
+	
+func _process(delta):
+	GameManager.time_man_pos = time_mark.position
