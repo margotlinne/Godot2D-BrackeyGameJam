@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/FolderManager.gd" id="9_wvsi0"]
 [ext_resource type="PackedScene" uid="uid://c1xumvqdhvlaa" path="res://Scene/item.tscn" id="10_xwlnt"]
 [ext_resource type="PackedScene" uid="uid://c027vglkqhlyc" path="res://Scene/item_group.tscn" id="11_ek7x5"]
+[ext_resource type="Texture2D" uid="uid://dmxim8kn372l8" path="res://Image/right_click_window.png" id="17_38xmn"]
 [ext_resource type="Script" path="res://Scripts/RightClick.gd" id="18_k2pue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x4c3"]
@@ -146,13 +147,6 @@ shader = ExtResource("8_o2k67")
 shader_parameter/outline_width = 4.0
 shader_parameter/progress = 1.0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiawb"]
-bg_color = Color(0.384314, 0.478431, 0.415686, 0.898039)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="Computer" type="Control"]
 layout_mode = 3
@@ -1465,71 +1459,39 @@ texture = ExtResource("7_l4qcx")
 region_enabled = true
 region_rect = Rect2(237, 387, 73, 62)
 
-[node name="RightClickWindow" type="MarginContainer" parent="."]
+[node name="RightClickWindow" type="TextureRect" parent="."]
 visible = false
-custom_minimum_size = Vector2(0, 130)
 layout_mode = 0
-offset_left = 526.0
+offset_left = 555.0
 offset_top = 190.0
 offset_right = 752.0
-offset_bottom = 300.0
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+offset_bottom = 313.0
+texture = ExtResource("17_38xmn")
+expand_mode = 1
 script = ExtResource("18_k2pue")
 
-[node name="TextureRect" type="Panel" parent="RightClickWindow"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hiawb")
-
-[node name="MarginContainer" type="MarginContainer" parent="RightClickWindow"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RightClickWindow/MarginContainer"]
-layout_direction = 1
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="RightClickWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 15.0
+offset_right = -19.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 10
-alignment = 1
 
-[node name="Label" type="Label" parent="RightClickWindow/MarginContainer/VBoxContainer"]
+[node name="CopyPathBtn" type="Button" parent="RightClickWindow/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Copy Path"
 
-[node name="CopyPathBtn" type="Button" parent="RightClickWindow/MarginContainer/VBoxContainer/Label"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-
-[node name="Label" type="Label" parent="RightClickWindow/MarginContainer/VBoxContainer/Label/CopyPathBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="DeleteBtn" type="Button" parent="RightClickWindow/MarginContainer/VBoxContainer"]
+[node name="DeleteBtn" type="Button" parent="RightClickWindow/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/BinApp" to="Manager/Application Group" method="_on_bin_app_pressed"]
 [connection signal="pressed" from="Manager/Application Group/TaskBar/HBoxContainer/InternetApp" to="Manager/Application Group" method="_on_internet_app_pressed"]
@@ -1558,7 +1520,8 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 [connection signal="pressed" from="Manager/WindowGroup/NoteWindow/Window/ExitBtn_note" to="Manager/Application Group" method="_on_exit_btn_note_pressed"]
 [connection signal="mouse_entered" from="RightClickWindow" to="RightClickWindow" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="RightClickWindow" to="RightClickWindow" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="RightClickWindow/MarginContainer/VBoxContainer/Label/CopyPathBtn" to="RightClickWindow" method="_on_copy_path_btn_mouse_entered"]
-[connection signal="pressed" from="RightClickWindow/MarginContainer/VBoxContainer/Label/CopyPathBtn" to="RightClickWindow" method="_on_copy_path_btn_pressed"]
-[connection signal="mouse_entered" from="RightClickWindow/MarginContainer/VBoxContainer/DeleteBtn" to="RightClickWindow" method="_on_delete_btn_mouse_entered"]
-[connection signal="pressed" from="RightClickWindow/MarginContainer/VBoxContainer/DeleteBtn" to="RightClickWindow" method="_on_delete_btn_pressed"]
+[connection signal="mouse_entered" from="RightClickWindow/VBoxContainer/CopyPathBtn" to="RightClickWindow" method="_on_copy_path_btn_mouse_entered"]
+[connection signal="mouse_exited" from="RightClickWindow/VBoxContainer/CopyPathBtn" to="RightClickWindow" method="_on_copy_path_btn_mouse_exited"]
+[connection signal="pressed" from="RightClickWindow/VBoxContainer/CopyPathBtn" to="RightClickWindow" method="_on_copy_path_btn_pressed"]
+[connection signal="mouse_entered" from="RightClickWindow/VBoxContainer/DeleteBtn" to="RightClickWindow" method="_on_delete_btn_mouse_entered"]
+[connection signal="pressed" from="RightClickWindow/VBoxContainer/DeleteBtn" to="RightClickWindow" method="_on_delete_btn_pressed"]

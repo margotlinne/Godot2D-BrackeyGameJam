@@ -21,6 +21,7 @@ const FileClass = preload("res://Scripts/FileClass.gd")
 
 var files_ins
 	
+var right_clicked_file
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +30,7 @@ func _ready():
 	current_scene = get_tree().get_current_scene().get_name()
 	time_man_pos = Vector2(-370, 20)
 	_set_cursor_design()
+	
 	files_ins = FileClass.new()
 
 
@@ -66,4 +68,6 @@ func _set_cursor_design():
 	elif current_scene == "PaperWork":
 		Input.set_custom_mouse_cursor(null)
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+
 	

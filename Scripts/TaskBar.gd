@@ -100,15 +100,15 @@ func _find_window(name: String):
 	elif name == "ShoppingWebWindow": return shopping_window
 	
 func _save_order():
-	print("======================================")
+	#print("======================================")
 	GameManager.child_order.clear()
 	for child in window_group.get_children():
 		GameManager.child_order.append(child.name)
-		print(child)
+		#print(child)
 	# 업데이트된 순서로 "front_window" 설정
 	_find_front_window()
 	_set_btn_style()
-	print("가장 앞의 윈도우는: ", front_window)
+	#print("가장 앞의 윈도우는: ", front_window)
 		
 func _set_btn_style():
 	if front_window == bin_window.to_string(): 
@@ -133,8 +133,8 @@ func _set_btn_style():
 
 # 가장 최근에 추가된 즉 맨 앞에 있는 윈도우가 뭔지 확인
 func _find_front_window():
-	print("이동 후:", GameManager.child_order)
-	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	#print("이동 후:", GameManager.child_order)
+	#print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 #	for i in GameManager.child_order:
 #		print(i)
 #		if _find_window(i).visible: 
@@ -145,14 +145,14 @@ func _find_front_window():
 #			break
 			
 	for i in range(GameManager.child_order.size() - 1, -1, -1):
-		print(_find_window(GameManager.child_order[i]))
+		#print(_find_window(GameManager.child_order[i]))
 		if _find_window(GameManager.child_order[i]).visible: 
 			front_window = _find_window(GameManager.child_order[i]).to_string()
 			break
 		elif i == 0:
 			front_window = "none"
 			break
-	print("found: ", front_window)
+	#print("found: ", front_window)
 
 func _set_as_last_child(window: Node):
 	if window in window_group.get_children():  # 자식 목록에서 노드 확인
@@ -162,8 +162,8 @@ func _set_as_last_child(window: Node):
 
 	
 func _set_as_first_child(window: Node):
-	print(GameManager.child_order)
-	print("호출")
+	#print(GameManager.child_order)
+	#print("호출")
 	# 먼저 자식 노드들을 제거
 	var nodes_to_remove = []
 	for name in GameManager.child_order:
@@ -183,7 +183,7 @@ func _set_as_first_child(window: Node):
 	for name in GameManager.child_order:
 		var node = _find_window(name)
 		if node and node != window:
-			print("add::::", node)
+			#print("add::::", node)
 			window_group.add_child(node)
 			
 	
