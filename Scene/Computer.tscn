@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=42 format=3 uid="uid://b8nxnplhuqq2n"]
 
 [ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_20jjj"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" path="res://Scripts/TaskBar.gd" id="3_y13qb"]
 [ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="4_bl5mv"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_l4qcx"]
+[ext_resource type="Texture2D" uid="uid://rrs0gxaecek1" path="res://Image/ComputerImg.PNG" id="7_pasxc"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
 [ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="8_ox8dm"]
+[ext_resource type="Script" path="res://Scripts/FolderManager.gd" id="9_wvsi0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x4c3"]
 bg_color = Color(0, 0, 0, 0)
@@ -571,6 +573,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BinWindow" type="Control" parent="Manager/WindowGroup"]
+visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039
@@ -651,6 +654,218 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.933333, 0.988235, 1)
 
+[node name="ScrollContainer" type="ScrollContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.118
+anchor_right = 0.967
+anchor_bottom = 0.957
+offset_left = -3.925
+offset_top = -1.83801
+offset_right = 1.86096
+offset_bottom = 2.263
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Item" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.278431)
+custom_minimum_size = Vector2(1050, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("7_pasxc")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item/HBoxContainer"]
+custom_minimum_size = Vector2(700, 180)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gp7yj")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b]Soft Male Handsome Button Shirt[/b]
+
+start from [color=red]$451[/color]
+
+This Item is very popular, get one now or regret it!"
+scroll_active = false
+
+[node name="Item2" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.278431)
+custom_minimum_size = Vector2(1050, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("7_pasxc")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item2/HBoxContainer"]
+custom_minimum_size = Vector2(700, 180)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gp7yj")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b]Trendy Men's Rainbow Cow Meow Pants Street Famouse[/b]
+
+start from [color=red]$78[/color]
+
+[★★★★★] as*****: The quality is insanely good"
+scroll_active = false
+
+[node name="Item3" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.278431)
+custom_minimum_size = Vector2(1050, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item3/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("7_pasxc")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item3/HBoxContainer"]
+custom_minimum_size = Vector2(700, 180)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gp7yj")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b]Spring Summer Fall Winter Seaons Night Morning All-time Dress[/b]
+
+start from [color=red]$900[/color]
+
+We gurantee that this is not a fake brand, it's REAL"
+scroll_active = false
+
+[node name="Item4" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.278431)
+custom_minimum_size = Vector2(1050, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item4/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("7_pasxc")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item4/HBoxContainer"]
+custom_minimum_size = Vector2(700, 180)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gp7yj")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b]Stress Release Ball Company Office Mean Boss Stress[/b]
+
+start from [color=red]$14[/color]
+[★★★☆☆] fuc****: don't get me wrong, it's good but i gave 3 stars because it doesn't actually harm boss as hard as i squish it"
+scroll_active = false
+
+[node name="Item5" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.278431)
+custom_minimum_size = Vector2(1050, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item5/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("7_pasxc")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item5/HBoxContainer"]
+custom_minimum_size = Vector2(700, 180)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gp7yj")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b]Traveller's Backpack Hike Travel Plane Car Camping Beauty[/b]
+
+start from [color=red]$70[/color]
+
+High quality, huge capability, satisfied customers."
+scroll_active = false
+
 [node name="Bar" type="Panel" parent="Manager/WindowGroup/ShoppingWebWindow"]
 layout_mode = 1
 anchors_preset = -1
@@ -679,6 +894,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CloseBtn_shopping" type="Button" parent="Manager/WindowGroup/ShoppingWebWindow/Bar"]
+layout_mode = 0
 offset_left = 1026.0
 offset_top = 7.0
 offset_right = 1071.0
@@ -692,6 +908,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
 theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
 
 [node name="ExitBtn_shopping" type="Button" parent="Manager/WindowGroup/ShoppingWebWindow/Bar"]
+layout_mode = 0
 offset_left = 1068.0
 offset_top = 8.0
 offset_right = 1110.0
@@ -758,6 +975,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CloseBtn_email" type="Button" parent="Manager/WindowGroup/EMailWindow/Bar"]
+layout_mode = 0
 offset_left = 1026.0
 offset_top = 7.0
 offset_right = 1071.0
@@ -771,6 +989,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
 theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
 
 [node name="ExitBtn_email" type="Button" parent="Manager/WindowGroup/EMailWindow/Bar"]
+layout_mode = 0
 offset_left = 1068.0
 offset_top = 7.0
 offset_right = 1110.0
@@ -824,6 +1043,7 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vde7u")
 
 [node name="CloseBtn_game" type="Button" parent="Manager/WindowGroup/GameWindow/Bar"]
+layout_mode = 0
 offset_left = 1026.0
 offset_top = 7.0
 offset_right = 1071.0
@@ -837,6 +1057,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_h8t7t")
 theme_override_styles/focus = SubResource("StyleBoxTexture_h8t7t")
 
 [node name="ExitBtn_game" type="Button" parent="Manager/WindowGroup/GameWindow/Bar"]
+layout_mode = 0
 offset_left = 1068.0
 offset_top = 8.0
 offset_right = 1110.0
@@ -863,6 +1084,7 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("9_wvsi0")
 
 [node name="Window" type="Sprite2D" parent="Manager/WindowGroup/FolderWindow"]
 position = Vector2(549, 276)

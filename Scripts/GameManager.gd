@@ -17,6 +17,10 @@ var note_open
 
 var child_order = []
 
+const FileClass = preload("res://Scripts/FileClass.gd")
+
+var files_ins
+	
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,6 +29,7 @@ func _ready():
 	current_scene = get_tree().get_current_scene().get_name()
 	time_man_pos = Vector2(-370, 20)
 	_set_cursor_design()
+	files_ins = FileClass.new()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
