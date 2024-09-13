@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1xumvqdhvlaa"]
 
 [ext_resource type="Texture2D" uid="uid://bj661wo3u7rxu" path="res://Image/bg_smaller.png" id="1_5svbu"]
-[ext_resource type="Script" path="res://Scripts/Item.gd" id="1_jp3yr"]
+[ext_resource type="Script" path="res://Scripts/FolderItem.gd" id="1_um6go"]
 [ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="2_7v258"]
 
 [node name="Item" type="VBoxContainer"]
@@ -9,7 +9,7 @@ offset_right = 50.0
 offset_bottom = 79.0
 size_flags_vertical = 0
 theme_override_constants/separation = 0
-script = ExtResource("1_jp3yr")
+script = ExtResource("1_um6go")
 
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(50, 50)

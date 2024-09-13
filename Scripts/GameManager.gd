@@ -18,8 +18,10 @@ var note_open
 var child_order = []
 
 const FileClass = preload("res://Scripts/FileClass.gd")
+const EmailClass = preload("res://Scripts/EmailClass.gd")
 
 var files_ins
+var email_ins
 	
 var right_clicked_file
 
@@ -32,7 +34,21 @@ func _ready():
 	_set_cursor_design()
 	
 	files_ins = FileClass.new()
+	email_ins = EmailClass.new()
+	
+	for i in email_ins.email_email.size():
+		_set_random_file()
+	print(email_ins.email_email)
 
+func _set_random_file():
+	var random = randi() % files_ins.file.size()
+	var file_name = files_ins.file[random].name
+	print(file_name)
+	for i in email_ins.email_email:
+		if i.fileName == file_name:
+			_set_random_file()
+		elif i == email_ins.email_email[email_ins.email_email.size() - 1]:
+			i.fileName = file_name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

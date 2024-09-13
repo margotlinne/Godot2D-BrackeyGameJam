@@ -1,8 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=56 format=3 uid="uid://b8nxnplhuqq2n"]
 
-[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_20jjj"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
 [ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_ccbnx"]
+[ext_resource type="Script" path="res://Scripts/ComputerManager.gd" id="1_xftby"]
 [ext_resource type="Texture2D" uid="uid://bj661wo3u7rxu" path="res://Image/bg_smaller.png" id="3_ejebc"]
 [ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="3_gp7yj"]
 [ext_resource type="Texture2D" uid="uid://nief0h4h530h" path="res://Image/sketch1725954017941.png" id="3_i0g51"]
@@ -14,8 +14,11 @@
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
 [ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="8_ox8dm"]
 [ext_resource type="Script" path="res://Scripts/FolderManager.gd" id="9_wvsi0"]
+[ext_resource type="Script" path="res://Scripts/CardGame.gd" id="10_hbyqu"]
+[ext_resource type="Script" path="res://Scripts/EmailManager.gd" id="10_kln8e"]
 [ext_resource type="PackedScene" uid="uid://c1xumvqdhvlaa" path="res://Scene/item.tscn" id="10_xwlnt"]
 [ext_resource type="PackedScene" uid="uid://c027vglkqhlyc" path="res://Scene/item_group.tscn" id="11_ek7x5"]
+[ext_resource type="Texture2D" uid="uid://cn8gx07b8m3dx" path="res://Image/sketch1726200667534.png" id="12_in3yx"]
 [ext_resource type="Script" path="res://Scripts/RightClick.gd" id="18_k2pue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x4c3"]
@@ -134,6 +137,29 @@ modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vde7u"]
 bg_color = Color(0.384314, 0.478431, 0.415686, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4osc4"]
+texture = ExtResource("12_in3yx")
+region_rect = Rect2(37, 16, 271, 122)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_573sd"]
+load_path = "res://.godot/imported/sketch1726200667534.png-77174181699499ecb47ea7508d8e48f5.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqcfv"]
+texture = SubResource("CompressedTexture2D_573sd")
+region_rect = Rect2(37, 16, 271, 122)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4fyw"]
+texture = ExtResource("12_in3yx")
+region_rect = Rect2(37, 16, 271, 122)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ihqsi"]
+texture = ExtResource("12_in3yx")
+region_rect = Rect2(37, 16, 271, 122)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_awqr8"]
+texture = ExtResource("12_in3yx")
+region_rect = Rect2(37, 16, 271, 122)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgukq"]
 bg_color = Color(0, 0, 0, 0.52549)
 corner_radius_top_left = 10
@@ -163,7 +189,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-script = ExtResource("1_20jjj")
+script = ExtResource("1_xftby")
 
 [node name="BG" type="ColorRect" parent="Manager"]
 layout_mode = 1
@@ -953,7 +979,6 @@ vertical_alignment = 1
 text_overrun_behavior = 1
 
 [node name="EMailWindow" type="Control" parent="Manager/WindowGroup"]
-visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039
@@ -966,6 +991,7 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("10_kln8e")
 
 [node name="BG" type="ColorRect" parent="Manager/WindowGroup/EMailWindow"]
 layout_mode = 1
@@ -1050,9 +1076,20 @@ offset_bottom = -0.208069
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("10_hbyqu")
+
+[node name="ColorRect" type="ColorRect" parent="Manager/WindowGroup/GameWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.00012207
+offset_bottom = -62.9999
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BG" type="TextureRect" parent="Manager/WindowGroup/GameWindow"]
-modulate = Color(0.254902, 0.254902, 0.254902, 1)
+self_modulate = Color(0.364706, 0.364706, 0.364706, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1063,6 +1100,139 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ejebc")
 stretch_mode = 1
+
+[node name="StartGameBtn" type="Button" parent="Manager/WindowGroup/GameWindow/BG"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 204.0
+offset_right = 664.0
+offset_bottom = 320.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gp7yj")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_4osc4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wqcfv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m4fyw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ihqsi")
+theme_override_styles/focus = SubResource("StyleBoxTexture_awqr8")
+text = "START"
+
+[node name="GameCanvas" type="Control" parent="Manager/WindowGroup/GameWindow/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreTxt" type="Label" parent="Manager/WindowGroup/GameWindow/BG/GameCanvas"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 49.0
+offset_right = 527.0
+offset_bottom = 155.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gp7yj")
+theme_override_font_sizes/font_size = 70
+text = "SCORE: "
+
+[node name="CardPos" type="Control" parent="Manager/WindowGroup/GameWindow/BG/GameCanvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -29.5
+offset_right = 46.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DownBtn" type="Button" parent="Manager/WindowGroup/GameWindow/BG/GameCanvas"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 251.0
+offset_right = 331.0
+offset_bottom = 332.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gp7yj")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_4osc4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wqcfv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m4fyw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ihqsi")
+theme_override_styles/focus = SubResource("StyleBoxTexture_awqr8")
+text = "Down"
+
+[node name="UpBtn" type="Button" parent="Manager/WindowGroup/GameWindow/BG/GameCanvas"]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 251.0
+offset_right = 916.0
+offset_bottom = 332.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gp7yj")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_4osc4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wqcfv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m4fyw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ihqsi")
+theme_override_styles/focus = SubResource("StyleBoxTexture_awqr8")
+text = "Up"
+
+[node name="GameOverCanvas" type="Control" parent="Manager/WindowGroup/GameWindow/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverBtn" type="Button" parent="Manager/WindowGroup/GameWindow/BG/GameOverCanvas"]
+modulate = Color(0.929412, 0, 0.203922, 1)
+offset_left = 421.0
+offset_top = 382.0
+offset_right = 664.0
+offset_bottom = 498.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gp7yj")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_4osc4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wqcfv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m4fyw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ihqsi")
+theme_override_styles/focus = SubResource("StyleBoxTexture_awqr8")
+text = "GAME
+OVER"
 
 [node name="Bar" type="Panel" parent="Manager/WindowGroup/GameWindow"]
 layout_mode = 1
@@ -1123,6 +1293,7 @@ vertical_alignment = 1
 text_overrun_behavior = 1
 
 [node name="FolderWindow" type="Control" parent="Manager/WindowGroup"]
+visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039
@@ -1549,6 +1720,10 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 [connection signal="pressed" from="Manager/WindowGroup/ShoppingWebWindow/Bar/ExitBtn_shopping" to="Manager/Application Group" method="_on_exit_btn_shopping_pressed"]
 [connection signal="pressed" from="Manager/WindowGroup/EMailWindow/Bar/CloseBtn_email" to="Manager/Application Group" method="_on_close_btn_email_pressed"]
 [connection signal="pressed" from="Manager/WindowGroup/EMailWindow/Bar/ExitBtn_email" to="Manager/Application Group" method="_on_exit_btn_email_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/GameWindow/BG/StartGameBtn" to="Manager/WindowGroup/GameWindow" method="_on_start_game_btn_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/GameWindow/BG/GameCanvas/DownBtn" to="Manager/WindowGroup/GameWindow" method="_on_down_btn_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/GameWindow/BG/GameCanvas/UpBtn" to="Manager/WindowGroup/GameWindow" method="_on_up_btn_pressed"]
+[connection signal="pressed" from="Manager/WindowGroup/GameWindow/BG/GameOverCanvas/GameOverBtn" to="Manager/WindowGroup/GameWindow" method="_on_game_over_btn_pressed"]
 [connection signal="pressed" from="Manager/WindowGroup/GameWindow/Bar/CloseBtn_game" to="Manager/Application Group" method="_on_close_btn_game_pressed"]
 [connection signal="pressed" from="Manager/WindowGroup/GameWindow/Bar/ExitBtn_game" to="Manager/Application Group" method="_on_exit_btn_game_pressed"]
 [connection signal="pressed" from="Manager/WindowGroup/FolderWindow/Window/CloseBtn_folder" to="Manager/Application Group" method="_on_close_btn_folder_pressed"]
