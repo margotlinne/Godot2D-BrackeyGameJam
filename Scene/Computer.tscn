@@ -1612,19 +1612,16 @@ region_enabled = true
 region_rect = Rect2(8.60007, 1164.8, 286, 280.5)
 
 [node name="start" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
+visible = false
 position = Vector2(-374.702, 6.70587)
 
 [node name="end" type="Marker2D" parent="UI/TimeBar/Panel/Image"]
 position = Vector2(368.351, 16.7647)
 
 [node name="Hearts" type="HBoxContainer" parent="UI"]
-visible = false
 layout_mode = 1
-offset_left = 9.0
-offset_top = 5.0
-offset_right = 425.0
-offset_bottom = 76.0
-alignment = 2
+offset_right = 416.0
+offset_bottom = 71.0
 
 [node name="heart" type="Control" parent="UI/Hearts"]
 custom_minimum_size = Vector2(80, 0)

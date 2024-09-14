@@ -41,7 +41,7 @@ var total_tasks = 0
 var set_emails_first = false
 
 var current_paper_work
-
+var hearts = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -82,6 +82,7 @@ func _process(delta):
 		_repeat_activate()
 		assigned = true
 
+
 func _repeat_activate():
 	while total_active_tasks != total_tasks:
 		await get_tree().create_timer(interval_timer).timeout
@@ -95,11 +96,11 @@ func _active_random_task():
 	if random == 0: 
 		random_index = randi_range(0, email_ins.email_email.size() - 1)
 		selected_file = email_ins.email_email[random_index]
-		print("#", selected_file.from)
+		#print("#", selected_file.from)
 	else: 
 		random_index =  randi_range(0, email_ins.email_paper.size() - 1)
 		selected_file = email_ins.email_paper[random_index]
-		print("#", selected_file.from)
+		#print("#", selected_file.from)
 
 	if selected_file.isActive: _active_random_task()
 	else:
@@ -107,7 +108,7 @@ func _active_random_task():
 			for j in email_ins.email_paper:
 				if j.from == selected_file.from:
 					j.isActive = true
-					print("#", j.from, "   ", j.isActive)
+					#print("#", j.from, "   ", j.isActive)
 					email_order.append(j.from)
 					total_active_tasks += 1
 					break  # Task assigned, exit loop
@@ -115,7 +116,7 @@ func _active_random_task():
 			for j in email_ins.email_email:				
 				if j.from == selected_file.from:
 					j.isActive = true
-					print("#", j.from, "   ", j.isActive)
+					#print("#", j.from, "   ", j.isActive)
 					email_order.append(j.from)
 					total_active_tasks += 1
 					break  # Task assigned, exit loop

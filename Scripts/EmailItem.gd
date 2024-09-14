@@ -49,7 +49,7 @@ func set_datas(paper: bool, active: bool, sender: String, file: String, done: bo
 
 
 func set_reply_datas(sender: String, success: bool, active: bool, path: String, with_file: bool, paper: bool):
-	print("set reply datas")
+	#print("set reply datas")
 	panel.self_modulate = Color.AQUAMARINE
 	
 	var item = GameManager.get_item("reply", sender)
@@ -61,43 +61,64 @@ func set_reply_datas(sender: String, success: bool, active: bool, path: String, 
 	is_failed = !success
 	profile_path = path
 	
-	print(is_done, "  ", is_failed, "  ", with_file)
-	print("----------------------------------------------------------------------")
+	#print(is_done, "  ", is_failed, "  ", with_file)
+	#print("----------------------------------------------------------------------")
 	
 	profile_icon.texture = load(path)	
 	from_text.text = sender
 	
 	if with_file:
-		print("with file")
+		#print("with file")
 		# 도장 작업인데 파일을 보냈을 때
 		if is_paper_work:
 			content_text.text = "Excuse me, this is not what I asked? Forget it, I'll just stamp on papers. Such a terrible worker."
+			if !item.setScore and item.isSent:
+				GameManager.hearts -= 1
+				item.setScore = true
+		
 		# 이메일 작업, 정답 확인 
 		else:
 			if success:
 				content_text.text = "Thank you for your reply. I checked, and it's all correct. Thank you."
+				if !item.setScore and item.isSent:
+					item.setScore = true
 			else: 
 				content_text.text = "I don't thank you for your reply. Because unfortunately it's wrong." + \
-				"I'll just do it by myself, forget about this task. Unkind regards, " + sender  + "."
+				"I'll just do it by myself, forget about this task. Unkind regards, " + sender  + "."			
+				if !item.setScore and item.isSent:
+					GameManager.hearts -= 1
+					item.setScore = true
 	else:
-		print("without file")
+		#print("without file")
 		# 이메일 작업인데 파일 없이 보냈을 때
 		if not is_paper_work:
 			content_text.text = "Hello??? With no attached file??? Forget about this task, I'll find myself. Jesus."
+			if !item.setScore and item.isSent:
+				GameManager.hearts -= 1
+				item.setScore = true
 		# 도장 작업, 정답 확인
 		else:
-			print("paper work")
+			#print("paper work")
 			if is_done:
-				print("work done")
+				#print("work done")
 				if is_failed:
 					content_text.text = "I checked your work, and some papers are not stamped. Thanks to you" \
 				+ " my workload has doubled. Great!"
+					if !item.setScore and item.isSent:
+						GameManager.hearts -= 1
+						item.setScore = true
 				else:
-					content_text.text = "Thank you, your work is perfeclty performed. Good job!"				
+					content_text.text = "Thank you, your work is perfeclty performed. Good job!"
+					if !item.setScore and item.isSent:
+						item.setScore = true				
 			else: 
-				print("work not done")
-				content_text.text = "I checked your work, nothings are stamped? Great work. Bravo."
-		
+				#print("work not done")
+				content_text.text = "I checked your work, nothings are stamped? Great work. Bravo."			
+				if !item.setScore and item.isSent:
+					GameManager.hearts -= 1
+					#print(GameManager.hearts)
+					item.setScore = true		
+					
 	reply_btn.mouse_filter = MOUSE_FILTER_IGNORE
 	reply_w_file_btn.mouse_filter = MOUSE_FILTER_IGNORE
 		
@@ -135,9 +156,12 @@ func _on_reply_btn_pressed():
 		is_done = item.isDone
 		is_failed = item.isFailed
 		item.isSent = true
-		print("button pressed:    ", is_done, " ", is_failed)
+		#print("//", item.from, " ", item.isSent)
+		#print("button pressed:    ", is_done, " ", is_failed)
 		email_manager.get_reply(self)
 		pass
+	var item = GameManager.get_item("reply", from_text.text)	
+	item.isSent = true	
 
 func _on_reply_wf_btn_pressed():
 	is_sent = true
@@ -172,3 +196,5 @@ func _on_reply_wf_btn_pressed():
 		is_failed = item.isFailed
 		email_manager.get_reply(self)
 		pass
+	var item = GameManager.get_item("reply", from_text.text)	
+	item.isSent = true	

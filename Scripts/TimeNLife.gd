@@ -4,11 +4,12 @@ extends Control
 @onready var start_marker = $TimeBar/Panel/Image/start
 @onready var end_marker = $TimeBar/Panel/Image/end
 @onready var time_mark = $TimeBar/Panel/Image/TimeMan
-
+@onready var hearts_ui = $Hearts
 
 var DURATION = 600.0  # 10분을 초 단위로 변환 (600초)
 
 func _ready():
+	hearts_ui.hide()
 	time_mark.position = GameManager.time_man_pos
 	DURATION -= GameManager.current_passed_time 
 	
@@ -25,3 +26,35 @@ func _ready():
 	
 func _process(delta):
 	GameManager.time_man_pos = time_mark.position
+	
+	if GameManager.assigned:
+		hearts_ui.show()
+	_set_hearts()
+
+func _set_hearts():
+	var active_hearts = 0
+	var hearts = hearts_ui.get_children()
+	
+	# 현재 visible한 heart 개수 세기
+	for i in hearts:
+		if i.visible:
+			active_hearts += 1
+
+	# active_hearts를 GameManager.hearts에 맞추기
+	while active_hearts != GameManager.hearts:
+		if active_hearts < GameManager.hearts:
+			# active_hearts가 더 적으면 visible하지 않은 heart를 활성화
+			for i in hearts:
+				if not i.visible:
+					i.visible = true
+					active_hearts += 1
+					break
+		elif active_hearts > GameManager.hearts:
+			# active_hearts가 더 많으면 visible한 heart를 비활성화
+			for i in hearts:
+				if i.visible:
+					i.visible = false
+					active_hearts -= 1
+					break
+	
+	

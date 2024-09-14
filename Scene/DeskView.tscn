@@ -259,15 +259,14 @@ position = Vector2(-374.702, 6.70587)
 position = Vector2(368.351, 16.7647)
 
 [node name="Hearts" type="HBoxContainer" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -426.0
-offset_top = 7.0
-offset_right = -10.0
-offset_bottom = 78.0
+offset_left = -419.0
+offset_top = 1.0
+offset_right = -3.0
+offset_bottom = 72.0
 grow_horizontal = 0
 alignment = 2
 

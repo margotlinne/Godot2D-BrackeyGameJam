@@ -30,7 +30,7 @@ func _ready():
 		
 	#print(email_items)
 	set = true
-	print("-----------------------------", GameManager.email_order)
+	#print("-----------------------------", GameManager.email_order)
 	
 func _process(delta):
 	# 3분 지나면 assign_first_tasks참으로 게임매니저에서 설정 -> 이메일 활성화도 게임 매니저에서?
@@ -72,7 +72,9 @@ func _process(delta):
 				item = GameManager.get_item("reply", i.from_text.text)
 		
 			if !i.is_set && item.isActive:
-				print("?")
+				#print("?")
+				for j in GameManager.email_order:
+					_set_recent_email(j)	
 				i.is_active = true
 				i.is_set = true
 			#if item.isActive && !i.is_set:
@@ -85,8 +87,7 @@ func _process(delta):
 					#print(GameManager.email_order)
 					#_set_recent_email(q)
 					
-	for j in GameManager.email_order:
-		_set_recent_email(j)		
+	
 		
 		
 #
