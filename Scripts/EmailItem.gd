@@ -20,17 +20,19 @@ var file_name
 var is_reply
 var with_file
 var profile_path
+var is_sent = false
 
 func _ready():
 	self.hide()
-	cover_panel.hide()
+#	cover_panel.hide()
 
-func set_datas(paper: bool, active: bool, sender: String, file: String, done: bool, fail: bool, path: String):
+func set_datas(paper: bool, active: bool, sender: String, file: String, done: bool, fail: bool, path: String, sent: bool):
 	is_paper_work = paper
 	is_active = active
 	is_done = done
 	is_failed = fail
 	file_name = file
+	is_sent = sent
 	
 	from_text.text = sender
 	if is_paper_work:
@@ -47,22 +49,26 @@ func set_datas(paper: bool, active: bool, sender: String, file: String, done: bo
 
 
 func set_reply_datas(sender: String, success: bool, active: bool, path: String, with_file: bool, paper: bool):
-	#print("set reply datas")
+	print("set reply datas")
 	panel.self_modulate = Color.AQUAMARINE
 	
 	var item = GameManager.get_item("reply", sender)
 	item.isActive = active
-	is_done = true
+	is_done = item.isDone
 	is_reply = true
 	is_active = active
 	is_paper_work = paper
 	is_failed = !success
 	profile_path = path
 	
+	print(is_done, "  ", is_failed, "  ", with_file)
+	print("----------------------------------------------------------------------")
+	
 	profile_icon.texture = load(path)	
 	from_text.text = sender
 	
 	if with_file:
+		print("with file")
 		# 도장 작업인데 파일을 보냈을 때
 		if is_paper_work:
 			content_text.text = "Excuse me, this is not what I asked? Forget it, I'll just stamp on papers. Such a terrible worker."
@@ -74,12 +80,23 @@ func set_reply_datas(sender: String, success: bool, active: bool, path: String, 
 				content_text.text = "I don't thank you for your reply. Because unfortunately it's wrong." + \
 				"I'll just do it by myself, forget about this task. Unkind regards, " + sender  + "."
 	else:
+		print("without file")
 		# 이메일 작업인데 파일 없이 보냈을 때
 		if not is_paper_work:
 			content_text.text = "Hello??? With no attached file??? Forget about this task, I'll find myself. Jesus."
 		# 도장 작업, 정답 확인
 		else:
-			pass
+			print("paper work")
+			if is_done:
+				print("work done")
+				if is_failed:
+					content_text.text = "I checked your work, and some papers are not stamped. Thanks to you" \
+				+ " my workload has doubled. Great!"
+				else:
+					content_text.text = "Thank you, your work is perfeclty performed. Good job!"				
+			else: 
+				print("work not done")
+				content_text.text = "I checked your work, nothings are stamped? Great work. Bravo."
 		
 	reply_btn.mouse_filter = MOUSE_FILTER_IGNORE
 	reply_w_file_btn.mouse_filter = MOUSE_FILTER_IGNORE
@@ -92,7 +109,7 @@ func _process(delta):
 #	if is_set:
 #		cover_panel.show()
 	
-	if not is_reply and (is_done or is_failed):
+	if not is_reply and is_sent:
 		cover_panel.show()
 		reply_btn.mouse_filter = MOUSE_FILTER_IGNORE
 		reply_w_file_btn.mouse_filter = MOUSE_FILTER_IGNORE
@@ -101,20 +118,29 @@ func _process(delta):
 
 
 
-func _on_reply_btn_pressed():
+func _on_reply_btn_pressed():	
+	is_sent = true
 	with_file = false
 	if not is_paper_work:
 		var item = GameManager.get_item("email", from_text.text)
 		item.isDone = true
+		item.isSent = true
 		item.isFailed = true
 		is_done = item.isDone
 		is_failed = item.isFailed
 		email_manager.get_reply(self)
 	else:
 		# Paper work일 때 작업 완료 여부를 따져서 EmailManager의 set fail or success 호출
+		var item = GameManager.get_item("paper", from_text.text)		
+		is_done = item.isDone
+		is_failed = item.isFailed
+		item.isSent = true
+		print("button pressed:    ", is_done, " ", is_failed)
+		email_manager.get_reply(self)
 		pass
 
 func _on_reply_wf_btn_pressed():
+	is_sent = true
 	with_file = true
 	if not is_paper_work:
 		print("file name: ", file_name, "/ copied name: ", GameManager.copied_file.its_name)
@@ -123,11 +149,13 @@ func _on_reply_wf_btn_pressed():
 			if file_name == GameManager.copied_file.its_name:
 				item.isDone = true
 				item.isFailed = false
+				item.isSent = true
 				is_done = item.isDone
 				is_failed = item.isFailed
 			else:
 				item.isDone = true
 				item.isFailed = true
+				item.isSent = true
 				is_done = item.isDone
 				is_failed = item.isFailed
 			email_manager.get_reply(self)

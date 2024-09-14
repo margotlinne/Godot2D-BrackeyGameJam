@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://de1u76t4xcdhy"]
+
+[ext_resource type="Script" path="res://Scripts/StampedPaper.gd" id="1_0eov6"]
+[ext_resource type="Texture2D" uid="uid://cywl1xemhgiex" path="res://Image/papers_done.png" id="1_stylk"]
+
+[node name="DonePaperPrefab" type="Control"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0eov6")
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 172.0
+offset_bottom = 102.0
+scale = Vector2(0.915094, 0.737443)
+mouse_filter = 0
+texture = ExtResource("1_stylk")
+expand_mode = 1
+flip_h = true

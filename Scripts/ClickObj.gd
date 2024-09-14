@@ -3,18 +3,16 @@ extends Node2D
 
 @onready var computer_btn = $"../MonitorUI/ComputerSceneBtn"
 @onready var monitor_sprite = $"../MonitorUI/Monitor"
+@onready var papers = $"../Papers"
 
-
-func _process(delta):
-	pass
-
+				
+				
 
 func _on_computer_scene_btn_pressed():
 	GameManager.load_scene("res://Scene/Computer.tscn")
 
 
-func _on_paper_work_scene_btn_pressed():
-	GameManager.load_scene("res://Scene/PaperWork.tscn")
+
 
 # 모니터 버튼 위 호버
 func _on_computer_scene_btn_mouse_entered():
@@ -39,4 +37,6 @@ func _on_computer_scene_btn_mouse_exited():
 	else:
 		print("Material은 ShaderMaterial이 아닙니다.")
 		
+		
+
 

@@ -1,28 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqx1j4hen8xk5"]
+[gd_scene load_steps=5 format=3 uid="uid://bqx1j4hen8xk5"]
 
-[ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="1_hi2hm"]
+[ext_resource type="Script" path="res://Scripts/PapersItem.gd" id="2_46jd1"]
 [ext_resource type="Texture2D" uid="uid://b7ats6q8hvojq" path="res://Image/papers.png" id="2_cpty6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7poa"]
-shader = ExtResource("1_hi2hm")
+[sub_resource type="Shader" id="Shader_0e210"]
+code = "shader_type canvas_item;
+
+uniform float outline_width : hint_range(0.0, 10.0) = 4.0;
+uniform float progress : hint_range(0.0, 1.0);
+uniform vec4 outline_color : source_color;
+
+void fragment() {
+    // 텍스처의 해상도와 텍스처 크기에 따라 픽셀 크기를 계산합니다.
+    float size = outline_width / float(textureSize(TEXTURE, 0).x);
+
+    // 현재 픽셀의 색상과 알파 값을 가져옵니다.
+    vec4 sprite_color = texture(TEXTURE, UV);
+    float alpha = sprite_color.a;
+
+    // 주변 픽셀의 알파 값을 더해 아웃라인을 계산합니다.
+    alpha += texture(TEXTURE, UV + vec2(size, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, size)).a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, -size)).a;
+    alpha += texture(TEXTURE, UV + vec2(size, size)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size, -size)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size, size)).a;
+    alpha += texture(TEXTURE, UV + vec2(size, -size)).a;
+
+    // 아웃라인 색상과 알파를 `progress`에 따라 조절합니다.
+    vec4 final_color = mix(outline_color, sprite_color, sprite_color.a);
+    COLOR = vec4(final_color.rgb, clamp(alpha * progress + sprite_color.a, 0.0, 1.0));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ng6ea"]
+shader = SubResource("Shader_0e210")
 shader_parameter/outline_width = 4.0
 shader_parameter/progress = null
 shader_parameter/outline_color = null
 
 [node name="PaperPrefab" type="Control"]
-material = SubResource("ShaderMaterial_i7poa")
-custom_minimum_size = Vector2(100, 10)
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 154.0
 offset_bottom = 10.0
 scale = Vector2(1, 0.78777)
+mouse_filter = 2
+script = ExtResource("2_46jd1")
 
-[node name="Sprite2D" type="TextureRect" parent="."]
+[node name="Image" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ng6ea")
 layout_mode = 0
 offset_left = -1.0
 offset_right = 172.0
 offset_bottom = 102.0
 scale = Vector2(0.915094, 0.737443)
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("2_cpty6")
 expand_mode = 1
+
+[node name="ColorImage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+offset_right = 173.0
+offset_bottom = 102.0
+scale = Vector2(0.915094, 0.737443)
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("2_cpty6")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="Image" to="." method="_on_image_mouse_entered"]
+[connection signal="mouse_exited" from="Image" to="." method="_on_image_mouse_exited"]

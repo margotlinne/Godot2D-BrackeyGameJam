@@ -17,6 +17,8 @@ var note_open
 
 var child_order = []
 
+var email_order = []
+
 const FileClass = preload("res://Scripts/FileClass.gd")
 const EmailClass = preload("res://Scripts/EmailClass.gd")
 
@@ -31,9 +33,9 @@ var assign_first_tasks = false
 var assigned = false
 
 # 30초 간격으로 새 이메일 수신 
-var interval_timer = 30.0
+var interval_timer = 5.0
 # 초반 3분 후 5개의 이메일 수신 
-var timer = 180.0
+var timer = 3
 var total_tasks = 0
 
 var set_emails_first = false
@@ -91,26 +93,30 @@ func _active_random_task():
 	var random = randi() % 2
 	var selected_file = null
 	if random == 0: 
-		random_index = randi() % email_ins.email_email.size()
+		random_index = randi_range(0, email_ins.email_email.size() - 1)
 		selected_file = email_ins.email_email[random_index]
+		print("#", selected_file.from)
 	else: 
-		random_index = randi() % email_ins.email_paper.size()
+		random_index =  randi_range(0, email_ins.email_paper.size() - 1)
 		selected_file = email_ins.email_paper[random_index]
+		print("#", selected_file.from)
 
 	if selected_file.isActive: _active_random_task()
 	else:
 		if selected_file.isPaperWork:
 			for j in email_ins.email_paper:
-				if not j.isActive:
+				if j.from == selected_file.from:
 					j.isActive = true
-					#print(j.from, "   ", j.isActive)
+					print("#", j.from, "   ", j.isActive)
+					email_order.append(j.from)
 					total_active_tasks += 1
 					break  # Task assigned, exit loop
 		else:
 			for j in email_ins.email_email:				
-				if not j.isActive:
+				if j.from == selected_file.from:
 					j.isActive = true
-					#print(j.from, "   ", j.isActive)
+					print("#", j.from, "   ", j.isActive)
+					email_order.append(j.from)
 					total_active_tasks += 1
 					break  # Task assigned, exit loop
 #		email_manager.get_new_email(selected_file)
@@ -165,6 +171,8 @@ func _set_cursor_design():
 		
 	elif current_scene == "DeskView":
 		var cursor_texture = preload("res://Image/Cursor.png")
+		var pointing_corsor_texture = preload("res://Image/cursor_pointing.png")
+		Input.set_custom_mouse_cursor(pointing_corsor_texture, Input.CURSOR_POINTING_HAND)
 		Input.set_custom_mouse_cursor(cursor_texture)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif current_scene == "PaperWork":

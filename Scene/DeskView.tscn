@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxtld8ksr1bln"]
+[gd_scene load_steps=20 format=3 uid="uid://bxtld8ksr1bln"]
 
 [ext_resource type="Texture2D" uid="uid://h1meqjy0iy4j" path="res://Image/sketch1725855466754.png" id="1_2vyni"]
 [ext_resource type="Texture2D" uid="uid://wlsa8fl12ld7" path="res://Image/sketch1725885979836.png" id="1_6ti66"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_soop3"]
 [ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="7_t6gh1"]
 [ext_resource type="Script" path="res://Scripts/PaperManager.gd" id="8_ksehd"]
+[ext_resource type="PackedScene" uid="uid://de1u76t4xcdhy" path="res://Scene/done_paper_prefab.tscn" id="9_vvsed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_084bh"]
 bg_color = Color(0.733333, 0.733333, 0.733333, 0)
@@ -100,6 +101,7 @@ offset_right = -302.0
 offset_bottom = -309.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_084bh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_luw15")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1as16")
@@ -184,10 +186,32 @@ script = ExtResource("5_yk0lw")
 
 [node name="Papers" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_top = 506.0
-offset_right = 100.0
-offset_bottom = 586.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -143.0
+offset_right = 172.0
+offset_bottom = -63.0
+grow_vertical = 0
+mouse_filter = 0
 script = ExtResource("8_ksehd")
+
+[node name="FinishedPapers" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 975.0
+offset_top = -205.0
+offset_right = 1075.0
+offset_bottom = -125.0
+grow_vertical = 0
+mouse_filter = 0
+
+[node name="DonePaperPrefab" parent="FinishedPapers" instance=ExtResource("9_vvsed")]
+visible = false
+layout_mode = 2
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
