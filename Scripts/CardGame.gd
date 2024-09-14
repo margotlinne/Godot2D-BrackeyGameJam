@@ -89,7 +89,7 @@ func _get_card():
 		var path: String
 		new_card_num = ran_num + 1
 		path = "res://Image/" + str(new_card_num) + ".png" 
-		print(path)
+		#print(path)
 		new_card.get_node("Card Sprite/num/Num Icon").texture = load(path)
 	else:
 		if random == 4:

@@ -4,7 +4,8 @@ extends VBoxContainer
 @onready var icon = $Icon
 @onready var btn = $Icon/Button
 
-var folder_icon = preload("res://Image/folder_icon.png")
+var folder_icon = preload("res://Image/folder_full_icon.png")
+var empty_folder_icon = preload("res://Image/folder_icon.png")
 var file_icon = preload("res://Image/file_icon.png")
 
 var its_name: String
@@ -18,7 +19,7 @@ var is_hover: bool
 	
 	
 func set_datas(title, check, bin):
-	print("called")
+	#print("called")
 	its_name = title
 	is_folder = check
 	in_bin = bin
@@ -29,6 +30,21 @@ func set_datas(title, check, bin):
 	else: icon.texture = file_icon
 	
 	data_set = true
+	
+func _process(delta):
+	if data_set: _set_icon()
+	
+	
+func _set_icon():
+	if is_folder:
+		for i in GameManager.files_ins.file:
+			if i.parent == its_name:
+				icon.texture = folder_icon
+				break
+			elif i == GameManager.files_ins.file[GameManager.files_ins.file.size() - 1]:
+				icon.texture = empty_folder_icon
+	else: icon.texture = file_icon
+	
 	
 func get_bin_bool(bin):
 	in_bin = bin
@@ -46,17 +62,18 @@ func _on_button_mouse_exited():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and is_hover:
-			set_right_click_window(event.position, in_bin)
+			set_right_click_window(event.position, in_bin, self)
 			GameManager.right_clicked_file = its_name
-			print("Right mouse button clicked")
+			#print("Right mouse button clicked")
 
-func set_right_click_window(pos, bin):
+func set_right_click_window(pos, bin, file):
 	var copy_path_label1 = right_click_window.get_node("MarginContainer/VBoxContainer/Label")
 	var delete_btn =  right_click_window.get_node("MarginContainer/VBoxContainer/DeleteBtn")
 	var copy_path_btn = copy_path_label1.get_node("CopyPathBtn")
 	var copy_path_label2 = copy_path_btn.get_node("Label")
 	right_click_window.show()
 	right_click_window.set_position(pos)
+	right_click_window.clicked_item = self
 	
 	if bin == true:
 		copy_path_btn.mouse_filter = MOUSE_FILTER_IGNORE

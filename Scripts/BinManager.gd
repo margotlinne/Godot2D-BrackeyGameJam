@@ -25,8 +25,7 @@ func _process(delta):
 	
 func set_visibility():
 	for i in default_grid_container.get_children():
-		for j in GameManager.files_ins.file:
-			if j.name == i.its_name:
-				i.in_bin = j.inBin
-				if i.in_bin: i.show()
-				else: i.hide()
+		var item = GameManager.get_item("folder", i.its_name)
+		i.in_bin = item.inBin
+		if i.in_bin: i.show()
+		else: i.hide()

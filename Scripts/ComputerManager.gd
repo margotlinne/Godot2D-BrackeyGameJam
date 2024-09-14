@@ -5,7 +5,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GameManager.current_scene == "Computer":
-		print("show")
+		#print("show")
 		ui_control.show()
 	elif GameManager.current_scene == "DeskView": 
 		ui_control.hide()

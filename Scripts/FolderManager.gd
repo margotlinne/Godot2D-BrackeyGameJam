@@ -17,7 +17,7 @@ var previous_folder
 
 var folder_order = []
 
-var all_files = []
+#var all_files = []
 
 var path_items = []
 
@@ -29,7 +29,7 @@ func _ready():
 			#item_ins.get_script().set_datas(i.name, i.isFolder)
 			default_grid_container.add_child(item_ins)
 			item_ins.set_datas(i.name, i.isFolder, i.inBin)
-			all_files.append(item_ins)
+			#all_files.append(item_ins)
 			if !i.inBin:
 				item_ins.show()
 			else: item_ins.hide()
@@ -47,13 +47,6 @@ func _process(delta):
 	else: 
 		back_btn.show()
 
-# 폴더의 삭제나 복구 작업 시(inBin의 변경) 호출
-func _set_visibility():
-	for i in GameManager.files_ins.file:
-		if !i.inBin:
-	#		item_ins.hide()
-		#else: item_ins.show()
-			pass
 			
 			
 func _set_btn_front():
@@ -79,15 +72,15 @@ func add_window(parent_folder):
 	previous_folder = current_folder
 	current_folder = parent_folder
 	folder_order.append(current_folder)
-	print(folder_order)
+	#print(folder_order)
 	
 	_set_path()
 	_set_btn_front()
-	print(container_parent.get_children())
+	#print(container_parent.get_children())
 
 # 뒤로가기 눌러서 해당 윈도우 제거
 func _remove_window():
-	print("back")
+	#print("back")
 	var last_child = container_parent.get_child(container_parent.get_child_count() - 2)
 	container_parent.remove_child(last_child)
 	last_child.queue_free()
@@ -113,7 +106,7 @@ func _remove_window():
 #		previous_folder = folder_order[folder_order.size()-2]
 #	else: previous_folder = "none"
 #	print("previous: ", previous_folder, "/ current: ", current_folder)
-	print(folder_order)
+	#print(folder_order)
 	
 	
 
@@ -149,13 +142,25 @@ func _get_parent(folder_name):
 
 
 func set_visibility():
-	for i in all_files:
-		for j in GameManager.files_ins.file:
-			if j.name == i.its_name:
-				i.in_bin = j.inBin
-				if i.in_bin: i.hide()
-				else: i.show()
-
+#	for i in all_files:
+#		var item = GameManager.get_item("folder", i.its_name)
+#		i.in_bin = item.inBin
+#		print(i.its_name, " / is it in bin?:  ", i.in_bin, " / is it visible?:  ", i.visible)
+#		if i.in_bin: i.hide()
+#		else: i.show()
+		
+#		for j in GameManager.files_ins.file:
+#			if j.name == i.its_name:
+#				i.in_bin = j.inBin
+#				if i.in_bin: i.hide()
+#				else: i.show()
+	for i in container_parent.get_children():
+		for j in i.get_children():
+			for q in j.get_children():
+				var item = GameManager.get_item("folder", q .its_name)
+				q .in_bin = item.inBin
+				if q .in_bin: q.hide()
+				else: q .show()
 
 # back btn
 func _on_back_btn_pressed():

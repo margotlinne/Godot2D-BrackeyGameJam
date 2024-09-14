@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://corfhg3ey44xd"]
+
+[ext_resource type="Texture2D" uid="uid://dxet7wemtfetw" path="res://Image/profile_none.png" id="1_1lanl"]
+[ext_resource type="Script" path="res://Scripts/EmailItem.gd" id="1_poeut"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qka4f"]
+bg_color = Color(0.545098, 0.627451, 0.545098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lh72"]
+bg_color = Color(0, 0, 0, 0.407843)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="EmailItem" type="Control"]
+custom_minimum_size = Vector2(980, 150)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_poeut")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qka4f")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Info" type="Control" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/Info"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 4.0
+offset_right = 133.0
+offset_bottom = 30.0
+text = "NAME NAME"
+
+[node name="Profile" type="TextureRect" parent="Panel/HBoxContainer/Info"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 151.0
+offset_bottom = 150.0
+texture = ExtResource("1_1lanl")
+expand_mode = 1
+
+[node name="Text" type="Control" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Content" type="RichTextLabel" parent="Panel/HBoxContainer/Text"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 510.0
+offset_bottom = 113.0
+bbcode_enabled = true
+text = "HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO "
+scroll_active = false
+
+[node name="Buttons" type="Control" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="ConverPanel" type="Panel" parent="Panel/HBoxContainer/Buttons"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -679.0
+offset_right = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5lh72")
+
+[node name="ReplyBtn" type="Button" parent="Panel/HBoxContainer/Buttons"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+offset_left = 82.0
+offset_top = 19.0
+offset_right = 232.0
+offset_bottom = 69.0
+text = "REPLY"
+
+[node name="ReplyWFBtn" type="Button" parent="Panel/HBoxContainer/Buttons"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+offset_left = 82.0
+offset_top = 80.0
+offset_right = 232.0
+offset_bottom = 130.0
+text = "REPLY WITH FILE"
+
+[connection signal="pressed" from="Panel/HBoxContainer/Buttons/ReplyBtn" to="." method="_on_reply_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Buttons/ReplyWFBtn" to="." method="_on_reply_wf_btn_pressed"]

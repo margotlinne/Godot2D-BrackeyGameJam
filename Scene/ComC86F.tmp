@@ -1,6 +1,5 @@
-[gd_scene load_steps=63 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=62 format=3 uid="uid://b8nxnplhuqq2n"]
 
-[ext_resource type="Script" path="res://Scripts/TaskManager.gd" id="1_3qved"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
 [ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_ccbnx"]
 [ext_resource type="Script" path="res://Scripts/ComputerManager.gd" id="1_xftby"]
@@ -221,7 +220,6 @@ corner_radius_bottom_left = 10
 [node name="Computer" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_3qved")
 
 [node name="Manager" type="Control" parent="."]
 layout_mode = 3
@@ -1385,7 +1383,6 @@ vertical_alignment = 1
 text_overrun_behavior = 1
 
 [node name="FolderWindow" type="Control" parent="Manager/WindowGroup"]
-visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039

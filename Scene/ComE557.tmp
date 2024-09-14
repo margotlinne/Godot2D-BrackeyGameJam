@@ -1,6 +1,5 @@
-[gd_scene load_steps=63 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=59 format=3 uid="uid://b8nxnplhuqq2n"]
 
-[ext_resource type="Script" path="res://Scripts/TaskManager.gd" id="1_3qved"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
 [ext_resource type="Texture2D" uid="uid://dsrcc03vs77te" path="res://Image/sketch1725878178535.png" id="1_ccbnx"]
 [ext_resource type="Script" path="res://Scripts/ComputerManager.gd" id="1_xftby"]
@@ -11,19 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="4_bl5mv"]
 [ext_resource type="Script" path="res://Scripts/BinManager.gd" id="6_pjnpf"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_l4qcx"]
+[ext_resource type="Texture2D" uid="uid://rrs0gxaecek1" path="res://Image/ComputerImg.PNG" id="7_pasxc"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
 [ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="8_ox8dm"]
-[ext_resource type="Texture2D" uid="uid://eel3inv4i1hd" path="res://Image/shop_shirt.png" id="9_rambx"]
 [ext_resource type="Script" path="res://Scripts/FolderManager.gd" id="9_wvsi0"]
 [ext_resource type="Script" path="res://Scripts/CardGame.gd" id="10_hbyqu"]
 [ext_resource type="Script" path="res://Scripts/EmailManager.gd" id="10_kln8e"]
-[ext_resource type="Texture2D" uid="uid://cb2jk8kk8ohp2" path="res://Image/shop_pant.png" id="10_t0pf3"]
+[ext_resource type="PackedScene" uid="uid://c1xumvqdhvlaa" path="res://Scene/item.tscn" id="10_xwlnt"]
 [ext_resource type="PackedScene" uid="uid://corfhg3ey44xd" path="res://Scene/email_item.tscn" id="11_8xoyf"]
 [ext_resource type="PackedScene" uid="uid://c027vglkqhlyc" path="res://Scene/item_group.tscn" id="11_ek7x5"]
-[ext_resource type="Texture2D" uid="uid://drbc83lsrv4qo" path="res://Image/shop_dress.png" id="11_q2s8s"]
-[ext_resource type="Texture2D" uid="uid://hb5qq3a3jlf7" path="res://Image/shop_stressball.png" id="12_1g064"]
 [ext_resource type="Texture2D" uid="uid://cn8gx07b8m3dx" path="res://Image/sketch1726200667534.png" id="12_in3yx"]
-[ext_resource type="Texture2D" uid="uid://bupug04ic54en" path="res://Image/shop_backpack.png" id="13_0hwbg"]
 [ext_resource type="Script" path="res://Scripts/RightClick.gd" id="18_k2pue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x4c3"]
@@ -221,7 +217,6 @@ corner_radius_bottom_left = 10
 [node name="Computer" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_3qved")
 
 [node name="Manager" type="Control" parent="."]
 layout_mode = 3
@@ -785,7 +780,7 @@ grow_vertical = 2
 [node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item/HBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-texture = ExtResource("9_rambx")
+texture = ExtResource("7_pasxc")
 expand_mode = 1
 
 [node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item/HBoxContainer"]
@@ -824,7 +819,7 @@ grow_vertical = 2
 [node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item2/HBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-texture = ExtResource("10_t0pf3")
+texture = ExtResource("7_pasxc")
 expand_mode = 1
 
 [node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item2/HBoxContainer"]
@@ -863,7 +858,7 @@ grow_vertical = 2
 [node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item3/HBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-texture = ExtResource("11_q2s8s")
+texture = ExtResource("7_pasxc")
 expand_mode = 1
 
 [node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item3/HBoxContainer"]
@@ -902,7 +897,7 @@ grow_vertical = 2
 [node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item4/HBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-texture = ExtResource("12_1g064")
+texture = ExtResource("7_pasxc")
 expand_mode = 1
 
 [node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item4/HBoxContainer"]
@@ -940,7 +935,7 @@ grow_vertical = 2
 [node name="ItemImage" type="TextureRect" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item5/HBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-texture = ExtResource("13_0hwbg")
+texture = ExtResource("7_pasxc")
 expand_mode = 1
 
 [node name="Label" type="RichTextLabel" parent="Manager/WindowGroup/ShoppingWebWindow/BG/ScrollContainer/VBoxContainer/Item5/HBoxContainer"]
@@ -1018,7 +1013,6 @@ vertical_alignment = 1
 text_overrun_behavior = 1
 
 [node name="EMailWindow" type="Control" parent="Manager/WindowGroup"]
-visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039
@@ -1445,6 +1439,13 @@ text = "Folder"
 vertical_alignment = 1
 text_overrun_behavior = 1
 
+[node name="Item" parent="Manager/WindowGroup/FolderWindow/Window" instance=ExtResource("10_xwlnt")]
+visible = false
+offset_left = -175.584
+offset_top = -93.1355
+offset_right = -125.584
+offset_bottom = -11.1355
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Manager/WindowGroup/FolderWindow/Window"]
 offset_left = -175.584
 offset_top = -93.1355
@@ -1540,7 +1541,7 @@ text = "No one really works here... I should leave guidline.
 
 - paper works
 : stamp each paper properly, sometimes some are printed wrong, be careful not to stamp them.. (unless you want to be scolded)
-[color=red]Black[/color] always uses pink paper, [color=brown]Scott[/color]: Brown,  [color=green]Allenl[/color]: green, [color=gray]King[/color]: gray, [color=orange]Adams[/color]: orange.
+[color=red]Ms. Carter[/color] always uses pink paper, [color=brown]Mr. Smith[/color]: Brown,  [color=green]Mr.Hall[/color]: green, [color=gray]Mr. Harris[/color]: gray, [color=orange]Ms.Lee[/color]: orange, [color=blue]Ms.Parker[/color]: blue
 
 - sending files
 : lazy people always ask me to send them some folders including files, why can't they find themselves? Somtimes they ask what's removed before, so need to look into the bin too."
