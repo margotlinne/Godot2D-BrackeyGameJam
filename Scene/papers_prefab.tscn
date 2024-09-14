@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqx1j4hen8xk5"]
+
+[ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="1_hi2hm"]
+[ext_resource type="Texture2D" uid="uid://b7ats6q8hvojq" path="res://Image/papers.png" id="2_cpty6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7poa"]
+shader = ExtResource("1_hi2hm")
+shader_parameter/outline_width = 4.0
+shader_parameter/progress = null
+shader_parameter/outline_color = null
+
+[node name="PaperPrefab" type="Control"]
+material = SubResource("ShaderMaterial_i7poa")
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 154.0
+offset_bottom = 10.0
+scale = Vector2(1, 0.78777)
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 172.0
+offset_bottom = 102.0
+scale = Vector2(0.915094, 0.737443)
+texture = ExtResource("2_cpty6")
+expand_mode = 1

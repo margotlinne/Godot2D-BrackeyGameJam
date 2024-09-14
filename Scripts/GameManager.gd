@@ -29,11 +29,16 @@ var right_clicked_file
 var total_active_tasks = 0
 var assign_first_tasks = false
 var assigned = false
-var interval_timer = 100
-var timer = 3.0
+
+# 30초 간격으로 새 이메일 수신 
+var interval_timer = 30.0
+# 초반 3분 후 5개의 이메일 수신 
+var timer = 180.0
 var total_tasks = 0
 
 var set_emails_first = false
+
+var current_paper_work
 
 
 # Called when the node enters the scene tree for the first time.
@@ -70,7 +75,7 @@ func _process(delta):
 		# 초기 5개 활성화
 		for i in range(5):
 			_active_random_task()
-			print(total_active_tasks)
+			#print(total_active_tasks)
 		#email_manager.set_visibility()
 		_repeat_activate()
 		assigned = true
@@ -79,7 +84,7 @@ func _repeat_activate():
 	while total_active_tasks != total_tasks:
 		await get_tree().create_timer(interval_timer).timeout
 		_active_random_task()
-		print(total_active_tasks)
+		#print(total_active_tasks)
 
 func _active_random_task():
 	var random_index = 0
@@ -98,14 +103,14 @@ func _active_random_task():
 			for j in email_ins.email_paper:
 				if not j.isActive:
 					j.isActive = true
-					print(j.from, "   ", j.isActive)
+					#print(j.from, "   ", j.isActive)
 					total_active_tasks += 1
 					break  # Task assigned, exit loop
 		else:
 			for j in email_ins.email_email:				
 				if not j.isActive:
 					j.isActive = true
-					print(j.from, "   ", j.isActive)
+					#print(j.from, "   ", j.isActive)
 					total_active_tasks += 1
 					break  # Task assigned, exit loop
 #		email_manager.get_new_email(selected_file)
@@ -166,5 +171,8 @@ func _set_cursor_design():
 		Input.set_custom_mouse_cursor(null)
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
+		#var cursor_texture = preload("res://Image/Cursor.png")
+		#Input.set_custom_mouse_cursor(cursor_texture)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	

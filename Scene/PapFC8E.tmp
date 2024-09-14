@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cq8akfoviai87"]
+[gd_scene load_steps=12 format=3 uid="uid://cq8akfoviai87"]
 
 [ext_resource type="Script" path="res://Scripts/PaperworkManager.gd" id="1_at0d0"]
 [ext_resource type="PackedScene" uid="uid://du82qe2ljviai" path="res://Scene/stamp_prefab.tscn" id="2_ovij3"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://djqkpnwro3yr1" path="res://Scene/paper.tscn" id="3_mg0mg"]
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_nhvna"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_748g0"]
-[ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="5_8541e"]
 
 [sub_resource type="Animation" id="Animation_vrrno"]
 resource_name = "stamp_motion"
@@ -63,7 +62,10 @@ mouse_filter = 2
 color = Color(0.286275, 0.215686, 0.117647, 1)
 
 [node name="StampPrefab" parent="ColorRect" instance=ExtResource("2_ovij3")]
-visible = false
+offset_left = -62.0
+offset_top = 23.0
+offset_right = -22.0
+offset_bottom = 63.0
 
 [node name="PaperContainer" type="HBoxContainer" parent="ColorRect"]
 layout_mode = 1
@@ -72,46 +74,23 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -1474.0
+offset_left = -1459.0
 offset_top = -178.0
-offset_right = -1174.0
-offset_bottom = 190.0
+offset_right = -1159.0
+offset_bottom = 222.0
 grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Paper" parent="ColorRect/PaperContainer" instance=ExtResource("3_mg0mg")]
-visible = false
-custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
 
-[node name="Instruction" type="Sprite2D" parent="ColorRect"]
-position = Vector2(965, -73)
-rotation = -0.294969
+[node name="Ink" type="Sprite2D" parent="ColorRect"]
+position = Vector2(794, 48.0001)
+rotation = 0.788624
 scale = Vector2(0.819933, 0.752715)
 texture = ExtResource("3_nhvna")
 region_enabled = true
-region_rect = Rect2(52, 79, 418, 513)
-
-[node name="Ink" type="Sprite2D" parent="ColorRect/Instruction"]
-position = Vector2(-255.984, 60.2969)
-rotation = 0.683098
-scale = Vector2(1.07861, 0.928598)
-skew = -0.0564357
-texture = ExtResource("3_nhvna")
-region_enabled = true
 region_rect = Rect2(27, 777, 185, 199)
-
-[node name="Label" type="Label" parent="ColorRect/Instruction"]
-offset_left = -199.769
-offset_top = 114.921
-offset_right = 3632.23
-offset_bottom = 1220.92
-scale = Vector2(0.1, 0.1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_8541e")
-theme_override_font_sizes/font_size = 500
-text = "Hold Spacebar 
-to slow it down"
 
 [node name="StampPoint" type="Marker2D" parent="ColorRect"]
 position = Vector2(581, 429)
@@ -127,10 +106,6 @@ region_rect = Rect2(662, 36, 330, 521)
 libraries = {
 "": SubResource("AnimationLibrary_wlqdn")
 }
-
-[node name="Marker2D" type="Marker2D" parent="ColorRect"]
-visible = false
-position = Vector2(581, 429)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -284,6 +259,3 @@ position = Vector2(40.5, 37)
 texture = ExtResource("3_fc2jt")
 region_enabled = true
 region_rect = Rect2(237, 387, 73, 62)
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1160, 0)

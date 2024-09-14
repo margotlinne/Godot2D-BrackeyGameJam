@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxtld8ksr1bln"]
+[gd_scene load_steps=19 format=3 uid="uid://bxtld8ksr1bln"]
 
 [ext_resource type="Texture2D" uid="uid://h1meqjy0iy4j" path="res://Image/sketch1725855466754.png" id="1_2vyni"]
 [ext_resource type="Texture2D" uid="uid://wlsa8fl12ld7" path="res://Image/sketch1725885979836.png" id="1_6ti66"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/ClickObj.gd" id="5_yk0lw"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_soop3"]
 [ext_resource type="Script" path="res://Scripts/TimeNLife.gd" id="7_t6gh1"]
+[ext_resource type="Script" path="res://Scripts/PaperManager.gd" id="8_ksehd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_084bh"]
 bg_color = Color(0.733333, 0.733333, 0.733333, 0)
@@ -181,15 +182,12 @@ region_rect = Rect2(802, 564, 162, 435)
 [node name="ClickObj" type="Node2D" parent="."]
 script = ExtResource("5_yk0lw")
 
-[node name="Papers" type="Node2D" parent="."]
-position = Vector2(166, 501)
-
-[node name="PaperWorkSceneBtn" type="Button" parent="Papers"]
-offset_left = -38.0
-offset_top = -79.0
-offset_right = 107.0
-offset_bottom = 90.0
-rotation = 0.338828
+[node name="Papers" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_top = 506.0
+offset_right = 100.0
+offset_bottom = 586.0
+script = ExtResource("8_ksehd")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -347,4 +345,3 @@ region_rect = Rect2(237, 387, 73, 62)
 [connection signal="mouse_entered" from="MonitorUI/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_entered"]
 [connection signal="mouse_exited" from="MonitorUI/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_mouse_exited"]
 [connection signal="pressed" from="MonitorUI/ComputerSceneBtn" to="ClickObj" method="_on_computer_scene_btn_pressed"]
-[connection signal="pressed" from="Papers/PaperWorkSceneBtn" to="ClickObj" method="_on_paper_work_scene_btn_pressed"]

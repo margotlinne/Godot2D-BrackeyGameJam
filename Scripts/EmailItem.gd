@@ -47,7 +47,7 @@ func set_datas(paper: bool, active: bool, sender: String, file: String, done: bo
 
 
 func set_reply_datas(sender: String, success: bool, active: bool, path: String, with_file: bool, paper: bool):
-	print("set reply datas")
+	#print("set reply datas")
 	panel.self_modulate = Color.AQUAMARINE
 	
 	var item = GameManager.get_item("reply", sender)

@@ -38,3 +38,5 @@ func _on_computer_scene_btn_mouse_exited():
 		shader_material.set_shader_parameter("progress", 0.0)  # 아웃라인 두께
 	else:
 		print("Material은 ShaderMaterial이 아닙니다.")
+		
+

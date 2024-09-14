@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://djqkpnwro3yr1"]
+
+[ext_resource type="Texture2D" uid="uid://l3cpq6vsvfuf" path="res://Image/stamp_paper.png" id="1_x8ve8"]
+[ext_resource type="Script" path="res://Scripts/PaperItem.gd" id="2_5h2la"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quh74"]
+size = Vector2(273, 337)
+
+[node name="Paper" type="TextureRect"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 200)
+offset_right = 293.0
+offset_bottom = 371.0
+texture = ExtResource("1_x8ve8")
+expand_mode = 1
+script = ExtResource("2_5h2la")
+
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 25.0
+offset_right = 280.0
+offset_bottom = 352.0
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
+position = Vector2(126.5, 158.5)
+shape = SubResource("RectangleShape2D_quh74")
+
+[node name="Node2D" type="Node2D" parent="Control"]
+position = Vector2(-18, -25)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Control/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Area2D" to="." method="_on_area_2d_mouse_exited"]
