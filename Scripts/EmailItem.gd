@@ -42,6 +42,10 @@ func set_datas(paper: bool, active: bool, sender: String, file: String, done: bo
 	profile_path = path
 	profile_icon.texture = load(profile_path)
 	#paper: bool, set: bool, active: bool, sender: String, file: String, done: bool, fail: bool, path: String
+
+
+
+
 func set_reply_datas(sender: String, success: bool, active: bool, path: String, with_file: bool, paper: bool):
 	print("set reply datas")
 	panel.self_modulate = Color.AQUAMARINE

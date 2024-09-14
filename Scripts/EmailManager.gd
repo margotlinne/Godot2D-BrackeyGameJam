@@ -82,10 +82,10 @@ func get_reply(email):
 	item.isActive = true
 	#mail_container.add_child(new_mail_box)
 	for i in email_items:
-		if i.from_text.text == email.from_text.text:
+		if i.from_text.text == email.from_text.text && i.is_reply:
 			i.is_active = true
-			i.set_reply_datas(i.from_text.text, !i.is_failed, i.is_active, \
-			i.profile_path, i.with_file, i.is_paper_work)
+			i.set_reply_datas(email.from_text.text, !email.is_failed, email.is_active, \
+			email.profile_path, email.with_file, email.is_paper_work)
 	#email_items.append(new_mail_box)
 
 func _set_recent_email(email):
