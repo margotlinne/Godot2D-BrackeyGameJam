@@ -22,4 +22,3 @@ func _on_button_mouse_entered():
 
 func _on_button_mouse_exited():
 	chat_box.get_node("AnimationPlayer").play("chat_box_disappearing")
-	chat_box.hide()

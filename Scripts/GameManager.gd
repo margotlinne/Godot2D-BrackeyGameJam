@@ -49,7 +49,9 @@ var card_color = -1
 var card_started = false
 var card_icon = -1
 var card_failed  = false
+var pressed_over = false
 
+var DURATION = 600.0
 var game_timer = 600.0
 # 30초 간격으로 새 이메일 수신 
 var interval_timer = 30.0
@@ -71,11 +73,14 @@ var set_time = false
 
 var actual_time = 0
 
+var got_new_email = false
+
 @onready var bg_ambient = preload("res://Sfx/office-ambience.mp3")
 @onready var notification = preload("res://Sfx/email_notification.mp3")
 @onready var hurt = preload("res://Sfx/argg.mp3")
 @onready var crying = preload("res://Sfx/crying.mp3")
 @onready var promoted = preload("res://Sfx/promoted.mp3")
+@onready var thanku = preload("res://Sfx/thanku.mp3")
 
 func _ready():	
 	# 게임 시작부터 실제로 흐른 시간
@@ -139,7 +144,8 @@ func _process(delta):
 		game_timer -= delta
 		if !assign_first_tasks:
 			#await get_tree().create_timer(timer).timeout
-			if game_timer <= game_timer - timer:
+			#print(game_timer, "  ", DURATION - timer)
+			if game_timer <= DURATION - timer:
 				assign_first_tasks = true
 			#print(assign_first_tasks)
 	
@@ -210,6 +216,7 @@ func _repeat_activate():
 		#print(total_active_tasks)
 
 func _active_random_task():
+	got_new_email = true
 	var random_index = 0
 	var random = randi() % 2
 	var selected_file = null
@@ -245,8 +252,17 @@ func _active_random_task():
 	var audio_player = AudioStreamPlayer2D.new()
 	add_child(audio_player)
 	audio_player.stream = notification
-	if current_scene != "Computer": audio_player.volume_db = -30
-	else: audio_player.volume_db = -3
+	var audio_player2 = AudioStreamPlayer2D.new()
+	add_child(audio_player2)
+	audio_player2.stream = thanku
+	
+	if current_scene != "Computer": 
+		audio_player.volume_db = -30
+		audio_player2.volume_db = -20
+	else: 
+		audio_player.volume_db = -3
+		audio_player2.volume_db = -30
+	audio_player2.play()
 	audio_player.play()
 
 func get_item(string, name):
@@ -268,7 +284,7 @@ func get_item(string, name):
 				return i
 
 func get_reply(sender, failed, done):
-	var timer = 1.0
+	var timer = 10.0
 	await get_tree().create_timer(timer).timeout
 	
 	email_order.append(sender + "reply")
@@ -276,6 +292,7 @@ func get_reply(sender, failed, done):
 	item.isActive = true
 	
 	if failed || !done:
+		got_new_email = true
 		var audio_player = AudioStreamPlayer2D.new()
 		add_child(audio_player)
 		audio_player.stream = hurt

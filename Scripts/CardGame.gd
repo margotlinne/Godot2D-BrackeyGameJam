@@ -35,13 +35,19 @@ func _ready():
 		game_over_canvas.hide()
 		spawn_card = false
 		score = 0
-	elif "GameWindow" in GameManager.active_windows:
-		start_btn.hide()
-		game_canvas.show()
-		if GameManager.card_failed:
-			game_over_canvas.show()
-		else:
+	if "GameWindow" in GameManager.active_windows:
+		print("current :  ", GameManager.current_card)
+		if GameManager.card_started && GameManager.pressed_over: 
+			start_btn.show()
+			game_canvas.hide()
 			game_over_canvas.hide()
+		elif GameManager.card_started && !GameManager.pressed_over:
+			start_btn.hide()
+			game_canvas.show()
+			if GameManager.card_failed:
+				game_over_canvas.show()
+			else:
+				game_over_canvas.hide()
 		_get_card(GameManager.current_card, GameManager.card_color, GameManager.card_icon)
 		previous_card_num = GameManager.previous_card
 		new_card_num = GameManager.current_card
@@ -78,6 +84,7 @@ func _reset_game():
 	game_over_canvas.hide()
 	
 func _get_card(num, col, icon):
+	print("get card num:   ", num)
 	var new_card = card_prefab.instantiate()
 	var path: String
 	path = "res://Image/" + str(num) + ".png" 
@@ -192,6 +199,8 @@ func _remove_previous_card():
 func _on_start_game_btn_pressed():
 	GameManager.current_score = 0
 	GameManager.card_started = true
+	GameManager.card_failed = false
+	GameManager.pressed_over = false
 	click_sound.play()
 	game_started = true
 	start_btn.hide()
@@ -245,5 +254,6 @@ func _on_up_btn_pressed():
 
 
 func _on_game_over_btn_pressed():
+	GameManager.pressed_over = true
 	click_sound.play()
 	_reset_game()

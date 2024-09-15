@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://b8nxnplhuqq2n"]
+[gd_scene load_steps=71 format=3 uid="uid://b8nxnplhuqq2n"]
 
 [ext_resource type="Script" path="res://Scripts/TaskManager.gd" id="1_3qved"]
 [ext_resource type="Texture2D" uid="uid://j17uo2i7el2m" path="res://Image/sketch1725855320893.png" id="1_22wky"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://nief0h4h530h" path="res://Image/sketch1725954017941.png" id="3_i0g51"]
 [ext_resource type="Script" path="res://Scripts/TaskBar.gd" id="3_y13qb"]
 [ext_resource type="Texture2D" uid="uid://dgrkr4w6nkkrc" path="res://Image/sketch1725881969201.png" id="4_bl5mv"]
+[ext_resource type="Texture2D" uid="uid://bjfgggrkwe3ri" path="res://Image/profile_circle.png" id="5_rqocp"]
 [ext_resource type="Script" path="res://Scripts/BinManager.gd" id="6_pjnpf"]
 [ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="7_l4qcx"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="8_o2k67"]
@@ -365,6 +366,13 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_6p64p")
+
+[node name="Notification" type="Sprite2D" parent="Manager/Application Group/TaskBar/HBoxContainer/EmailApp"]
+visible = false
+modulate = Color(1, 0.239216, 0.231373, 1)
+position = Vector2(40.293, 20.207)
+scale = Vector2(0.0433602, 0.0278195)
+texture = ExtResource("5_rqocp")
 
 [node name="CardGame" type="Button" parent="Manager/Application Group/TaskBar/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -1166,6 +1174,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameWindow" type="Control" parent="Manager/WindowGroup"]
+visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039

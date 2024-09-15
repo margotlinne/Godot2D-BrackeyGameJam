@@ -23,6 +23,7 @@ extends Control
 @onready var folder_btn = $TaskBar/HBoxContainer/Folders
 @onready var note_btn = $TaskBar/HBoxContainer/Note
 
+@onready var email_notification = $TaskBar/HBoxContainer/EmailApp/Notification
 
 @onready var click_sound = $"../../ClickSound"
 
@@ -125,14 +126,25 @@ func _ready():
 		#print("game over")
 		_hide_everything()
 		
+	if "EMailWindow" not in GameManager.active_windows and GameManager.got_new_email:
+		email_notification.show()
+	elif "EMailWindow" in GameManager.active_windows and GameManager.got_new_email:
+		email_notification.hide()
+		
 		
 func _process(delta):
-	if not game_window.visible:
-		GameManager.current_card = -1
-		GameManager.previous_card = -1
+#	if not game_window.visible:
+#		GameManager.current_card = -1
+#		GameManager.previous_card = -1
 	if GameManager.game_over:
 		#print("game over")
 		_hide_everything()
+		
+	if !email_window.visible && GameManager.got_new_email:
+		email_notification.show()
+	elif email_window.visible && GameManager.got_new_email:
+		email_notification.hide()
+		GameManager.got_new_email = false
 	
 func _hide_everything():
 	bin_window.hide()

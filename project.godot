@@ -13,6 +13,7 @@ config_version=5
 config/name="BrackeyJam"
 run/main_scene="res://Scene/StartScene.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
+boot_splash/bg_color=Color(0.219608, 0.341176, 0.305882, 1)
 config/icon="res://icon.svg"
 
 [autoload]
