@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://gax23otcrmi"]
+[gd_scene load_steps=26 format=3 uid="uid://gax23otcrmi"]
 
 [ext_resource type="Script" path="res://Scripts/Start.gd" id="1_rtdsg"]
 [ext_resource type="Texture2D" uid="uid://cmamnyxc85va0" path="res://Image/title_bg.png" id="1_w6y72"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://dimwif4cbsmen" path="res://Image/tie2.png" id="9_uvwy4"]
 [ext_resource type="Texture2D" uid="uid://pwuoindu4yjv" path="res://Image/tie3.png" id="10_qk7vq"]
 [ext_resource type="Texture2D" uid="uid://c3nmwy2swgyd4" path="res://Image/tie4.png" id="11_l4wi5"]
+[ext_resource type="Texture2D" uid="uid://d2q3av8k0bona" path="res://Image/chat box.png" id="12_qqwcj"]
+[ext_resource type="AudioStream" uid="uid://xw2q46pdt0g0" path="res://Sfx/start_scene_bg.wav" id="15_ojxld"]
+[ext_resource type="AudioStream" uid="uid://eme0rgykujl1" path="res://Sfx/police_siren.mp3" id="16_n68e4"]
 
 [sub_resource type="Gradient" id="Gradient_5gq0x"]
 offsets = PackedFloat32Array(0, 0.75, 1)
@@ -27,6 +30,44 @@ region_rect = Rect2(21, 114, 375, 314)
 texture = ExtResource("7_06mta")
 region_rect = Rect2(21, 114, 375, 314)
 modulate_color = Color(0.67451, 0.67451, 0.67451, 1)
+
+[sub_resource type="Animation" id="Animation_jbh25"]
+resource_name = "chat_box"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sh533"]
+resource_name = "chat_box_disappearing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f53vc"]
+_data = {
+"chat_box": SubResource("Animation_jbh25"),
+"chat_box_disappearing": SubResource("Animation_sh533")
+}
 
 [sub_resource type="Animation" id="Animation_puyw2"]
 resource_name = "main_menu"
@@ -177,9 +218,81 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_8o0ty")
 text = "
 COMMUTE"
 
+[node name="TextureRect" type="TextureRect" parent="BG/Button"]
+visible = false
+layout_mode = 0
+offset_left = -598.0
+offset_top = -376.0
+offset_right = -277.0
+offset_bottom = -145.0
+texture = ExtResource("12_qqwcj")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG/Button/TextureRect"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 28.0
+offset_right = 292.0
+offset_bottom = 181.0
+theme_override_colors/default_color = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/font_selected_color = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/selection_color = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/table_odd_row_bg = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/table_even_row_bg = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_colors/table_border = Color(0.615686, 0.615686, 0.615686, 1)
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+bbcode_enabled = true
+text = "[wave amp=20freq =10] I'm a Salary Lupin..
+What I do is doing nothing staring at computer all day and get paid haha!!!!!
+Let's successfully do nothing at work today...[/wave]"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG/Button/TextureRect"]
+libraries = {
+"": SubResource("AnimationLibrary_f53vc")
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_q14op")
 }
 
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_ojxld")
+autoplay = true
+
+[node name="Siren" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_n68e4")
+autoplay = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.5
+offset_top = -18.0
+offset_right = 44.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.262745, 0.262745, 0.262745, 1)
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+bbcode_enabled = true
+text = "[wave amp=20freq =10] Made By KANG² [/wave]"
+scroll_active = false
+
+[connection signal="mouse_entered" from="BG/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="BG/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="BG/Button" to="." method="_on_button_pressed"]

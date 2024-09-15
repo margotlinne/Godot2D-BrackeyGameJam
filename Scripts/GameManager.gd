@@ -9,11 +9,19 @@ var show_ui = false
 var com_scene_instance: Node = null
 
 var bin_open
+var bin_closed
 var shopping_open
+var shopping_closed
 var email_open
+var email_closed
 var game_open
+var game_closed
 var folder_open
+var folder_closed
 var note_open
+var note_closed
+
+var active_windows = []
 
 var child_order = []
 
@@ -34,7 +42,15 @@ var total_active_tasks = 0
 var assign_first_tasks = false
 var assigned = false
 
-var game_timer = 5.0
+var previous_card = 0
+var current_card = 0
+var current_score = 0
+var card_color = -1
+var card_started = false
+var card_icon = -1
+var card_failed  = false
+
+var game_timer = 600.0
 # 30초 간격으로 새 이메일 수신 
 var interval_timer = 30.0
 # 초반 3분 후 5개의 이메일 수신 
@@ -50,7 +66,6 @@ var game_over = false
 
 var reset_game = false
 var to_end_scene = false
-
 var game_started = false
 var set_time = false
 
@@ -102,6 +117,9 @@ func _test_man_pos():
 		print(time_man_pos)
 
 func _process(delta):
+	
+	
+	
 	actual_time = Time.get_ticks_msec() / 1000
 	#current_passed_time = _get_elapsed_time(time_point)
 	#_test_man_pos()
@@ -120,9 +138,9 @@ func _process(delta):
 	if set_time:
 		game_timer -= delta
 		if !assign_first_tasks:
-			#print(assign_first_tasks)
-			await get_tree().create_timer(timer).timeout
-			assign_first_tasks = true
+			#await get_tree().create_timer(timer).timeout
+			if game_timer <= game_timer - timer:
+				assign_first_tasks = true
 			#print(assign_first_tasks)
 	
 	# 초반 태스크 5개 할당 
@@ -134,12 +152,8 @@ func _process(delta):
 		#email_manager.set_visibility()
 		_repeat_activate()
 		assigned = true
-		
-	if hearts <= 0 && !to_end_scene: 
-		_game_failed()
-		to_end_scene = true
-		
 
+		
 	if game_timer <= 0.0 and !to_end_scene:
 		var count = 0
 		for task in email_ins.email_reply:
@@ -157,6 +171,11 @@ func _process(delta):
 		_reset_game()
 		reset_game = false
 	#print(current_passed_time)
+	
+			
+	if hearts <= 0 && !to_end_scene: 
+		_game_failed()
+		to_end_scene = true
 
 func _game_success():
 	time_man_pos = Vector2(-370, 20)
@@ -399,6 +418,7 @@ func _reset_game():
 	note_open = false
 	game_open = false
 	email_open = false
+	
 	
 	#current_passed_time = Time.get_ticks_msec() / 1000
 	current_scene = get_tree().get_current_scene().get_name()

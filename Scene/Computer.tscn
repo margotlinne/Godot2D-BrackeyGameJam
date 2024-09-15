@@ -1166,7 +1166,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameWindow" type="Control" parent="Manager/WindowGroup"]
-visible = false
 layout_mode = 1
 anchor_left = 0.019
 anchor_top = 0.039
@@ -1807,6 +1806,7 @@ stream = ExtResource("28_i4awj")
 
 [node name="FlipCard" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("29_okbsk")
+volume_db = 20.0
 
 [node name="BinSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("30_hpfgy")

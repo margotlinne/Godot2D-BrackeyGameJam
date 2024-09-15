@@ -51,6 +51,19 @@ func _ready():
 		GameManager.child_order.append("GameWindow")
 		GameManager.child_order.append("FolderWindow")
 		GameManager.child_order.append("NoteWindow")
+		GameManager.bin_closed = true
+		GameManager.game_closed = true
+		GameManager.note_closed = true
+		GameManager.email_closed = true
+		GameManager.folder_closed = true
+		GameManager.shopping_closed = true
+		
+		GameManager.bin_open = false
+		GameManager.game_open = false
+		GameManager.note_open = false
+		GameManager.email_open = false
+		GameManager.folder_open = false
+		GameManager.shopping_open = false
 	
 	
 			
@@ -60,7 +73,8 @@ func _ready():
 	else: 
 		_deactive_btn_style(bin_btn)		
 		bin_window.hide()
-		bin_active.hide()
+		if "BinWindow" not in GameManager.active_windows: bin_active.hide()
+		else: bin_active.show()
 	
 	if GameManager.shopping_open: 
 		shopping_window.show()
@@ -68,7 +82,8 @@ func _ready():
 	else: 
 		_deactive_btn_style(shopping_btn)
 		shopping_window.hide()
-		shopping_active.hide()
+		if "ShoppingWebWindow" not in GameManager.active_windows: shopping_active.hide()
+		else: shopping_active.show()
 	
 	if GameManager.email_open: 
 		email_window.show()
@@ -76,7 +91,8 @@ func _ready():
 	else: 
 		_deactive_btn_style(email_btn)
 		email_window.hide()
-		email_active.hide()
+		if "EMailWindow" not in GameManager.active_windows: email_active.hide()
+		else: email_active.show()
 	
 	if GameManager.game_open: 
 		game_window.show()
@@ -84,7 +100,8 @@ func _ready():
 	else: 
 		_deactive_btn_style(game_btn)
 		game_window.hide()
-		game_active.hide()
+		if "GameWindow" not in GameManager.active_windows: game_active.hide()
+		else: game_active.show()
 	
 	if GameManager.folder_open: 
 		folder_window.show()
@@ -92,7 +109,8 @@ func _ready():
 	else: 
 		_deactive_btn_style(folder_btn)
 		folder_window.hide()
-		folder_active.hide()
+		if "FolderWindow" not in GameManager.active_windows: folder_active.hide()
+		else: folder_active.show()
 	
 	if GameManager.note_open: 
 		note_window.show()
@@ -100,7 +118,8 @@ func _ready():
 	else: 
 		_deactive_btn_style(note_btn)
 		note_window.hide()
-		note_active.hide()
+		if "NoteWindow" not in GameManager.active_windows: note_active.hide()
+		else: note_active.show()
 	
 	if GameManager.game_over:
 		#print("game over")
@@ -108,6 +127,9 @@ func _ready():
 		
 		
 func _process(delta):
+	if not game_window.visible:
+		GameManager.current_card = -1
+		GameManager.previous_card = -1
 	if GameManager.game_over:
 		#print("game over")
 		_hide_everything()
@@ -257,6 +279,9 @@ func _on_bin_app_pressed():
 		bin_active.show()
 		bin_window.show()
 		GameManager.bin_open = true		
+		
+		if "BinWindow" not in GameManager.active_windows:
+			GameManager.active_windows.append("BinWindow")
 	_save_order()
 	
 	
@@ -276,6 +301,9 @@ func _on_internet_app_pressed():
 		shopping_active.show()
 		shopping_window.show()
 		GameManager.shopping_open = true	
+		
+		if "ShoppingWebWindow" not in GameManager.active_windows:
+			GameManager.active_windows.append("ShoppingWebWindow")
 	_save_order()
 
 
@@ -295,6 +323,9 @@ func _on_email_app_pressed():
 		email_active.show()
 		email_window.show()
 		GameManager.email_open = true
+		
+		if "EMailWindow" not in GameManager.active_windows:
+			GameManager.active_windows.append("EMailWindow")
 	_save_order()
 
 func _on_card_game_pressed():
@@ -313,6 +344,9 @@ func _on_card_game_pressed():
 		game_active.show()
 		game_window.show()
 		GameManager.game_open = true
+		
+		if "GameWindow" not in GameManager.active_windows:
+			GameManager.active_windows.append("GameWindow")
 	_save_order()
 
 func _on_folders_pressed():
@@ -331,6 +365,9 @@ func _on_folders_pressed():
 		folder_active.show()
 		folder_window.show()
 		GameManager.folder_open = true
+		
+		if "FolderWindow" not in GameManager.active_windows:
+			GameManager.active_windows.append("FolderWindow")
 	_save_order()
 
 
@@ -350,6 +387,9 @@ func _on_note_pressed():
 		note_active.show()
 		note_window.show()
 		GameManager.note_open = true
+		
+		if "NoteWindow" not in GameManager.active_windows:
+			GameManager.active_windows.append("NoteWindow")
 	_save_order()
 
 
@@ -358,6 +398,7 @@ func _on_note_pressed():
 # close / exit btn -------------------------------------------------------------
 
 func _on_close_btn_bin_pressed():
+	GameManager.bin_closed = false
 	click_sound.play()
 	
 	bin_window.hide()
@@ -366,6 +407,7 @@ func _on_close_btn_bin_pressed():
 	_save_order()
 	GameManager.bin_open = false
 func _on_exit_btn_bin_pressed():
+	GameManager.bin_closed = true
 	click_sound.play()
 	
 	bin_active.hide()
@@ -374,9 +416,18 @@ func _on_exit_btn_bin_pressed():
 	_set_as_first_child(bin_window)
 	_save_order()
 	GameManager.bin_open = false
+	
+	for i in range(GameManager.active_windows.size()):
+		if GameManager.active_windows[i] == "BinWindow":
+			GameManager.active_windows.remove_at(i)
+	
+	
+	
+	
 
 
 func _on_close_btn_shopping_pressed():
+	GameManager.shopping_closed = false
 	click_sound.play()
 	
 	shopping_window.hide()
@@ -385,6 +436,7 @@ func _on_close_btn_shopping_pressed():
 	_save_order()
 	GameManager.shopping_open = false
 func _on_exit_btn_shopping_pressed():
+	GameManager.shopping_closed = true
 	click_sound.play()
 	
 	shopping_active.hide()
@@ -393,9 +445,14 @@ func _on_exit_btn_shopping_pressed():
 	_set_as_first_child(shopping_window)
 	_save_order()
 	GameManager.shopping_open = false
+	
+	for i in range(GameManager.active_windows.size()):
+		if GameManager.active_windows[i] == "ShoppingWebWindow":
+			GameManager.active_windows.remove_at(i)
 
 
 func _on_close_btn_email_pressed():
+	GameManager.email_closed = false
 	click_sound.play()
 	
 	email_window.hide()
@@ -404,6 +461,7 @@ func _on_close_btn_email_pressed():
 	_save_order()
 	GameManager.email_open = false
 func _on_exit_btn_email_pressed():
+	GameManager.email_closed = true
 	click_sound.play()
 	
 	email_active.hide()
@@ -412,9 +470,13 @@ func _on_exit_btn_email_pressed():
 	_set_as_first_child(email_window)
 	_save_order()
 	GameManager.email_open = false
-	
+
+	for i in range(GameManager.active_windows.size()):
+		if GameManager.active_windows[i] == "EMailWindow":
+			GameManager.active_windows.remove_at(i)	
 
 func _on_close_btn_game_pressed():
+	GameManager.game_closed = false
 	click_sound.play()
 	
 	game_window.hide()
@@ -422,7 +484,9 @@ func _on_close_btn_game_pressed():
 	_set_as_first_child(game_window)
 	_save_order()
 	GameManager.game_open = false
+	
 func _on_exit_btn_game_pressed():
+	GameManager.game_closed = true
 	click_sound.play()
 	
 	game_active.hide()
@@ -431,9 +495,13 @@ func _on_exit_btn_game_pressed():
 	_set_as_first_child(game_window)
 	_save_order()
 	GameManager.game_open = false
-
+	for i in range(GameManager.active_windows.size()):
+		if GameManager.active_windows[i] == "GameWindow":
+			GameManager.active_windows.remove_at(i)
+			GameManager.game_started = false
 
 func _on_close_btn_folder_pressed():
+	GameManager.folder_closed = false
 	click_sound.play()
 	
 	folder_window.hide()
@@ -442,6 +510,7 @@ func _on_close_btn_folder_pressed():
 	_save_order()
 	GameManager.folder_open = false
 func _on_exit_btn_folder_pressed():
+	GameManager.folder_closed = true
 	click_sound.play()
 	
 	folder_active.hide()
@@ -451,7 +520,13 @@ func _on_exit_btn_folder_pressed():
 	_save_order()
 	GameManager.folder_open = false
 
+	for i in range(GameManager.active_windows.size()):
+		if GameManager.active_windows[i] == "FolderWindow":
+			GameManager.active_windows.remove_at(i)
+
+
 func _on_close_btn_note_pressed():
+	GameManager.note_closed = false
 	click_sound.play()
 	
 	note_window.hide()
@@ -460,6 +535,7 @@ func _on_close_btn_note_pressed():
 	_save_order()
 	GameManager.note_open = false
 func _on_exit_btn_note_pressed():
+	GameManager.note_closed = true
 	click_sound.play()
 	
 	note_active.hide()
@@ -468,3 +544,7 @@ func _on_exit_btn_note_pressed():
 	_set_as_first_child(note_window)
 	_save_order()
 	GameManager.note_open = false
+	
+	for i in range(GameManager.active_windows.size()):
+		if GameManager.active_windows[i] == "NoteWindow":
+			GameManager.active_windows.remove_at(i)

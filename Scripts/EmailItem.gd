@@ -108,7 +108,7 @@ func set_reply_datas(sender: String, success: bool, active: bool, path: String, 
 				#print("work not done")
 				content_text.text = "I checked your work, nothings are stamped? Great work. Bravo."			
 	
-	item.isDone = true
+	
 					
 	reply_btn.mouse_filter = MOUSE_FILTER_IGNORE
 	reply_w_file_btn.mouse_filter = MOUSE_FILTER_IGNORE
@@ -135,6 +135,8 @@ func _on_reply_btn_pressed():
 	is_sent = true
 	with_file = false
 	var reply = GameManager.get_item("reply", from_text.text)	
+	reply.isDone = true
+	
 	if not is_paper_work:
 		var item = GameManager.get_item("email", from_text.text)
 		item.isDone = true
@@ -165,6 +167,7 @@ func _on_reply_btn_pressed():
 func _on_reply_wf_btn_pressed():
 	click_sound.play()
 	var reply = GameManager.get_item("reply", from_text.text)	
+	reply.isDone = true
 	
 	if GameManager.copied_file != null:
 		is_sent = true
