@@ -21,7 +21,7 @@ func _ready():
 
 
 func _on_retry_pressed():
-	print("?")
+	print("retry")
 	GameManager.load_scene("res://Scene/DeskView.tscn")
 	GameManager.reset_game = true
 

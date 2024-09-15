@@ -20,7 +20,7 @@ clip_contents = true
 anchors_preset = 0
 offset_left = 19.0
 offset_top = 25.0
-offset_right = 287.0
+offset_right = 273.0
 offset_bottom = 352.0
 mouse_filter = 2
 
@@ -32,10 +32,6 @@ shape = SubResource("RectangleShape2D_quh74")
 
 [node name="Node2D" type="Node2D" parent="Control"]
 position = Vector2(-18, -25)
-
-[node name="Marker2D" type="Marker2D" parent="Control/Node2D"]
-visible = false
-position = Vector2(149, 290)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

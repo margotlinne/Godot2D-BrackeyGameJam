@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq8akfoviai87"]
+[gd_scene load_steps=17 format=3 uid="uid://cq8akfoviai87"]
 
 [ext_resource type="Script" path="res://Scripts/PaperworkManager.gd" id="1_at0d0"]
 [ext_resource type="PackedScene" uid="uid://du82qe2ljviai" path="res://Scene/stamp_prefab.tscn" id="2_ovij3"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_nhvna"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_748g0"]
 [ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="5_8541e"]
+[ext_resource type="AudioStream" uid="uid://dw0r2hw46lmh5" path="res://Sfx/stamp.mp3" id="9_0hrwo"]
+[ext_resource type="AudioStream" uid="uid://j02p213i14fj" path="res://Sfx/stamp_perfect.mp3" id="10_2g8la"]
 
 [sub_resource type="Animation" id="Animation_lqs3h"]
 resource_name = "perfect_label"
@@ -340,3 +342,9 @@ region_rect = Rect2(237, 387, 73, 62)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1160, 0)
+
+[node name="StampSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_0hrwo")
+
+[node name="PerfectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_2g8la")

@@ -10,6 +10,11 @@ const card_prefab = preload("res://Scene/card.tscn")
 
 @onready var score_text = $BG/GameCanvas/ScoreTxt
 
+@onready var click_sound = $"../../../ClickSound"
+@onready var game_success_sound = $"../../../GameSuccess"
+@onready var game_fail_sound = $"../../../GameFail"
+@onready var card_sound = $"../../../FlipCard"
+
 var spawn_card
 var game_started
 
@@ -25,10 +30,10 @@ func _ready():
 	game_over_canvas.hide()
 	spawn_card = false
 	score = 0
-	score_text.text = "Score: " + str(score) 
+	score_text.text = "Score: " + str(score) + "\nHigh Score: " + str(GameManager.card_high_score)
 
 func _process(delta):
-	score_text.text = "Score: " + str(score)
+	score_text.text = "Score: " + str(score) + "\nHigh Score: " + str(GameManager.card_high_score)
 	
 	if !game_window.visible:
 		_reset_game()
@@ -37,6 +42,10 @@ func _process(delta):
 	if game_started && !spawn_card:
 		_get_card()
 		spawn_card = true
+		
+	if game_over_canvas.visible:
+		if score > GameManager.card_high_score:
+			GameManager.card_high_score = score
 
 func _reset_game():
 	score = 0
@@ -48,6 +57,7 @@ func _reset_game():
 	
 
 func _get_card():
+	card_sound.play()
 	var new_card = card_prefab.instantiate()
 		
 	var random = randi() % 7
@@ -73,7 +83,7 @@ func _get_card():
 		new_card.get_node("Card Sprite/main/Main Icon").texture = preload("res://Image/sword.png")
 		new_card.get_node("Card Sprite/small/Small Icon").texture = preload("res://Image/sword.png")
 			
-	var color_ran = randi() % 3
+	var color_ran = randi() % 2
 		
 	if color_ran == 0: 
 		new_card.get_node("Card Sprite/main/Main Icon").modulate = Color.RED
@@ -107,7 +117,7 @@ func _get_card():
 	else: 
 		if previous_card_num == new_card_num: _get_card()
 
-	
+	print(new_card_num)
 
 func _remove_previous_card():
 	if card_pos.get_child_count() != 0:
@@ -115,36 +125,50 @@ func _remove_previous_card():
 		card_pos.remove_child(card)
 
 func _on_start_game_btn_pressed():
+	click_sound.play()
 	game_started = true
 	start_btn.hide()
 	game_canvas.show()
 
 
 func _on_down_btn_pressed():
+	click_sound.play()
 	_remove_previous_card()
 	previous_card_num = new_card_num
+	_remove_previous_card()
 	_get_card()
 	
 	if previous_card_num > new_card_num:
+		print("pre: ", previous_card_num, "  /  ", "new: ", new_card_num)
+		game_success_sound.play()
 		score += 10
-		_remove_previous_card()
-		_get_card()
+		#_remove_previous_card()
+		#_get_card()
 	else:
+		print("pre: ", previous_card_num, "  /  ", "new: ", new_card_num)
+		game_fail_sound.play()
 		game_over_canvas.show()
 	
 
 func _on_up_btn_pressed():
+	click_sound.play()
 	_remove_previous_card()
 	previous_card_num = new_card_num
+	_remove_previous_card()
 	_get_card()
 	
 	if previous_card_num < new_card_num:
+		print("pre: ", previous_card_num, "  /  ", "new: ", new_card_num)
+		game_success_sound.play()
 		score += 10
-		_remove_previous_card()
-		_get_card()
+		#_remove_previous_card()
+		#_get_card()
 	else:
+		print("pre: ", previous_card_num, "  /  ", "new: ", new_card_num)
+		game_fail_sound.play()
 		game_over_canvas.show()
 
 
 func _on_game_over_btn_pressed():
+	click_sound.play()
 	_reset_game()

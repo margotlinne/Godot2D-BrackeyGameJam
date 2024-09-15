@@ -23,6 +23,9 @@ extends Control
 @onready var folder_btn = $TaskBar/HBoxContainer/Folders
 @onready var note_btn = $TaskBar/HBoxContainer/Note
 
+
+@onready var click_sound = $"../../ClickSound"
+
 var front_window
 
 var btns = []
@@ -239,6 +242,8 @@ func _deactive_btn_style(btn):
 	
 # task bar app btn -------------------------------------------------------------	
 func _on_bin_app_pressed():
+	click_sound.play()
+	
 	if bin_window.visible:
 		if front_window != bin_window.to_string():
 			_set_as_last_child(bin_window)
@@ -256,6 +261,8 @@ func _on_bin_app_pressed():
 	
 	
 func _on_internet_app_pressed():
+	click_sound.play()
+	
 	if shopping_window.visible:
 		if front_window != shopping_window.to_string():
 			_set_as_last_child(shopping_window)
@@ -273,6 +280,8 @@ func _on_internet_app_pressed():
 
 
 func _on_email_app_pressed():
+	click_sound.play()
+	
 	if email_window.visible:
 		if front_window != email_window.to_string():
 			_set_as_last_child(email_window)
@@ -289,6 +298,8 @@ func _on_email_app_pressed():
 	_save_order()
 
 func _on_card_game_pressed():
+	click_sound.play()
+	
 	if game_window.visible:
 		if front_window != game_window.to_string():
 			_set_as_last_child(game_window)
@@ -305,6 +316,8 @@ func _on_card_game_pressed():
 	_save_order()
 
 func _on_folders_pressed():
+	click_sound.play()
+	
 	if folder_window.visible:
 		if front_window != folder_window.to_string():
 			_set_as_last_child(folder_window)
@@ -322,6 +335,8 @@ func _on_folders_pressed():
 
 
 func _on_note_pressed():
+	click_sound.play()
+	
 	if note_window.visible:
 		if front_window != note_window.to_string():
 			_set_as_last_child(note_window)
@@ -343,12 +358,16 @@ func _on_note_pressed():
 # close / exit btn -------------------------------------------------------------
 
 func _on_close_btn_bin_pressed():
+	click_sound.play()
+	
 	bin_window.hide()
 	_deactive_btn_style(bin_btn)
 	_set_as_first_child(bin_window)
 	_save_order()
 	GameManager.bin_open = false
 func _on_exit_btn_bin_pressed():
+	click_sound.play()
+	
 	bin_active.hide()
 	bin_window.hide()
 	_deactive_btn_style(bin_btn)
@@ -358,12 +377,16 @@ func _on_exit_btn_bin_pressed():
 
 
 func _on_close_btn_shopping_pressed():
+	click_sound.play()
+	
 	shopping_window.hide()
 	_deactive_btn_style(shopping_btn)
 	_set_as_first_child(shopping_window)
 	_save_order()
 	GameManager.shopping_open = false
 func _on_exit_btn_shopping_pressed():
+	click_sound.play()
+	
 	shopping_active.hide()
 	shopping_window.hide()
 	_deactive_btn_style(shopping_btn)
@@ -373,12 +396,16 @@ func _on_exit_btn_shopping_pressed():
 
 
 func _on_close_btn_email_pressed():
+	click_sound.play()
+	
 	email_window.hide()
 	_deactive_btn_style(email_btn)
 	_set_as_first_child(email_window)
 	_save_order()
 	GameManager.email_open = false
 func _on_exit_btn_email_pressed():
+	click_sound.play()
+	
 	email_active.hide()
 	email_window.hide()
 	_deactive_btn_style(email_btn)
@@ -388,12 +415,16 @@ func _on_exit_btn_email_pressed():
 	
 
 func _on_close_btn_game_pressed():
+	click_sound.play()
+	
 	game_window.hide()
 	_deactive_btn_style(game_btn)
 	_set_as_first_child(game_window)
 	_save_order()
 	GameManager.game_open = false
 func _on_exit_btn_game_pressed():
+	click_sound.play()
+	
 	game_active.hide()
 	game_window.hide()
 	_deactive_btn_style(game_btn)
@@ -403,12 +434,16 @@ func _on_exit_btn_game_pressed():
 
 
 func _on_close_btn_folder_pressed():
+	click_sound.play()
+	
 	folder_window.hide()
 	_deactive_btn_style(folder_btn)
 	_set_as_first_child(folder_window)
 	_save_order()
 	GameManager.folder_open = false
 func _on_exit_btn_folder_pressed():
+	click_sound.play()
+	
 	folder_active.hide()
 	folder_window.hide()
 	_deactive_btn_style(folder_btn)
@@ -417,12 +452,16 @@ func _on_exit_btn_folder_pressed():
 	GameManager.folder_open = false
 
 func _on_close_btn_note_pressed():
+	click_sound.play()
+	
 	note_window.hide()
 	_deactive_btn_style(note_btn)
 	_set_as_first_child(note_window)
 	_save_order()
 	GameManager.note_open = false
 func _on_exit_btn_note_pressed():
+	click_sound.play()
+	
 	note_active.hide()
 	note_window.hide()
 	_deactive_btn_style(note_btn)

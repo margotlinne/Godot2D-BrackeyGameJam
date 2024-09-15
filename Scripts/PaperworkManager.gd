@@ -6,7 +6,8 @@ extends Control
 @onready var right_hand = $ColorRect/StampPoint/RightHand
 @onready var stamp_prefab = preload("res://Scene/stamp_prefab.tscn")
 @onready var perfect_text = $ColorRect/RichTextLabel
-
+@onready var stamp_sound = $StampSound
+@onready var perfect_sound = $PerfectSound
 
 var speed = 500
 var slow_speed = 300
@@ -14,6 +15,7 @@ var left_clicked = false
 var stop = false
 var success_count = 0
 var total_count = 0
+var checked_score = false
 
 func _ready():
 	perfect_text.hide()
@@ -59,14 +61,17 @@ func _process(delta):
 			var parent = i.get_node("Control/Node2D")
 			#print(i.name, " ", i.is_hover)
 			if i.is_hover:
+				stamp_sound.play()
 				await get_tree().create_timer(0.2).timeout
 				var new_stamp = stamp_prefab.instantiate()
 				new_stamp.position = parent.to_local(stamp_point.position)
 				parent.add_child(new_stamp)
 				if new_stamp.position.x >= 140 and new_stamp.position.x <= 160:
 					#print("perfect!")
+					perfect_sound.play()
 					perfect_text.get_node("AnimationPlayer").play("perfect_label")
-				success_count += 1
+				if parent.get_child_count() == 1:
+					success_count += 1
 				
 	
 	var parent = paper_container.get_child(0).get_node("Control/Node2D")
@@ -74,6 +79,13 @@ func _process(delta):
 		stop = true
 	
 	if stop:
+		if !checked_score:
+			for paper in paper_container.get_children():
+				var stamp = paper.get_node("Control/Node2D")
+				# 한 페이지에 도장이 두 개 이상 찍혀 있으면 점수 없음 
+				if stamp.get_child_count() > 1:
+					success_count -= 1
+			checked_score = true
 		var item = GameManager.get_item("paper", GameManager.current_paper_work)
 		print("total success: ", success_count, "/ total_counts", total_count)
 		if success_count == total_count:

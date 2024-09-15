@@ -25,6 +25,8 @@ const EmailClass = preload("res://Scripts/EmailClass.gd")
 var files_ins
 var email_ins
 
+var card_high_score = 0
+
 var copied_file 
 var right_clicked_file
 
@@ -32,13 +34,13 @@ var total_active_tasks = 0
 var assign_first_tasks = false
 var assigned = false
 
-var game_timer = 600.0
+var game_timer = 5.0
 # 30초 간격으로 새 이메일 수신 
 var interval_timer = 30.0
 # 초반 3분 후 5개의 이메일 수신 
-var timer = 3
+var timer = 180.0
 var total_tasks = 0
-
+var time_point = 0
 var set_emails_first = false
 
 var current_paper_work
@@ -49,10 +51,25 @@ var game_over = false
 var reset_game = false
 var to_end_scene = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+var game_started = false
+var set_time = false
+
+var actual_time = 0
+
+@onready var bg_ambient = preload("res://Sfx/office-ambience.mp3")
+@onready var notification = preload("res://Sfx/email_notification.mp3")
+@onready var hurt = preload("res://Sfx/argg.mp3")
+@onready var crying = preload("res://Sfx/crying.mp3")
+@onready var promoted = preload("res://Sfx/promoted.mp3")
+
+func _ready():	
+	# 게임 시작부터 실제로 흐른 시간
+	actual_time = Time.get_ticks_msec() / 1000
+	time_point = 0
+		
+	#current_passed_time = -100
 	copied_file = null
-	current_passed_time = Time.get_ticks_msec() / 1000
+#	current_passed_time = Time.get_ticks_msec() / 1000
 	current_scene = get_tree().get_current_scene().get_name()
 	time_man_pos = Vector2(-370, 20)
 	_set_cursor_design()
@@ -72,16 +89,41 @@ func _ready():
 	#print(email_ins.email_email)
 	
 	
-	await get_tree().create_timer(timer).timeout
-	assign_first_tasks = true
+#	await get_tree().create_timer(timer).timeout
+#	assign_first_tasks = true
 	
-	
+#func _get_elapsed_time(time_point):
+#	return Time.get_ticks_msec() / 1000 - time_point
+
+
+func _test_man_pos():
+	while true:
+		await get_tree().create_timer(1.0).timeout
+		print(time_man_pos)
+
 func _process(delta):
-	if reset_game: 
-		_reset_game()
-		reset_game = false
-	current_passed_time = Time.get_ticks_msec() / 1000
-	#print(current_passed_time)
+	actual_time = Time.get_ticks_msec() / 1000
+	#current_passed_time = _get_elapsed_time(time_point)
+	#_test_man_pos()
+	#print(game_timer, " is total time   ",actual_time, "  game started at : ", time_point, " game over?: ", game_over)
+	if game_started and !set_time:		
+		print("#########################################################")
+		var audio_player = AudioStreamPlayer2D.new()
+		add_child(audio_player)
+		audio_player.stream = bg_ambient
+		audio_player.autoplay = true
+		audio_player.play()
+		#print("total time: ", Time.get_ticks_msec(), "\nset current_passed_time: ", current_passed_time)
+		
+		time_point = actual_time
+		set_time = true
+	if set_time:
+		game_timer -= delta
+		if !assign_first_tasks:
+			#print(assign_first_tasks)
+			await get_tree().create_timer(timer).timeout
+			assign_first_tasks = true
+			#print(assign_first_tasks)
 	
 	# 초반 태스크 5개 할당 
 	if assign_first_tasks && !assigned:
@@ -94,14 +136,53 @@ func _process(delta):
 		assigned = true
 		
 	if hearts <= 0 && !to_end_scene: 
-		game_over = true
-		load_scene("res://Scene/EndScene.tscn")
+		_game_failed()
 		to_end_scene = true
+		
+
+	if game_timer <= 0.0 and !to_end_scene:
+		var count = 0
+		for task in email_ins.email_reply:
+			if task.isDone: count += 1
+		# 모든 태스크를 끝낸 상태라면 
+		if count == email_ins.email_reply.size():
+			_game_success()
+		else: _game_failed()
+		
+		to_end_scene = true
+		print(count)
+		
+		
+	if reset_game: 
+		_reset_game()
+		reset_game = false
+	#print(current_passed_time)
+
+func _game_success():
+	time_man_pos = Vector2(-370, 20)
+	for i in get_children():
+		if i.stream == bg_ambient: remove_child(i)
+	var audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
+	audio_player.stream = promoted
+	audio_player.autoplay = true
+	audio_player.play()
+		
+	load_scene("res://Scene/EndScene.tscn")
 	
-	if !game_over && current_passed_time >= game_timer:
-		game_over = false
-		load_scene("res://Scene/EndScene.tscn")
-		to_end_scene = true
+func _game_failed():
+	time_man_pos = Vector2(-370, 20)
+	for i in get_children():
+		if i.stream == bg_ambient: remove_child(i)
+	var audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
+	audio_player.stream = crying
+	audio_player.autoplay = true
+	audio_player.play()
+		
+	game_over = true
+	load_scene("res://Scene/EndScene.tscn")
+
 
 func _repeat_activate():
 	while total_active_tasks != total_tasks:
@@ -141,6 +222,13 @@ func _active_random_task():
 					total_active_tasks += 1
 					break  # Task assigned, exit loop
 #		email_manager.get_new_email(selected_file)
+	
+	var audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
+	audio_player.stream = notification
+	if current_scene != "Computer": audio_player.volume_db = -30
+	else: audio_player.volume_db = -3
+	audio_player.play()
 
 func get_item(string, name):
 	if string == "email":
@@ -169,6 +257,10 @@ func get_reply(sender, failed, done):
 	item.isActive = true
 	
 	if failed || !done:
+		var audio_player = AudioStreamPlayer2D.new()
+		add_child(audio_player)
+		audio_player.stream = hurt
+		audio_player.play()
 		item.setScore = true
 		hearts -= 1
 	#mail_container.add_child(new_mail_box)
@@ -203,7 +295,7 @@ func load_scene(route):
 	#print(current_scene)
 	
 func _set_cursor_design():
-	print("set cursor")
+	#print("set cursor")
 	if current_scene == "Computer":
 		var cursor_texture = preload("res://Image/MouseCursor.png")  
 		var pointing_corsor_texture = preload("res://Image/mouse_pointing.png")
@@ -266,6 +358,27 @@ func _reset_email_data():
 		i.setScore = false
 
 func _reset_game():
+	for i in get_children():
+		if i.stream == crying: remove_child(i)
+		if i.stream == promoted: remove_child(i)
+		
+	var audio_player = AudioStreamPlayer2D.new()
+	add_child(audio_player)
+	audio_player.stream = bg_ambient
+	audio_player.autoplay = true
+	audio_player.play()	
+		
+		
+	game_timer = 600.0
+		
+	#actual_time = Time.get_ticks_msec() / 1000
+	#current_passed_time = _get_elapsed_time() 
+	#print(current_passed_time)
+	set_time = false
+	game_started = false
+	
+	
+	time_point = 0
 #	_reset_email_data()
 	game_over = false
 	email_order.clear()
@@ -287,7 +400,7 @@ func _reset_game():
 	game_open = false
 	email_open = false
 	
-	current_passed_time = Time.get_ticks_msec() / 1000
+	#current_passed_time = Time.get_ticks_msec() / 1000
 	current_scene = get_tree().get_current_scene().get_name()
 	time_man_pos = Vector2(-370, 20)
 	_set_cursor_design()

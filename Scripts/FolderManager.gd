@@ -11,6 +11,7 @@ const item_prefab = preload("res://Scene/item.tscn")
 @onready var default_item_group = $Window/ScrollContainer/ParentContainer/ItemGroup
 
 @onready var back_btn = $Window/ScrollContainer/ParentContainer/BackBtn
+@onready var click_sound = $"../../../ClickSound"
 
 var current_folder
 var previous_folder
@@ -114,18 +115,18 @@ func _set_path():
 	var path_string = "Work"
 	for i in folder_order:
 		if i != "default":
-			path_string += ("\\" + i) 
+			path_string += ("＼" + i) 
 	
 	path_text.text = path_string
 	
 func get_file_path(folder_name):
-	var path = "Work\\"	
+	var path = "Work＼"	
 	path_items.clear()
 	path_items.append(folder_name)	
 	_get_parent(folder_name)	
 	for i in range(path_items.size()-1, -1, -1):
 		path += path_items[i]
-		if i != 0: path += "\\"
+		if i != 0: path += "＼"
 	return path
 
 
@@ -164,4 +165,5 @@ func set_visibility():
 
 # back btn
 func _on_back_btn_pressed():
+	click_sound.play()
 	_remove_window()

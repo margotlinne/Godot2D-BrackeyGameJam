@@ -2,7 +2,8 @@ extends MarginContainer
 
 @onready var bin_manager = $"../Manager/WindowGroup/BinWindow"
 @onready var folder_manager = $"../Manager/WindowGroup/FolderWindow"
-
+@onready var bin_sound = $"../BinSound"
+@onready var click_sound = $"../ClickSound"
 var clicked_item
 var is_hover
 
@@ -14,6 +15,7 @@ func _ready():
 
 
 func _on_copy_path_btn_pressed():
+	click_sound.play()
 	var item = GameManager.get_item("folder", GameManager.right_clicked_file)
 	if !item.inBin:
 		GameManager.copied_file = clicked_item
@@ -27,6 +29,7 @@ func _on_copy_path_btn_pressed():
 
 
 func _on_delete_btn_pressed():
+	click_sound.play()
 	var item = GameManager.get_item("folder", GameManager.right_clicked_file)
 	print(item.name)
 	if item.inBin: 
@@ -34,6 +37,7 @@ func _on_delete_btn_pressed():
 		bin_manager.set_visibility()
 		folder_manager.set_visibility()
 	else:  
+		bin_sound.play()
 		item.inBin = true
 		bin_manager.set_visibility()
 		folder_manager.set_visibility()

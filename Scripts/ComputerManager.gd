@@ -1,7 +1,6 @@
 extends Control
 
 @onready var ui_control = $"../UI"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GameManager.current_scene == "Computer":

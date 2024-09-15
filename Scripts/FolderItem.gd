@@ -16,7 +16,7 @@ var is_hover: bool
 
 @onready var folder_manager = get_node("/root/Computer/Manager/WindowGroup/FolderWindow")
 @onready var right_click_window = get_node("/root/Computer/RightClickWindow")
-	
+@onready var click_sound = get_node("/root/Computer/ClickSound")
 	
 func set_datas(title, check, bin):
 	#print("called")
@@ -36,20 +36,22 @@ func _process(delta):
 	
 	
 func _set_icon():
+	var child = []
 	if is_folder:
 		for i in GameManager.files_ins.file:
-			if i.parent == its_name:
-				icon.texture = folder_icon
-				break
-			elif i == GameManager.files_ins.file[GameManager.files_ins.file.size() - 1]:
-				icon.texture = empty_folder_icon
-	else: icon.texture = file_icon
+			if i.parent == its_name and !i.inBin:
+				child.append(i)
+				
+		if child.size() == 0:
+			icon.texture = empty_folder_icon
+		else:	icon.texture = folder_icon
 	
 	
 func get_bin_bool(bin):
 	in_bin = bin
 	
 func _on_button_pressed():
+	click_sound.play()
 	if data_set && is_folder && !in_bin:
 		folder_manager.add_window(its_name)
 
@@ -67,6 +69,7 @@ func _input(event):
 			#print("Right mouse button clicked")
 
 func set_right_click_window(pos, bin, file):
+	click_sound.play()
 	var copy_path_label1 = right_click_window.get_node("MarginContainer/VBoxContainer/Label")
 	var delete_btn =  right_click_window.get_node("MarginContainer/VBoxContainer/DeleteBtn")
 	var copy_path_btn = copy_path_label1.get_node("CopyPathBtn")

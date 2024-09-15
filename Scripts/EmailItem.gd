@@ -8,7 +8,7 @@ extends Control
 @onready var reply_w_file_btn = $Panel/HBoxContainer/Buttons/ReplyWFBtn
 @onready var panel = $Panel
 @onready var warning_bar = get_node("/root/Computer/Manager/WindowGroup/EMailWindow/WarningBar")
-
+@onready var click_sound = get_node("/root/Computer/ClickSound")
 @onready var email_manager = get_node("/root/Computer/Manager/WindowGroup/EMailWindow")
 
 var is_paper_work
@@ -98,7 +98,7 @@ func set_reply_datas(sender: String, success: bool, active: bool, path: String, 
 			if is_done:
 				#print("work done")
 				if is_failed:
-					content_text.text = "I checked your work, and some papers are not stamped. Thanks to you" \
+					content_text.text = "I checked your work, it's not stamped properly. Thanks to you" \
 				+ " my workload has doubled. Great!"
 
 				else:
@@ -107,7 +107,8 @@ func set_reply_datas(sender: String, success: bool, active: bool, path: String, 
 			else: 
 				#print("work not done")
 				content_text.text = "I checked your work, nothings are stamped? Great work. Bravo."			
-
+	
+	item.isDone = true
 					
 	reply_btn.mouse_filter = MOUSE_FILTER_IGNORE
 	reply_w_file_btn.mouse_filter = MOUSE_FILTER_IGNORE
@@ -130,6 +131,7 @@ func _process(delta):
 
 
 func _on_reply_btn_pressed():	
+	click_sound.play()
 	is_sent = true
 	with_file = false
 	var reply = GameManager.get_item("reply", from_text.text)	
@@ -161,6 +163,7 @@ func _on_reply_btn_pressed():
 	reply.isSent = true	
 
 func _on_reply_wf_btn_pressed():
+	click_sound.play()
 	var reply = GameManager.get_item("reply", from_text.text)	
 	
 	if GameManager.copied_file != null:
