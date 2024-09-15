@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjmjd5mtnskxc"]
+
+[ext_resource type="Script" path="res://Scripts/Ending.gd" id="1_62ei2"]
+[ext_resource type="Texture2D" uid="uid://c0er3wfatgf1" path="res://Image/sketch1725963658877.png" id="1_75451"]
+[ext_resource type="Texture2D" uid="uid://b51j5awmrjvpg" path="res://Image/stamp_border.png" id="2_17qln"]
+[ext_resource type="Texture2D" uid="uid://dlwcaum61wn65" path="res://Image/stamp_fired.png" id="3_2jh57"]
+[ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="4_ti0tn"]
+[ext_resource type="Texture2D" uid="uid://bx8hm6nmraryt" path="res://Image/sketch1725942600972.png" id="5_0mujn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i3nlb"]
+texture = ExtResource("5_0mujn")
+region_rect = Rect2(346, 314, 527, 205)
+modulate_color = Color(1, 1, 0.380392, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6oojs"]
+texture = ExtResource("5_0mujn")
+region_rect = Rect2(346, 314, 527, 205)
+modulate_color = Color(0.913725, 0.905882, 0, 1)
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_62ei2")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_75451")
+
+[node name="Border" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 226.0
+offset_right = 306.0
+offset_bottom = 376.0
+rotation = -0.243686
+texture = ExtResource("2_17qln")
+expand_mode = 1
+
+[node name="Stamp" type="TextureRect" parent="BG/Border"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 24.0
+offset_right = 239.0
+offset_bottom = 103.0
+rotation = 0.015189
+texture = ExtResource("3_2jh57")
+expand_mode = 1
+
+[node name="MenuBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 666.0
+offset_top = 299.0
+offset_right = 985.0
+offset_bottom = 434.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ti0tn")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_i3nlb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6oojs")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i3nlb")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_i3nlb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_i3nlb")
+text = "
+Go Home"
+
+[node name="Retry" type="Button" parent="."]
+layout_mode = 0
+offset_left = 661.0
+offset_top = 147.0
+offset_right = 1055.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ti0tn")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_i3nlb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6oojs")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i3nlb")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_i3nlb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_i3nlb")
+text = "
+Reemployment"
+
+[connection signal="pressed" from="MenuBtn" to="." method="_on_menu_btn_pressed"]
+[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]

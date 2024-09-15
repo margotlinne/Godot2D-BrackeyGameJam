@@ -5,6 +5,8 @@ extends Control
 @onready var stamp_point = $ColorRect/StampPoint
 @onready var right_hand = $ColorRect/StampPoint/RightHand
 @onready var stamp_prefab = preload("res://Scene/stamp_prefab.tscn")
+@onready var perfect_text = $ColorRect/RichTextLabel
+
 
 var speed = 500
 var slow_speed = 300
@@ -14,6 +16,7 @@ var success_count = 0
 var total_count = 0
 
 func _ready():
+	perfect_text.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)  
 	total_count = randi_range(10, 35)
 	for i in range(total_count):
@@ -60,6 +63,9 @@ func _process(delta):
 				var new_stamp = stamp_prefab.instantiate()
 				new_stamp.position = parent.to_local(stamp_point.position)
 				parent.add_child(new_stamp)
+				if new_stamp.position.x >= 140 and new_stamp.position.x <= 160:
+					#print("perfect!")
+					perfect_text.get_node("AnimationPlayer").play("perfect_label")
 				success_count += 1
 				
 	

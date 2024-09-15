@@ -100,6 +100,7 @@ offset_left = 82.0
 offset_top = 19.0
 offset_right = 232.0
 offset_bottom = 69.0
+mouse_default_cursor_shape = 2
 text = "REPLY"
 
 [node name="ReplyWFBtn" type="Button" parent="Panel/HBoxContainer/Buttons"]
@@ -109,6 +110,7 @@ offset_left = 82.0
 offset_top = 80.0
 offset_right = 232.0
 offset_bottom = 130.0
+mouse_default_cursor_shape = 2
 text = "REPLY WITH FILE"
 
 [connection signal="pressed" from="Panel/HBoxContainer/Buttons/ReplyBtn" to="." method="_on_reply_btn_pressed"]

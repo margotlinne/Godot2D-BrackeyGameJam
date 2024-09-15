@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cq8akfoviai87"]
+[gd_scene load_steps=15 format=3 uid="uid://cq8akfoviai87"]
 
 [ext_resource type="Script" path="res://Scripts/PaperworkManager.gd" id="1_at0d0"]
 [ext_resource type="PackedScene" uid="uid://du82qe2ljviai" path="res://Scene/stamp_prefab.tscn" id="2_ovij3"]
@@ -8,6 +8,38 @@
 [ext_resource type="Texture2D" uid="uid://db363tuaamb2x" path="res://Image/sketch1725879223677.png" id="3_nhvna"]
 [ext_resource type="Shader" path="res://Shader/Obj_outline.gdshader" id="4_748g0"]
 [ext_resource type="FontFile" uid="uid://cfmwpdywugh67" path="res://Font/NANUMMYEONGJO.TTF" id="5_8541e"]
+
+[sub_resource type="Animation" id="Animation_lqs3h"]
+resource_name = "perfect_label"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0riu"]
+_data = {
+"perfect_label": SubResource("Animation_lqs3h")
+}
 
 [sub_resource type="Animation" id="Animation_vrrno"]
 resource_name = "stamp_motion"
@@ -64,6 +96,27 @@ color = Color(0.286275, 0.215686, 0.117647, 1)
 
 [node name="StampPrefab" parent="ColorRect" instance=ExtResource("2_ovij3")]
 visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 32.0
+offset_right = 820.0
+offset_bottom = 138.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+bbcode_enabled = true
+text = "[wave amp=200 freq =10] PERFECT! [/wave]"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/RichTextLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_k0riu")
+}
 
 [node name="PaperContainer" type="HBoxContainer" parent="ColorRect"]
 layout_mode = 1

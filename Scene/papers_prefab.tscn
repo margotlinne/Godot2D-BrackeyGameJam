@@ -64,6 +64,7 @@ expand_mode = 1
 
 [node name="ColorImage" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 0
 offset_right = 173.0
 offset_bottom = 102.0
 scale = Vector2(0.915094, 0.737443)

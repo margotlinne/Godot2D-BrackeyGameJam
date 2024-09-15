@@ -36,6 +36,7 @@ func _ready():
 	btns.append(folder_btn)
 	btns.append(note_btn)
 	
+	
 	# sort windows order
 	if (GameManager.child_order.size() != 0):
 		for i in GameManager.child_order:
@@ -47,12 +48,14 @@ func _ready():
 		GameManager.child_order.append("GameWindow")
 		GameManager.child_order.append("FolderWindow")
 		GameManager.child_order.append("NoteWindow")
-			
+	
+	
 			
 	if GameManager.bin_open: 
 		bin_window.show()
 		bin_active.show()
 	else: 
+		_deactive_btn_style(bin_btn)		
 		bin_window.hide()
 		bin_active.hide()
 	
@@ -60,6 +63,7 @@ func _ready():
 		shopping_window.show()
 		shopping_active.show()
 	else: 
+		_deactive_btn_style(shopping_btn)
 		shopping_window.hide()
 		shopping_active.hide()
 	
@@ -67,6 +71,7 @@ func _ready():
 		email_window.show()
 		email_active.show()
 	else: 
+		_deactive_btn_style(email_btn)
 		email_window.hide()
 		email_active.hide()
 	
@@ -74,6 +79,7 @@ func _ready():
 		game_window.show()
 		game_active.show()
 	else: 
+		_deactive_btn_style(game_btn)
 		game_window.hide()
 		game_active.hide()
 	
@@ -81,6 +87,7 @@ func _ready():
 		folder_window.show()
 		folder_active.show()
 	else: 
+		_deactive_btn_style(folder_btn)
 		folder_window.hide()
 		folder_active.hide()
 	
@@ -88,8 +95,40 @@ func _ready():
 		note_window.show()
 		note_active.show()
 	else: 
+		_deactive_btn_style(note_btn)
 		note_window.hide()
 		note_active.hide()
+	
+	if GameManager.game_over:
+		#print("game over")
+		_hide_everything()
+		
+		
+func _process(delta):
+	if GameManager.game_over:
+		#print("game over")
+		_hide_everything()
+	
+func _hide_everything():
+	bin_window.hide()
+	bin_active.hide()
+	_deactive_btn_style(bin_btn)
+	shopping_window.hide()
+	shopping_active.hide()
+	_deactive_btn_style(shopping_btn)
+	game_window.hide()
+	game_active.hide()
+	_deactive_btn_style(game_btn)
+	email_window.hide()
+	email_active.hide()
+	_deactive_btn_style(email_btn)
+	note_window.hide()
+	note_active.hide()
+	_deactive_btn_style(note_btn)
+	folder_window.hide()
+	folder_active.hide()
+	_deactive_btn_style(folder_btn)
+	
 	
 func _find_window(name: String):
 	if name == "BinWindow": return bin_window

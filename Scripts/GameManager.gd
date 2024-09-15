@@ -32,8 +32,9 @@ var total_active_tasks = 0
 var assign_first_tasks = false
 var assigned = false
 
+var game_timer = 600.0
 # 30초 간격으로 새 이메일 수신 
-var interval_timer = 5.0
+var interval_timer = 30.0
 # 초반 3분 후 5개의 이메일 수신 
 var timer = 3
 var total_tasks = 0
@@ -43,9 +44,14 @@ var set_emails_first = false
 var current_paper_work
 var hearts = 5
 
+var game_over = false
+
+var reset_game = false
+var to_end_scene = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	copied_file = "none"
+	copied_file = null
 	current_passed_time = Time.get_ticks_msec() / 1000
 	current_scene = get_tree().get_current_scene().get_name()
 	time_man_pos = Vector2(-370, 20)
@@ -53,6 +59,8 @@ func _ready():
 	
 	files_ins = FileClass.new()
 	email_ins = EmailClass.new()
+	
+	_set_file_data()
 	
 	total_tasks = email_ins.email_email.size() + email_ins.email_paper.size()
 	
@@ -69,6 +77,9 @@ func _ready():
 	
 	
 func _process(delta):
+	if reset_game: 
+		_reset_game()
+		reset_game = false
 	current_passed_time = Time.get_ticks_msec() / 1000
 	#print(current_passed_time)
 	
@@ -81,7 +92,16 @@ func _process(delta):
 		#email_manager.set_visibility()
 		_repeat_activate()
 		assigned = true
-
+		
+	if hearts <= 0 && !to_end_scene: 
+		game_over = true
+		load_scene("res://Scene/EndScene.tscn")
+		to_end_scene = true
+	
+	if !game_over && current_passed_time >= game_timer:
+		game_over = false
+		load_scene("res://Scene/EndScene.tscn")
+		to_end_scene = true
 
 func _repeat_activate():
 	while total_active_tasks != total_tasks:
@@ -140,6 +160,26 @@ func get_item(string, name):
 			if i.from == name:
 				return i
 
+func get_reply(sender, failed, done):
+	var timer = 1.0
+	await get_tree().create_timer(timer).timeout
+	
+	email_order.append(sender + "reply")
+	var item = get_item("reply", sender)
+	item.isActive = true
+	
+	if failed || !done:
+		item.setScore = true
+		hearts -= 1
+	#mail_container.add_child(new_mail_box)
+#	for i in email_items:
+#		if i.from_text.text == email.from_text.text && i.is_reply:
+#			i.is_active = true
+			
+	#item.set_reply_datas(item.from, !item.isFailed, item.isActive, \
+	#item.profilePath, item.withFile, item.isPaperWork)	
+
+
 func _set_random_file():
 	var random = randi() % files_ins.file.size()
 	var file_name = files_ins.file[random].name
@@ -163,6 +203,7 @@ func load_scene(route):
 	#print(current_scene)
 	
 func _set_cursor_design():
+	print("set cursor")
 	if current_scene == "Computer":
 		var cursor_texture = preload("res://Image/MouseCursor.png")  
 		var pointing_corsor_texture = preload("res://Image/mouse_pointing.png")
@@ -170,7 +211,7 @@ func _set_cursor_design():
 		Input.set_custom_mouse_cursor(cursor_texture, Input.CURSOR_ARROW)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-	elif current_scene == "DeskView":
+	elif current_scene == "DeskView" || current_scene == "EndScene" || current_scene == "StartScene":
 		var cursor_texture = preload("res://Image/Cursor.png")
 		var pointing_corsor_texture = preload("res://Image/cursor_pointing.png")
 		Input.set_custom_mouse_cursor(pointing_corsor_texture, Input.CURSOR_POINTING_HAND)
@@ -184,4 +225,87 @@ func _set_cursor_design():
 		#Input.set_custom_mouse_cursor(cursor_texture)
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+
+func _set_file_data():
+	var random = randi_range(6, 15)
+	var count = 0
+	while count < random:
+		var rand_index = randi_range(0, files_ins.file.size() - 1)
+		for file in files_ins.file:
+			if files_ins.file[rand_index] == file:
+				if not file.inBin:
+					file.inBin = true
+					count += 1
+				else: break
+		
+
+func _reset_email_data():
+	for i in email_ins.email_email:
+		i.isActive = false
+		i.isFailed = false
+		i.isDone = false
+		i.isReply = false
+		i.withFile = false
+		i.isSent = false
+		i.setScore = false
+	for i in email_ins.email_paper:
+		i.isActive = false
+		i.isFailed = false
+		i.isDone = false
+		i.isReply = false
+		i.withFile = false
+		i.isSent = false
+		i.setScore = false
+	for i in email_ins.email_reply:
+		i.isActive = false
+		i.isFailed = false
+		i.isDone = false
+		i.isReply = true
+		i.withFile = false
+		i.isSent = false
+		i.setScore = false
+
+func _reset_game():
+#	_reset_email_data()
+	game_over = false
+	email_order.clear()
+	child_order.clear()
+	to_end_scene = false
+	show_ui = false
+	com_scene_instance = null
+	assign_first_tasks = false
+	set_emails_first = false
+	assigned = false
 	
+	copied_file = null	
+	hearts = 5
+	
+	shopping_open = false
+	bin_open = false
+	folder_open = false
+	note_open = false
+	game_open = false
+	email_open = false
+	
+	current_passed_time = Time.get_ticks_msec() / 1000
+	current_scene = get_tree().get_current_scene().get_name()
+	time_man_pos = Vector2(-370, 20)
+	_set_cursor_design()
+	
+	files_ins = FileClass.new()
+	email_ins = EmailClass.new()
+	
+	_set_file_data()
+	
+	total_tasks = email_ins.email_email.size() + email_ins.email_paper.size()
+	
+	for i in email_ins.email_email:
+		i.fileName = files_ins.file[randi() % files_ins.file.size()].name
+	
+	for i in email_ins.email_email.size():
+		_set_random_file()
+	#print(email_ins.email_email)
+	
+	
+	await get_tree().create_timer(timer).timeout
+	assign_first_tasks = true

@@ -6,12 +6,11 @@ extends Control
 @onready var time_mark = $TimeBar/Panel/Image/TimeMan
 @onready var hearts_ui = $Hearts
 
-var DURATION = 600.0  # 10분을 초 단위로 변환 (600초)
 
 func _ready():
 	hearts_ui.hide()
 	time_mark.position = GameManager.time_man_pos
-	DURATION -= GameManager.current_passed_time 
+	GameManager.game_timer -= GameManager.current_passed_time 
 	
 	var tween = create_tween()
 	
@@ -21,7 +20,7 @@ func _ready():
 		time_mark,                  # 애니메이션을 적용할 노드
 		"position",                 # 애니메이션할 속성
 		end_marker.position,       # 끝값
-		DURATION                # 애니메이션 시간 (초 단위)
+		GameManager.game_timer                # 애니메이션 시간 (초 단위)
 	)
 	
 func _process(delta):

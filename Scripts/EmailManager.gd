@@ -30,7 +30,7 @@ func _ready():
 		
 	#print(email_items)
 	set = true
-	#print("-----------------------------", GameManager.email_order)
+	#print("-----------------------------")
 	
 func _process(delta):
 	# 3분 지나면 assign_first_tasks참으로 게임매니저에서 설정 -> 이메일 활성화도 게임 매니저에서?
@@ -72,9 +72,13 @@ func _process(delta):
 				item = GameManager.get_item("reply", i.from_text.text)
 		
 			if !i.is_set && item.isActive:
-				#print("?")
+				#print(item.from)
 				for j in GameManager.email_order:
 					_set_recent_email(j)	
+					if i.is_reply:
+						# 활성화된 답장의 텍스트 등을 정하는 것이므로 초기엔 i의 데이터가 없을 것이므로 item의 데이터 가져옴 
+						i.set_reply_datas(item.from, !item.isFailed, item.isActive, \
+						item.profilePath, item.withFile, item.isPaperWork)
 				i.is_active = true
 				i.is_set = true
 			#if item.isActive && !i.is_set:
@@ -100,20 +104,20 @@ func _process(delta):
 #
 	
 	
-func get_reply(email):
-	var timer = 1.0
-	await get_tree().create_timer(timer).timeout
-	GameManager.email_order.append(email.from_text.text + "reply")
-	var item = GameManager.get_item("reply", email.from_text.text)
-	item.isActive = true
-	#mail_container.add_child(new_mail_box)
-	for i in email_items:
-		if i.from_text.text == email.from_text.text && i.is_reply:
-			i.is_active = true
-			
-			i.set_reply_datas(email.from_text.text, !email.is_failed, email.is_active, \
-			email.profile_path, email.with_file, email.is_paper_work)	
-			#email_items.append(new_mail_box)
+#func get_reply(email):
+#	var timer = 1.0
+#	await get_tree().create_timer(timer).timeout
+#	GameManager.email_order.append(email.from_text.text + "reply")
+#	var item = GameManager.get_item("reply", email.from_text.text)
+#	item.isActive = true
+#	#mail_container.add_child(new_mail_box)
+#	for i in email_items:
+#		if i.from_text.text == email.from_text.text && i.is_reply:
+#			i.is_active = true
+#
+#			i.set_reply_datas(email.from_text.text, !email.is_failed, email.is_active, \
+#			email.profile_path, email.with_file, email.is_paper_work)	
+#			#email_items.append(new_mail_box)
 
 func _set_recent_email(email):
 	#print("latest-----------------------------------")
