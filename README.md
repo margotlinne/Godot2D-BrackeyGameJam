@@ -24,3 +24,7 @@ What about works that had been handled by them? Well, guess Lupin will be busy! 
 
 Promoted or fired?
 Let him survive not getting fired and safely finish a day!
+
+<br>
+
+#### Check play video <a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">here</a>
