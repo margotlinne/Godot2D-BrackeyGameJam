@@ -122,7 +122,11 @@ func _test_man_pos():
 		print(time_man_pos)
 
 func _process(delta):
-	
+	# stop end scene bgm when it goes to main menu
+	if current_scene == "StartScene":
+		for i in get_children():
+			if i.stream == crying: remove_child(i)
+			if i.stream == promoted: remove_child(i)
 	
 	
 	actual_time = Time.get_ticks_msec() / 1000
@@ -264,7 +268,7 @@ func _active_random_task():
 		audio_player2.volume_db = -30
 	audio_player2.play()
 	audio_player.play()
-
+	
 func get_item(string, name):
 	if string == "email":
 		for i in email_ins.email_email:
