@@ -1,3 +1,22 @@
+# Salary Lupin
+
+## About
+
+This project was for Brackey Game Jam with a game titled "Calm before the Storm." The game is about a salaried lupin (a term referring to an employee who loses his or her salary without working) who plays according to the theme of "Calm before the Strom" spends time playing card games and online shopping after work as usual, and then suddenly becomes busy as the player takes on a lot of work after leaving the company unhappy with the company's elite employees doing a lot of work alone. After the game is played, you spend about three minutes(calm stage) playing card games, and then complete the tasks you receive by e-mail. About 10,000 people participated and ranked 338th overall out of 1,493 submitted games, and the project achieved a high result of 101st place in innovation.
+
+<br>
+
+## Information
+
+- Engine: Godot
+- Platform: WebgL
+- Team Size: 1
+- Time Frame: 1 week
+
+<br>
+
+## Introduction
+
 ### "What do I do at work? Um, well I just sit at the desk and playing card game, online shopping till I go home. That's basically it."
 Salary Lupin said. 
 
