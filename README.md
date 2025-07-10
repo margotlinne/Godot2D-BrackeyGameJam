@@ -43,7 +43,7 @@ This project was for Brackey Game Jam with a game titled "Calm before the Storm.
 - **상태 기반 관리 Centralized State**<br>
 GameManager를 통해 시간, 메일 수, 생명 등 전역 상태를 통합 관리. <br> Global variables like time, email count, and life are managed through GameManager.
   
-- **폴더 구조 재현 Folder Simulation Realistic**<br>
+- **폴더 구조 재현 Realistic Folder Simulation**<br>
 사용자가 실제로 폴더를 열고 닫고 정리하는 듯한 경험 제공. <br> User experience mimics a real OS with open/close and hierarchy logic.
 
 - **시나리오 기반 설계 Scenario Design**<br>
