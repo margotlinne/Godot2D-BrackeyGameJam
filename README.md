@@ -4,6 +4,8 @@
 
 ![screenshot](https://github.com/user-attachments/assets/0911d540-aae4-4daf-b335-bbc0253d763b)
 
+#### <a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">▶️Play Video</a>
+
 ## About
 
 Brackey Game Jam 에 제출하기 위해서 제작된 프로젝트로, 주제는 "Calm before the storm", 폭풍 전의 고요였습니다. 게임은 월급 루팡(일은 하지 않고 월급을 받는, 훔친다는 의미)에 대한 것으로, 출근 후 카드 게임 및 인터넷 쇼핑 등을 하며 시간을 떼우는 주인공 월급 루팡은 어느 날 착실히 모든 일을 다 하던 직원의 갑작스런 퇴사로 그 직원의 일을 떠맡게 되어 갑자기 바빠지는 상황을 그린 게임입니다. 3분 동안 카드 게임 등을 하며 대충 시간을 떼우다가 (calm) 갑자기 밀려드는 이메일과 서류작업(storm)을 퇴근 전까지 실수 없이 잘 마무리하는 게 게임의 목적입니다. 실수를 하게 되면 생명력을 잃게 되고, 이를 모두 잃으면 해고당합니다. 약 10,000명의 사람들이 이 게임잼에 참여했고, 1,493팀 중 총 338위를 하였으며 innovation 부문에서는 101위를 달성하며 좋은 성적을 거두었습니다. 
@@ -87,5 +89,3 @@ GameManager를 통해 시간, 메일 수, 생명 등 전역 상태를 통합 관
                                                         Monitor view switching
 ```
 <br>
-
-#### <a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">▶️Play Video</a>
