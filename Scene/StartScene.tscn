@@ -194,25 +194,35 @@ initial_velocity_max = 297.99
 scale_amount_max = 1.85
 color_ramp = SubResource("Gradient_5gq0x")
 
-[node name="Title_salary" type="TextureRect" parent="BG"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Title" type="Control" parent="BG"]
 layout_mode = 1
-offset_left = 464.0
-offset_top = -11.0
-offset_right = 1286.0
-offset_bottom = 215.0
-texture = ExtResource("5_2vmpo")
-expand_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -770.0
+offset_bottom = 237.0
+grow_horizontal = 0
 
-[node name="Title_lupin" type="TextureRect" parent="BG"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Title_salary" type="Sprite2D" parent="BG/Title"]
+position = Vector2(399, 113)
+texture = ExtResource("5_2vmpo")
+region_enabled = true
+region_rect = Rect2(77, 29, 733, 225)
+
+[node name="Title2" type="Control" parent="BG"]
 layout_mode = 1
-offset_left = -19.0
-offset_top = 402.0
-offset_right = 708.0
-offset_bottom = 649.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -223.0
+offset_right = 707.0
+grow_vertical = 0
+
+[node name="Title_lupin" type="Sprite2D" parent="BG/Title2"]
+position = Vector2(381, 112)
 texture = ExtResource("6_ymiwv")
-expand_mode = 1
+region_enabled = true
+region_rect = Rect2(53, 33, 651, 221)
 
 [node name="Button" type="Button" parent="BG"]
 layout_mode = 0
@@ -292,9 +302,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -48.0
-offset_right = 109.0
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 129.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/default_color = Color(0.262745, 0.262745, 0.262745, 1)
@@ -304,7 +315,7 @@ theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
 bbcode_enabled = true
-text = "[img=50x50]res://Image/character.png[/img][wave amp=20freq =10] Made By KANG² [/wave]"
+text = "[img=40x40]res://Image/character.png[/img][wave amp=20freq =10] Made By margot linne [/wave]"
 scroll_active = false
 
 [connection signal="mouse_entered" from="BG/Button" to="." method="_on_button_mouse_entered"]

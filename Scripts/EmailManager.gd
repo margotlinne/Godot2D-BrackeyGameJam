@@ -42,7 +42,7 @@ func _process(delta):
 #				for j in GameManager.email_ins.email_paper:
 #					if j.isActive: continue
 #					else: 
-#						j.isActive = t서rue
+#						j.isActive = true
 #						all_files[random].is_active = true
 #						print(count)
 #						count += 1

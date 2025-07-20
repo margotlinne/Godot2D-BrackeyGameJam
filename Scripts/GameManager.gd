@@ -51,12 +51,12 @@ var card_icon = -1
 var card_failed  = false
 var pressed_over = false
 
-var DURATION = 600.0
-var game_timer = 600.0
+var DURATION = 240.0
+var game_timer = 240.0
 # 30초 간격으로 새 이메일 수신 
 var interval_timer = 30.0
-# 초반 3분 후 5개의 이메일 수신 
-var timer = 180.0
+# 초반 1분 후 5개의 이메일 수신 
+var timer = 60.0
 var total_tasks = 0
 var time_point = 0
 var set_emails_first = false
