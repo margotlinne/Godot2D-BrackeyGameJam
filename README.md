@@ -1,12 +1,12 @@
 # Salary Lupin
 
-![gif](https://github.com/user-attachments/assets/10a77c3d-a390-45d8-b71d-570dbd78d0c2)
+<img src="https://github.com/user-attachments/assets/3f7f3107-737d-4c6d-939f-8cf7ccd7eb7e" width="100%" />
 
 ![screenshot](https://github.com/user-attachments/assets/0911d540-aae4-4daf-b335-bbc0253d763b)
 
-<a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">▶️Play Video</a>
+### <a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">▶️Play Video</a>
 
-<a href="https://margotlinne.itch.io/salary-lupin">🎮Play Here</a>
+### <a href="https://margotlinne.itch.io/salary-lupin">🎮Play Here</a>
 
 ## About
 
@@ -27,3 +27,12 @@ This project was for Brackey Game Jam with a game titled "Calm before the Storm.
 
 <br>
 
+## Overview
+
+- ⌛ 폭풍 전 고요인 1분의 시간을 떼우세요.
+
+  Spend a minute in the calm before the storm.
+
+- 🤯 폭풍이 시작되고 쏟아지는 메일과 서류 작업들을 제시간 안에 실수 없이 마무리하세요.
+
+  Finish the storm of incoming emails and paperwork on time without making mistakes.
