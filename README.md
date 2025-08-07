@@ -17,7 +17,7 @@ This project was for Brackey Game Jam with a game titled "Calm before the Storm.
 ## Information
 
 - **Engine**: Godot
-- **Platform**: WebgL
+- **Platform**: WebGL
 - **Team Size**: 1
 - **Time Frame**: 1 week
 
