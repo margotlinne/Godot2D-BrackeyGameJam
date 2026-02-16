@@ -2,7 +2,7 @@
 
 <img src="https://github.com/user-attachments/assets/3f7f3107-737d-4c6d-939f-8cf7ccd7eb7e" width="60%" />
 
-### <a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">▶️Play Video</a> <a href="https://margotlinne.itch.io/salary-lupin">🎮Play Here</a>
+### <a href="https://www.youtube.com/watch?v=WHIqHyYsGUY&list=PLVgVcpUV3wTMd91EiLjE9PvgdMCfvKSws&index=15">▶️Play Video</a> <a href="https://margotlinne.itch.io/salary-lupin">🎮Play Here</a> <a href="https://itch.io/jam/brackeys-12/rate/2973507">📝User Feedback</a>
 
 ## About
 
